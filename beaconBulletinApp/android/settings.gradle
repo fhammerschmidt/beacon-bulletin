@@ -1,0 +1,6 @@
+rootProject.name = 'beaconBulletinApp'
+
+include ':app'
+include ':react-native-alt-beacon'
+project(':react-native-alt-beacon').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-alt-beacon/android')
+
