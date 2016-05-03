@@ -1,0 +1,5 @@
+**/node_modules/*
+**/dist/*
+**/webpack.config*.js
+**/devServer.js
+**/common/fonts/**/*.js
