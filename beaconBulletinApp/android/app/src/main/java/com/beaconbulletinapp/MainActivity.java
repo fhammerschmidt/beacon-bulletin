@@ -1,10 +1,9 @@
 package com.beaconbulletinapp;
 
 import com.facebook.react.ReactActivity;
+import com.mmazzarolo.beaconsandroid.BeaconsAndroidPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
-
-import br.com.fraguto.rnabeacon.RNABeaconPackage; 
 
 import java.util.Arrays;
 import java.util.List;
@@ -37,7 +36,7 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
-            new RNABeaconPackage()
+            new BeaconsAndroidPackage()
         );
     }
 }

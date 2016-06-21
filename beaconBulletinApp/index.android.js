@@ -1,28 +1,32 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
-
 import React, {
   AppRegistry,
   Component,
   StyleSheet,
   Text,
-  View
+  View,
+  DeviceEventEmitter
 } from 'react-native';
+import Beacons from 'react-native-beacons-android'
+
+// Tells the library to detect iBeacons
+Beacons.detectIBeacons();
+
+// Start detecting all iBeacons in the nearby
+Beacons.startRangingBeaconsInRegion('REGION1')
+  .then(() => console.log(`Beacons monitoring started succesfully!`))
+  .catch(error => console.log(`Beacons monitoring not started, error: ${error}`));
+
+// Print a log of the detected iBeacons (evert 1 second)
+DeviceEventEmitter.addListener('beaconsDidRange', (data) => {
+  console.log('Found beacons!', data)
+});
 
 class beaconBulletinApp extends Component {
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Shake or press menu button for dev menu
+          Welcome to the Beacon Bulletin App!
         </Text>
       </View>
     );

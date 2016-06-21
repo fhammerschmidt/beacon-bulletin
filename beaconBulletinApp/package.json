@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "react": "^0.14.8",
-    "react-native": "^0.23.1",
-    "react-native-alt-beacon": "^1.0.2"
+    "react-native": "^0.24.1",
+    "react-native-beacons-android": "^1.1.0"
   }
 }
