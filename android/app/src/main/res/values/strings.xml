@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">beaconBulletinApp</string>
+
+    <string name="app_name">reactNativeBeaconExample</string>
 </resources>

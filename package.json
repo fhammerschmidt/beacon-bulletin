@@ -1,51 +1,27 @@
 {
   "name": "beacon-bulletin",
   "version": "0.0.1",
-  "description": "Beacon Bulletin app.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fhammerschmidt/beacon-bulletin.git"
-  },
+  "author": "Florian Hammerschmidt",
+  "license": "MIT",
+  "description": "A location-aware bulletin board for educational uses",
   "keywords": [
-    "beacon-bulletin"
+    "beacon",
+    "iBeacon"
   ],
-  "author": "Florian Hammerschmidt <florian.hammerschmidt@s.wu.ac.at>",
-  "license": "LicenseRef-LICENSE",
-  "homepage": "http://www.wu.ac.at",
-  "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "lint": "eslint ."
+    "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-
-    "react": "^0.14.8",
-    "react-native": "^0.24.1",
-    "react-native-beacons-android": "^1.1.0",
-    "react-native-alt-beacon": "^1.0.2",
-    "object-filter": "1.0.2",
-    "react": "0.14.8",
-    "react-addons-update": "0.14.8",
-    "react-native": "0.24.0",
-    "react-redux": "4.4.5",
-    "redux": "3.5.2",
-    "redux-logger": "2.6.1",
-    "redux-persist": "2.0.1",
-    "redux-saga": "0.10.2",
-    "reselect": "2.5.1",
-    "xmldom": "0.1.22"
+    "react": "15.1.0",
+    "react-native": "0.28.0",
+    "react-native-beacons-android": "^1.3.1",
+    "react-native-bluetooth-state": "^2.0.0",
+    "react-native-ibeacon": "^0.6.0"
   },
   "devDependencies": {
-    "babel-cli": "6.7.7",
-    "babel-eslint": "6.0.4",
-    "eslint": "2.9.0",
-    "eslint-plugin-babel": "3.2.0",
-    "eslint-plugin-import": "1.6.1",
-    "eslint-plugin-react": "5.0.1",
-    "eslint-plugin-react-native": "1.0.0",
-    "fetch-mock": "4.4.0",
-    "fs-extra": "0.30.0",
-    "node-fetch": "1.5.1",
-    "tap-spec": "4.1.1"
+    "babel-eslint": "^6.1.0",
+    "eslint": "^2.13.1",
+    "eslint-plugin-react": "^5.2.2",
+    "eslint-plugin-react-native": "^1.1.0"
   }
 }

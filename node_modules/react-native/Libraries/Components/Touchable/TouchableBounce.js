@@ -125,7 +125,7 @@ var TouchableBounce = React.createClass({
     return 0;
   },
 
-  render: function(): ReactElement {
+  render: function(): ReactElement<any> {
     return (
       <Animated.View
         style={[{transform: [{scale: this.state.scale}]}, this.props.style]}
@@ -142,6 +142,7 @@ var TouchableBounce = React.createClass({
         onResponderRelease={this.touchableHandleResponderRelease}
         onResponderTerminate={this.touchableHandleResponderTerminate}>
         {this.props.children}
+        {Touchable.renderDebugView({color: 'orange', hitSlop: this.props.hitSlop})}
       </Animated.View>
     );
   }

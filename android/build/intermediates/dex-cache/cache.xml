@@ -2,151 +2,165 @@
 <items version="2" >
 
     <item
-        jar="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/exploded-aar/beaconBulletinApp/react-native-beacons-android/unspecified/jars/classes.jar"
+        jar="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.10.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="6fb9782eafde96264a70b07c7f4059f3ebcfad2d">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/classes-395d91b61d4330d953b2468261a887eab5f492a5.jar" />
+        sha1="d323cf4983bdfce7136a1ce5e32710e1b36b20fe">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/classes-9e03a93a272974c59db8eaed901edf33a0bc4cb5.jar" />
     </item>
     <item
-        jar="/home/nightmare/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.5.0/4de2b4ed3445c37ec1720a7d214712e845a24636/okhttp-2.5.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="4de2b4ed3445c37ec1720a7d214712e845a24636">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/okhttp-2.5.0-da9fd401285725325f3aec45dfc27b0d30ca41e9.jar" />
-    </item>
-    <item
-        jar="/home/nightmare/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="98476622f10715998eacf9240d6b479f12c66143">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/okio-1.6.0-636a769906f73915985f927f5ec46d0df0555a02.jar" />
-    </item>
-    <item
-        jar="/home/nightmare/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.2.3/1a0113da2cab5f4c216b4e5e7c1dbfaa67087e14/jackson-core-2.2.3.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="1a0113da2cab5f4c216b4e5e7c1dbfaa67087e14">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/jackson-core-2.2.3-f14855376dade4c4795208e96094752ea5eb57c2.jar" />
-    </item>
-    <item
-        jar="/home/nightmare/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0-0b9b70b289a6d4773e39ae921c90e33857a38e75.jar" />
-    </item>
-    <item
-        jar="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.8.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="9178570a3a28c95fabd3bc746cd68efe99ad2b47">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/classes-f895e73c5465a5f63c879819afe68163a842caf6.jar" />
-    </item>
-    <item
-        jar="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/exploded-aar/org.altbeacon/android-beacon-library/2.6/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="0332c86c6c273b232fa9e3cb4a0cec3e8ff08943">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/classes-4de59b446c45a4e3dbc09bd588b6dd181bb9bd10.jar" />
-    </item>
-    <item
-        jar="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.8.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="4af24c040b21980e0a80a505816c648e36705bd9">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/classes-54974306f31b632ab3c03cdba3f57a56c7ce1560.jar" />
-    </item>
-    <item
-        jar="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="3836ecca4e31e18ea8fbae8e822d49777b0db4f7">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/classes-a8ed296ebfc2d0a63d74bcad94c6b614da742e9d.jar" />
-    </item>
-    <item
-        jar="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.24.1/jars/libs/infer-annotations-1.5.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="50bae83a0680cb90776a4d36bb6aa4911a84fd8b">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/infer-annotations-1.5-ca8e8b7a5b34b66e609c27a2966f63aba8e9460a.jar" />
-    </item>
-    <item
-        jar="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/classes-681dfea2fc80683b94212d51ce7136c2d52ebf14.jar" />
-    </item>
-    <item
-        jar="/home/nightmare/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp-ws/2.5.0/e9753b7dcae5deca92e871c5c759067070b07bc/okhttp-ws-2.5.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="0e9753b7dcae5deca92e871c5c759067070b07bc">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/okhttp-ws-2.5.0-60c8fd58f1f86d9c54f33cdb9ade69258dee64b6.jar" />
-    </item>
-    <item
-        jar="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/jars/classes.jar"
+        jar="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/classes-080b71cd550105a05bc67dcbac8656ee671e8d13.jar" />
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/classes-60ae203bba05f2312b6ad503527efa5e25bd1cc3.jar" />
     </item>
     <item
-        jar="/opt/android-sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jar="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/reactNativeBeaconExample/react-native-beacons-android/unspecified/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-55544acaf7567404cc89c13faa7d16877bb6a718.jar" />
+        sha1="39c8daa12fc0fae2b240dbde963e6ab3394ea47f">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/classes-3315afe774e73922b02bb13b79e4583b80884b70.jar" />
     </item>
     <item
-        jar="/home/nightmare/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jar="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.10.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6e1ed00013584399dbe27d45ac1fd6a9828c9fca">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/classes-4cf1d5d5f158ae4ce7d191d69eedc16f6ef937d7.jar" />
+    </item>
+    <item
+        jar="/Users/florian-cca/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/library-2.4.0-fd01060b2134d3db09e12912a907710fca67da8b.jar" />
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/library-2.4.0-dc533f9410258b0e6c944a9b72f51699da7bc40a.jar" />
     </item>
     <item
-        jar="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jar="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/classes-b63d856d58699d184631331bd709f4f27dbaa438.jar" />
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/classes-e57e3221e77dde815652692c0c9b080379a6f4c7.jar" />
     </item>
     <item
-        jar="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.24.1/jars/classes.jar"
+        jar="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.28.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="d12931c7b260dda5ba99b8c89cd6ec2a104abed3">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/classes-01399776b7f031187d9f96ec5e9af370162c42d9.jar" />
+        sha1="e692405777839befca453a23ecc89fce2cebd058">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/classes-7a46b4ec6b16effb0e7da966c126345ce64d0a63.jar" />
     </item>
     <item
-        jar="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp/0.8.1/jars/classes.jar"
+        jar="/Users/florian-cca/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.2.3/1a0113da2cab5f4c216b4e5e7c1dbfaa67087e14/jackson-core-2.2.3.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="0d5d69b03cb7d68b81543f6483ed04ccb0e2235b">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/classes-080ea36add6ef81c1ac2f07f4eb0241ffe489c4c.jar" />
+        sha1="1a0113da2cab5f4c216b4e5e7c1dbfaa67087e14">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/jackson-core-2.2.3-082bd3adbc2adc91321f723ee8f21b9d369ed8c8.jar" />
     </item>
     <item
-        jar="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.8.1/jars/classes.jar"
+        jar="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.10.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="845a5b3a624946b2068963ba656c117fc453701c">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/classes-ebda0e0d8a72e7fcd21b136905b7720050b10917.jar" />
+        sha1="857099e23430445aeb65cf703d5adf646ff280f1">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/classes-a68fc28ffa75545a655c82d802270540d4b4f65c.jar" />
     </item>
     <item
-        jar="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jar="/Users/florian-cca/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-ws/3.2.0/1ea229d6984444c8c58b8e97ba4c8429d9d135b3/okhttp-ws-3.2.0.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-85fa16bb679eb70ddcf92637fae3d5d2537c87e1.jar" />
+        sha1="1ea229d6984444c8c58b8e97ba4c8429d9d135b3">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/okhttp-ws-3.2.0-36a6372619def4ba25b7ae3c14170ef11dfe4d0f.jar" />
     </item>
     <item
-        jar="/home/nightmare/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.1.4/129874135e6081269ace2312092031558865de12/bolts-android-1.1.4.jar"
+        jar="/usr/local/opt/android-sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1-a041f2f8ff1493800bffcf8f765c2b6816fd397f.jar" />
+    </item>
+    <item
+        jar="/Users/florian-cca/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.8.0/5ea7af56cc7c567ed9856d99efb30740e9b17ff/okio-1.8.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/okio-1.8.0-b22dda56d0b468b0ceecd2a82a24b123c1a0902c.jar" />
+    </item>
+    <item
+        jar="/Users/florian-cca/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.2.0/f7873a2ebde246a45c2a8d6f3247108b4c88a879/okhttp-3.2.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="f7873a2ebde246a45c2a8d6f3247108b4c88a879">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/okhttp-3.2.0-cd35f5c48871f79ad0630071c7495eae4fb540b0.jar" />
+    </item>
+    <item
+        jar="/Users/florian-cca/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0-ac1b4fb630b76376caab86006de31be45088efee.jar" />
+    </item>
+    <item
+        jar="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/0.10.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5e88a2a26ac71cd7f8fd8bd9f9381fa06d1a47a3">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/classes-eb1b2c76171f3ef5d540a608415ff16de60e301c.jar" />
+    </item>
+    <item
+        jar="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1-9137dbdb94f3d3c4aa99714b15956231319a2313.jar" />
+    </item>
+    <item
+        jar="/Users/florian-cca/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.1.4/129874135e6081269ace2312092031558865de12/bolts-android-1.1.4.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="129874135e6081269ace2312092031558865de12">
-        <dex dex="/home/nightmare/Dropbox/Master-Thesis/src/beacon-bulletin/beaconBulletinApp/android/app/build/intermediates/pre-dexed/debug/bolts-android-1.1.4-fa13d490daee691ab04e4caa2b757e1f389f3aa1.jar" />
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/bolts-android-1.1.4-c333c9f6c703bca36d16c80ea5201f07e8da8e0d.jar" />
+    </item>
+    <item
+        jar="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/0.10.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="53880c6e24bb574c2f03fd0f743a268ccc502f45">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/classes-31796291934dd01d99f07b6f201b60f14c94a23f.jar" />
+    </item>
+    <item
+        jar="/Users/florian-cca/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.2.0/6f8a4b1435c9e0a6f9c5fe4a1be46627b848fd0c/okhttp-urlconnection-3.2.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6f8a4b1435c9e0a6f9c5fe4a1be46627b848fd0c">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.2.0-39a7bf69a78d33fdb924a851ae5dd8c1717a6b05.jar" />
+    </item>
+    <item
+        jar="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/org.altbeacon/android-beacon-library/2.6/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="0332c86c6c273b232fa9e3cb4a0cec3e8ff08943">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/classes-2dbd504c5aac1fe4e790f1e2534780fa51c1c7f4.jar" />
+    </item>
+    <item
+        jar="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.28.0/jars/libs/infer-annotations-1.5.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="b63941892634511f96bdb6e49a3aa62292fd5d90">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/infer-annotations-1.5-ab11a667a843d99edb580af41784ca638637eb62.jar" />
+    </item>
+    <item
+        jar="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/classes-b63b9c3d4b57f3c741126b03792bed9082f21992.jar" />
+    </item>
+    <item
+        jar="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.10.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="65f0c887ee1f57cd0ea65b228e39b7f35372b798">
+        <dex dex="/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/pre-dexed/debug/classes-7a5b92a8df462826497ccc73af7d88ef7fd71427.jar" />
     </item>
 
 </items>

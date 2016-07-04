@@ -5,7 +5,7 @@ SUPPORTED_PLATFORMS = '^android-(armv7|x86)$'
 
 DEPS = [
   FBGLOGINIT_TARGET,
-  '//native/jni:jni',
+  '//native/fb:fb',
   '//native/third-party/android-ndk:android',
   '//xplat/folly:molly',
 ]
@@ -22,15 +22,6 @@ def jni_library(**kwargs):
     **kwargs
   )
 
-  cxx_library(
-    name='jni-internal',
-    visibility = [INTERNAL_APP],
-    deps = DEPS + JSC_INTERNAL_DEPS + [
-      react_native_target('jni/react:react-internal'),
-    ],
-    **kwargs
-  )
-
 jni_library(
   soname = 'libreactnativejni.so',
   header_namespace = 'react/jni',
@@ -40,11 +31,17 @@ jni_library(
     'JMessageQueueThread.cpp',
     'JSCPerfLogging.cpp',
     'JSLoader.cpp',
+    'JSLogging.cpp',
     'JniJSModulesUnbundle.cpp',
     'NativeArray.cpp',
+    'NativeCommon.cpp',
+    'NativeMap.cpp',
     'OnLoad.cpp',
     'ProxyExecutor.cpp',
-    'JSLogging.cpp',
+    'ReadableNativeArray.cpp',
+    'ReadableNativeMap.cpp',
+    'WritableNativeArray.cpp',
+    'WritableNativeMap.cpp',
   ],
   headers = [
     'JSLoader.h',
@@ -59,8 +56,13 @@ jni_library(
     'WebWorkers.h',
   ],
   exported_headers = [
+    'NativeCommon.h',
     'NativeArray.h',
+    'NativeMap.h',
     'ReadableNativeArray.h',
+    'ReadableNativeMap.h',
+    'WritableNativeArray.h',
+    'WritableNativeMap.h',
   ],
   preprocessor_flags = [
     '-DLOG_TAG="ReactNativeJNI"',

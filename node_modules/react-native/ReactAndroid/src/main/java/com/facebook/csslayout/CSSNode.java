@@ -7,7 +7,7 @@
  */
 
 // NOTE: this file is auto-copied from https://github.com/facebook/css-layout
-// @generated SignedSource<<1f520d46cbfddbbea0661a8fb6a00748>>
+// @generated SignedSource<<67fbba6df7c2472877c7b04327fb1863>>
 
 package com.facebook.csslayout;
 
@@ -56,7 +56,7 @@ public class CSSNode {
      *
      * NB: measure is NOT guaranteed to be threadsafe/re-entrant safe!
      */
-    public void measure(CSSNode node, float width, float height, MeasureOutput measureOutput);
+    public void measure(CSSNode node, float width, CSSMeasureMode widthMode, float height, CSSMeasureMode heightMode, MeasureOutput measureOutput);
   }
 
   // VisibleForTesting
@@ -66,9 +66,8 @@ public class CSSNode {
 
   public int lineIndex = 0;
 
-  /*package*/ CSSNode nextAbsoluteChild;
-  /*package*/ CSSNode nextFlexChild;
-
+  /*package*/ CSSNode nextChild;
+  
   private @Nullable ArrayList<CSSNode> mChildren;
   private @Nullable CSSNode mParent;
   private @Nullable MeasureFunction mMeasureFunction = null;
@@ -128,13 +127,13 @@ public class CSSNode {
     return mMeasureFunction != null;
   }
 
-  /*package*/ MeasureOutput measure(MeasureOutput measureOutput, float width, float height) {
+  /*package*/ MeasureOutput measure(MeasureOutput measureOutput, float width, CSSMeasureMode widthMode, float height, CSSMeasureMode heightMode) {
     if (!isMeasureDefined()) {
       throw new RuntimeException("Measure function isn't defined!");
     }
     measureOutput.height = CSSConstants.UNDEFINED;
     measureOutput.width = CSSConstants.UNDEFINED;
-    Assertions.assertNotNull(mMeasureFunction).measure(this, width, height, measureOutput);
+    Assertions.assertNotNull(mMeasureFunction).measure(this, width, widthMode, height, heightMode, measureOutput);
     return measureOutput;
   }
 
@@ -142,7 +141,6 @@ public class CSSNode {
    * Performs the actual layout and saves the results in {@link #layout}
    */
   public void calculateLayout(CSSLayoutContext layoutContext) {
-    layout.resetResult();
     LayoutEngine.layoutNode(layoutContext, this, CSSConstants.UNDEFINED, CSSConstants.UNDEFINED, null);
   }
 
