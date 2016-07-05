@@ -14,7 +14,7 @@ import {
 import Beacons        from 'react-native-beacons-android';
 
 
-class reactNativeBeaconExample extends Component {
+class beaconBulletin extends Component {
   constructor(props) {
     super(props);
     // Create our dataSource which will be displayed in the ListView
@@ -23,7 +23,8 @@ class reactNativeBeaconExample extends Component {
     );
     this.state = {
       // region information
-      uuidRef: '6665542b-41a1-5e00-931c-6a82db9b78c1',
+      uuidRef: 'e2c56db5-dffb-48d2-b060-d0f5a71096e0',
+      // uuidRef: 'e2c56db5-dffb-48d2-b060-d0f5a-71096e0',
       // React Native ListView datasource initialization
       dataSource: ds.cloneWithRows([])
     };
@@ -136,6 +137,6 @@ const styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent(
-  'reactNativeBeaconExample',
-  () => reactNativeBeaconExample
+  'beaconBulletin',
+  () => beaconBulletin
 );

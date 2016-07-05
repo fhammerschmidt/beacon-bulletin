@@ -15,7 +15,7 @@ import Beacons                from 'react-native-ibeacon';
 import BluetoothState         from 'react-native-bluetooth-state';
 
 
-class reactNativeBeaconExample extends Component {
+class beaconBulletin extends Component {
   constructor(props) {
     super(props);
     // Create our dataSource which will be displayed in the ListView
@@ -149,6 +149,6 @@ const styles = StyleSheet.create({
 
 
 AppRegistry.registerComponent(
-  'reactNativeBeaconExample',
-  () => reactNativeBeaconExample
+  'beaconBulletin',
+  () => beaconBulletin
 );

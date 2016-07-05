@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "reactNativeBeaconExample.app"
-               BlueprintName = "reactNativeBeaconExample"
-               ReferencedContainer = "container:reactNativeBeaconExample.xcodeproj">
+               BuildableName = "beaconBulletin.app"
+               BlueprintName = "beaconBulletin"
+               ReferencedContainer = "container:beaconBulletin.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "reactNativeBeaconExampleTests.xctest"
-               BlueprintName = "reactNativeBeaconExampleTests"
-               ReferencedContainer = "container:reactNativeBeaconExample.xcodeproj">
+               BuildableName = "beaconBulletinTests.xctest"
+               BlueprintName = "beaconBulletinTests"
+               ReferencedContainer = "container:beaconBulletin.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "reactNativeBeaconExampleTests.xctest"
-               BlueprintName = "reactNativeBeaconExampleTests"
-               ReferencedContainer = "container:reactNativeBeaconExample.xcodeproj">
+               BuildableName = "beaconBulletinTests.xctest"
+               BlueprintName = "beaconBulletinTests"
+               ReferencedContainer = "container:beaconBulletin.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "reactNativeBeaconExample.app"
-            BlueprintName = "reactNativeBeaconExample"
-            ReferencedContainer = "container:reactNativeBeaconExample.xcodeproj">
+            BuildableName = "beaconBulletin.app"
+            BlueprintName = "beaconBulletin"
+            ReferencedContainer = "container:beaconBulletin.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "reactNativeBeaconExample.app"
-            BlueprintName = "reactNativeBeaconExample"
-            ReferencedContainer = "container:reactNativeBeaconExample.xcodeproj">
+            BuildableName = "beaconBulletin.app"
+            BlueprintName = "beaconBulletin"
+            ReferencedContainer = "container:beaconBulletin.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "reactNativeBeaconExample.app"
-            BlueprintName = "reactNativeBeaconExample"
-            ReferencedContainer = "container:reactNativeBeaconExample.xcodeproj">
+            BuildableName = "beaconBulletin.app"
+            BlueprintName = "beaconBulletin"
+            ReferencedContainer = "container:beaconBulletin.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

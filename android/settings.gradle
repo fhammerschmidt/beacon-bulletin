@@ -1,4 +1,4 @@
-rootProject.name = 'reactNativeBeaconExample'
+rootProject.name = 'beaconBulletin'
 
 include ':app'
 include ':react-native-beacons-android'

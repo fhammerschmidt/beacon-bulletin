@@ -1,4 +1,4 @@
-package com.reactnativebeaconexample;
+package com.beaconBulletin;
 
 import com.facebook.react.ReactActivity;
 import com.mmazzarolo.beaconsandroid.BeaconsAndroidPackage;
@@ -16,7 +16,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "reactNativeBeaconExample";
+        return "beaconBulletin";
     }
 
     /**
