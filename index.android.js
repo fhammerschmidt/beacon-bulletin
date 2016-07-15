@@ -1,8 +1,4 @@
-'use strict';
-
-import React, {
-  Component
-}                     from 'react';
+import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -10,11 +6,10 @@ import {
   ListView,
   View,
   DeviceEventEmitter
-}                     from 'react-native';
-import Beacons        from 'react-native-beacons-android';
+} from 'react-native';
+import Beacons from 'react-native-beacons-android';
 
-
-class beaconBulletin extends Component {
+class BeaconBulletin extends Component {
   constructor(props) {
     super(props);
     // Create our dataSource which will be displayed in the ListView
@@ -138,5 +133,5 @@ const styles = StyleSheet.create({
 
 AppRegistry.registerComponent(
   'beaconBulletin',
-  () => beaconBulletin
+  () => BeaconBulletin
 );
