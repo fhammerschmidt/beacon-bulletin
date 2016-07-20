@@ -1,0 +1,11 @@
+{
+  "rooms": [
+    { "id": 1, "building": "D2", "level": "0", "fullName": "D2.0.0.30" },
+    { "id": 2, "building": "D1", "level": "1", "fullName": "D1.1.0.40" }
+  ],
+  "beacons": [
+    { "id": 5, "major": 12, "minor": 20, "rooms": [ 1, 3 ] },
+    { "id": 7, "major": 12, "minor": 21, "rooms": [ 6, 7 ] },
+    { "id": 2, "major": 13, "minor": 10, "rooms": [ 4 ] }
+  ]
+}
