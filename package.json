@@ -1,9 +1,13 @@
 {
-  "name": "beacon-bulletin",
+  "name": "BeaconBulletin",
   "version": "0.0.1",
   "author": "Florian Hammerschmidt",
   "license": "MIT",
-  "description": "A location-aware bulletin board for educational uses",
+  "description": "A location-aware bulletin board app to be used in educational context",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fhammerschmidt/beacon-bulletin.git"
+  },
   "keywords": [
     "beacon",
     "iBeacon"
@@ -12,16 +16,29 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "react": "15.1.0",
-    "react-native": "0.28.0",
+    "react": "^15.3.2",
+    "react-addons-update": "^15.3.2",
+    "react-native": "^0.36.0",
     "react-native-beacons-android": "^1.3.1",
     "react-native-bluetooth-state": "^2.0.0",
-    "react-native-ibeacon": "^0.6.0"
+    "react-native-ibeacon": "^0.6.0",
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0",
+    "redux-persist": "^3.5.0",
+    "redux-saga": "^0.11.1",
+    "reselect": "^2.5.4"
   },
   "devDependencies": {
-    "babel-eslint": "^6.1.0",
+    "babel-cli": "6.14.0",
+    "babel-eslint": "7.0.0",
+    "babel-preset-es2015": "6.14.0",
+    "babel-preset-react-native": "1.9.0",
     "eslint": "^2.13.1",
+    "eslint-plugin-babel": "^3.2.0",
+    "eslint-plugin-import": "^1.8.0",
     "eslint-plugin-react": "^5.2.2",
-    "eslint-plugin-react-native": "^1.1.0"
+    "eslint-plugin-react-native": "^1.1.0",
+    "flow-bin": "0.32.0",
+    "iflow-lodash": "1.1.24"
   }
 }

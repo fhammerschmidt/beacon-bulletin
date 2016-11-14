@@ -31,7 +31,7 @@
     <color name="bright_foreground_material_light">@android:color/black</color>
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
-    <!-- From: file:/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.28.0/res/values/values.xml -->
+    <!-- From: file:/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.36.0/res/values/values.xml -->
     <eat-comment/>
     <color name="catalyst_redbox_background">#eecc0000</color>
     <!-- From: file:/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
@@ -97,6 +97,7 @@
     <declare-styleable name="PopupWindowBackgroundState"><attr format="boolean" name="state_above_anchor"/></declare-styleable>
     <declare-styleable name="RecyclerView"><attr format="string" name="layoutManager"/><attr name="android:orientation"/><attr format="integer" name="spanCount"/><attr format="boolean" name="reverseLayout"/><attr format="boolean" name="stackFromEnd"/></declare-styleable>
     <declare-styleable name="SearchView"><attr format="reference" name="layout"/><attr format="boolean" name="iconifiedByDefault"/><attr name="android:maxWidth"/><attr format="string" name="queryHint"/><attr format="string" name="defaultQueryHint"/><attr name="android:imeOptions"/><attr name="android:inputType"/><attr format="reference" name="closeIcon"/><attr format="reference" name="goIcon"/><attr format="reference" name="searchIcon"/><attr format="reference" name="searchHintIcon"/><attr format="reference" name="voiceIcon"/><attr format="reference" name="commitIcon"/><attr format="reference" name="suggestionRowLayout"/><attr format="reference" name="queryBackground"/><attr format="reference" name="submitBackground"/><attr name="android:focusable"/></declare-styleable>
+    <declare-styleable name="SimpleDraweeView"><attr format="string" name="actualImageUri"/></declare-styleable>
     <declare-styleable name="Spinner"><attr name="android:prompt"/><attr name="popupTheme"/><attr name="android:popupBackground"/><attr name="android:dropDownWidth"/></declare-styleable>
     <declare-styleable name="SwitchCompat"><attr name="android:thumb"/><attr format="reference" name="track"/><attr name="android:textOn"/><attr name="android:textOff"/><attr format="dimension" name="thumbTextPadding"/><attr format="reference" name="switchTextAppearance"/><attr format="dimension" name="switchMinWidth"/><attr format="dimension" name="switchPadding"/><attr format="boolean" name="splitTrack"/><attr format="boolean" name="showText"/></declare-styleable>
     <declare-styleable name="TextAppearance"><attr name="android:textSize"/><attr name="android:textColor"/><attr name="android:textStyle"/><attr name="android:typeface"/><attr name="textAllCaps"/></declare-styleable>
@@ -221,11 +222,13 @@
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <!-- From: file:/Users/florian-cca/workspace/beacon-bulletin/android/app/src/main/res/values/strings.xml -->
     <eat-comment/>
-    <string name="app_name">beaconBulletin</string>
-    <!-- From: file:/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.28.0/res/values/values.xml -->
+    <string name="app_name">BeaconBulletin</string>
+    <!-- From: file:/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.36.0/res/values/values.xml -->
     <eat-comment/>
+    <string name="catalyst_copy_button" project="catalyst" translatable="false">Copy</string>
     <string name="catalyst_debugjs" project="catalyst" translatable="false">Debug JS Remotely</string>
     <string name="catalyst_debugjs_off" project="catalyst" translatable="false">Stop Remote JS Debugging</string>
+    <string name="catalyst_dismiss_button" project="catalyst" translatable="false">Dismiss\n(ESC)</string>
     <string name="catalyst_element_inspector" project="catalyst" translatable="false">Toggle Inspector</string>
     <string name="catalyst_heap_capture" project="catalyst" translatable="false">Capture Heap</string>
     <string name="catalyst_hot_module_replacement" project="catalyst" translatable="false">Enable Hot Reloading</string>
@@ -237,13 +240,14 @@
     <string name="catalyst_live_reload_off" project="catalyst" translatable="false">Disable Live Reload</string>
     <string name="catalyst_perf_monitor" project="catalyst" translatable="false">Show Perf Monitor</string>
     <string name="catalyst_perf_monitor_off" project="catalyst" translatable="false">Hide Perf Monitor</string>
+    <string name="catalyst_poke_sampling_profiler" project="catalyst" translatable="false">Start/Stop Sampling Profiler</string>
+    <string name="catalyst_reload_button" project="catalyst" translatable="false">Reload\n(R,\u00A0R)</string>
     <string name="catalyst_reloadjs" project="catalyst" translatable="false">Reload</string>
     <string name="catalyst_remotedbg_error" project="catalyst" translatable="false">Unable to connect with remote debugger</string>
     <string name="catalyst_remotedbg_message" project="catalyst" translatable="false">Connecting to remote debugger</string>
+    <string name="catalyst_report_button" project="catalyst" translatable="false">Report</string>
     <string name="catalyst_settings" project="catalyst" translatable="false">Dev Settings</string>
     <string name="catalyst_settings_title" project="catalyst" translatable="false">Catalyst Dev Settings</string>
-    <string name="catalyst_start_profile" project="catalyst" translatable="false">Start Profile</string>
-    <string name="catalyst_stop_profile" project="catalyst" translatable="false">Stop Profile</string>
     <!-- From: file:/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
     <eat-comment/>
     <string name="status_bar_notification_info_overflow">999+</string>
@@ -251,7 +255,7 @@
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
     <style name="Animation.AppCompat.DropDownUp" parent="Base.Animation.AppCompat.DropDownUp"/>
-    <!-- From: file:/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.28.0/res/values/values.xml -->
+    <!-- From: file:/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.36.0/res/values/values.xml -->
     <eat-comment/>
     <style name="Animation.Catalyst.RedBox" parent="@android:style/Animation">
     <item name="android:windowEnterAnimation">@anim/catalyst_push_up_in</item>
@@ -1177,7 +1181,7 @@
         <item name="android:minWidth">56dp</item>
         <item name="android:scaleType">center</item>
     </style>
-    <!-- From: file:/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.28.0/res/values/values.xml -->
+    <!-- From: file:/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.36.0/res/values/values.xml -->
     <eat-comment/>
     <style name="DialogAnimationFade">
     <item name="android:windowEnterAnimation">@anim/fade_in</item>
@@ -1396,7 +1400,7 @@
     </style>
     <style name="TextAppearance.Widget.AppCompat.Toolbar.Title" parent="Base.TextAppearance.Widget.AppCompat.Toolbar.Title">
     </style>
-    <!-- From: file:/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.28.0/res/values/values.xml -->
+    <!-- From: file:/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.36.0/res/values/values.xml -->
     <eat-comment/>
     <style name="Theme"/>
     <!-- From: file:/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
@@ -1423,7 +1427,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    <!-- From: file:/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.28.0/res/values/values.xml -->
+    <!-- From: file:/Users/florian-cca/workspace/beacon-bulletin/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.36.0/res/values/values.xml -->
     <eat-comment/>
     <style name="Theme.Catalyst"/>
     <style name="Theme.Catalyst.RedBox" parent="@style/Theme.AppCompat.DialogWhenLarge">
@@ -1437,6 +1441,7 @@
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowIsFloating">false</item>
     <item name="android:windowBackground">@android:color/transparent</item>
+    <item name="android:windowTranslucentStatus">true</item>
   </style>
     <style name="Theme.FullScreenDialogAnimatedFade" parent="Theme.FullScreenDialog">
     <item name="android:windowAnimationStyle">@style/DialogAnimationFade</item>
