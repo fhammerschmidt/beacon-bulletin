@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 
-import type { Room } from '../reducers/roomData';
-import Icon from './Icon';
+import type { Room } from '../reducers/data';
+import BeaconBulletinIcons from './BeaconBulletinIcons';
 
 export default class RoomCell extends Component {
   props: {
@@ -17,7 +17,9 @@ export default class RoomCell extends Component {
     return (
       <TouchableHighlight onPress={this.handleRowPressed}>
         <View style={styles.cell}>
-          <Icon style={styles.iconContainer} type="room"/>
+          <Text style={styles.iconContainer} type="room">
+            <BeaconBulletinIcons name="account_balance" size={24}/>
+          </Text>
           <Text numberOfLines={1} style={styles.text}>
             {rowData.fullName}
           </Text>
@@ -44,7 +46,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     height: 60,
-    marginHorizontal: 16,
     marginBottom: 4,
   },
   iconContainer: {

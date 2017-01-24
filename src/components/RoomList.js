@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { ListView } from 'react-native';
+import { ListView, StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 
 import type { ReduxState } from '../reducers';
@@ -10,7 +10,7 @@ const testdata = require('../../docs/data.json'); // eslint-disable-line import/
 
 function mapStateToProps(state: ReduxState) {
   return {
-    roomData: state.roomData,
+    data: state.data,
   };
 }
 
@@ -35,10 +35,12 @@ class RoomList extends Component {
 
   render() {
     return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderRow}
-      />
+      <View style={styles.roomList}>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderRow}
+        />
+      </View>
     );
   }
 
@@ -56,3 +58,12 @@ class RoomList extends Component {
 }
 
 export default connect(mapStateToProps)(RoomList);
+
+const styles = StyleSheet.create({
+  roomList: {
+    paddingTop: 16,
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+    paddingHorizontal: 16,
+  },
+});
