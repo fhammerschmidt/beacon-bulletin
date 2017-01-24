@@ -1,0 +1,13 @@
+{
+  "bluetooth": 57767,
+  "bluetooth_searching": 57770,
+  "bluetooth_connected": 57768,
+  "bluetooth_disabled": 57769,
+  "cancel": 58825,
+  "done": 59510,
+  "settings_input_antenna": 59583,
+  "tune": 58409,
+  "view_headline": 59630,
+  "wifi_tethering": 57826,
+  "account_balance": 59471
+}
