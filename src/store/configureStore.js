@@ -4,7 +4,7 @@ import createSagaMiddleware from 'redux-saga';
 import { persistStore, autoRehydrate } from 'redux-persist';
 
 import rootReducer from '../reducers';
-// import rootSaga from '../sagas';
+// import main from '../sagas';
 import storeConfig from './storeConfig';
 
 export default function configureStore(initialState: ?Object) {
@@ -18,7 +18,7 @@ export default function configureStore(initialState: ?Object) {
 
   const store = createStore(rootReducer, initialState, storeEnhancer);
   // Pass store.dispatch function down to fileUpload saga, so that we can dispatch actions in the progres event listener
-  // sagaMiddleware.run(rootSaga, store.dispatch);
+  // sagaMiddleware.run(main, store.dispatch);
 
   // Persist store using redux-persist.
   // Append .purgeAll(); to purge store or e.g. .purge([ 'masterData' ]); to purge master data only.
