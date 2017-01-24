@@ -2,17 +2,25 @@
 import { combineReducers } from 'redux';
 
 import type { AppState } from './app';
-import type { RoomDataState } from './roomData';
+import type { DataState } from './data';
+import type { NavigationState } from './navigation';
+import type { NavigationTabsState } from './navigationTabs';
 
 import app from './app';
-import roomData from './roomData';
+import data from './data';
+import navigation from './navigation';
+import navigationTabs from './navigationTabs';
 
 export type ReduxState = {
   app: AppState,
-  roomData: RoomDataState,
+  data: DataState,
+  navigation: NavigationState,
+  navigationTabs: NavigationTabsState,
 };
 
 export default combineReducers({
   app,
-  roomData,
+  data,
+  navigation,
+  navigationTabs,
 });
