@@ -1,21 +1,13 @@
 // @flow
+import type { AppAction } from './app';
+import type { DataAction } from './data';
+
 export type Action =
-| AppAction;
+| AppAction
+| DataAction
+;
 
-// General app actions
-type AppAction =
-| {| type: 'SET_NETWORK_ONLINE', online: boolean |}
-| {| type: 'ENABLE_BLUETOOTH', bluetooth: boolean |}
-| {| type: 'SET_APP_STATE', appState: string |};
+export type Dispatch = (action: Action) => void;
 
-export function setNetworkOnline(online: boolean): AppAction {
-  return { type: 'SET_NETWORK_ONLINE', online };
-}
-
-export function enableBluetooth(bluetooth: boolean): AppAction {
-  return { type: 'ENABLE_BLUETOOTH', bluetooth };
-}
-
-export function setAppState(appState: string): AppAction {
-  return { type: 'SET_APP_STATE', appState };
-}
+export * from './app';
+export * from './data';
