@@ -1,0 +1,17 @@
+{
+  "name": "beacon-bulletin-backend",
+  "version": "0.0.1",
+  "description": "Backend for the beacon bulletin mobile app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Florian Hammerschmidt",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
+    "express": "^4.15.3",
+    "mongodb": "^2.2.27"
+  }
+}

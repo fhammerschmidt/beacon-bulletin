@@ -24,6 +24,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		9A2EFC8A48EA48EC83E988FF /* libRNBluetoothState.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47CBD283013E4187ABC8C02E /* libRNBluetoothState.a */; };
 		CF6054B5D1534D67B72B5274 /* libRNBeacon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E10A01EEC94236B76E8735 /* libRNBeacon.a */; };
+		5C96081ED0C842BDB1CCDC56 /* libRNiBeacon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D354052EA1EC4B97B53247A9 /* libRNiBeacon.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +133,8 @@
 		47CBD283013E4187ABC8C02E /* libRNBluetoothState.a */ = {isa = PBXFileReference; name = "libRNBluetoothState.a"; path = "libRNBluetoothState.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		101E94430C67464BB84C726B /* RNBeacon.xcodeproj */ = {isa = PBXFileReference; name = "RNBeacon.xcodeproj"; path = "../node_modules/react-native-ibeacon/RNBeacon.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		14E10A01EEC94236B76E8735 /* libRNBeacon.a */ = {isa = PBXFileReference; name = "libRNBeacon.a"; path = "libRNBeacon.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		B566D0EF87D0485EAEC15477 /* RNiBeacon.xcodeproj */ = {isa = PBXFileReference; name = "RNiBeacon.xcodeproj"; path = "../node_modules/react-native-beacons-manager/ios/RNiBeacon/RNiBeacon.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		D354052EA1EC4B97B53247A9 /* libRNiBeacon.a */ = {isa = PBXFileReference; name = "libRNiBeacon.a"; path = "libRNiBeacon.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +162,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				9A2EFC8A48EA48EC83E988FF /* libRNBluetoothState.a in Frameworks */,
 				CF6054B5D1534D67B72B5274 /* libRNBeacon.a in Frameworks */,
+				5C96081ED0C842BDB1CCDC56 /* libRNiBeacon.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +287,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				1E36880FC4BC4DCC847526FB /* RNBluetoothState.xcodeproj */,
 				101E94430C67464BB84C726B /* RNBeacon.xcodeproj */,
+				B566D0EF87D0485EAEC15477 /* RNiBeacon.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -606,6 +611,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeaconBulletin.app/BeaconBulletin";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -622,6 +628,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeaconBulletin.app/BeaconBulletin";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Release;
@@ -638,6 +645,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-bluetooth-state/**",
 					"$(SRCROOT)/../node_modules/react-native-ibeacon",
+					"$(SRCROOT)/../node_modules/react-native-beacons-manager/ios/RNiBeacon/RNiBeacon",
 				);
 				INFOPLIST_FILE = "BeaconBulletin/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -662,6 +670,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-bluetooth-state/**",
 					"$(SRCROOT)/../node_modules/react-native-ibeacon",
+					"$(SRCROOT)/../node_modules/react-native-beacons-manager/ios/RNiBeacon/RNiBeacon",
 				);
 				INFOPLIST_FILE = "BeaconBulletin/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
