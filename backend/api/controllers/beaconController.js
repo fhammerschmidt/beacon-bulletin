@@ -16,7 +16,7 @@ exports.get_a_beacon = function(req, res) {
   Beacon.findById(req.params.beaconId, (err, beacon) => (err ? res.send(err) : res.json(beacon)));
 };
 
-exports.update_a_task = function(req, res) {
+exports.update_a_beacon = function(req, res) {
   Beacon.findOneAndUpdate(
     req.params.beaconId,
     req.body,

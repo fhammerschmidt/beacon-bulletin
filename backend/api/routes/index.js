@@ -11,13 +11,16 @@ module.exports = function(app) {
 
   app.route('/beacon/:beaconId')
     .get(beaconController.get_a_beacon)
-    .put(beaconController.update_a_task)
+    .put(beaconController.update_a_beacon)
     .delete(beaconController.delete_a_beacon);
 
 
   // Room Routes
   app.route('/rooms')
-    .get(roomController.get_all_rooms);
-    // .post(beaconController.addBeaconList);
+    .get(roomController.get_all_rooms)
+    .post(roomController.add_a_room);
 
+  app.route('/room/:roomId')
+    .get(roomController.get_a_room)
+    .delete(roomController.delete_a_room);
 };
