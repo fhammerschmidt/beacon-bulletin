@@ -4,6 +4,8 @@
   "description": "Backend for the beacon bulletin mobile app.",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
+    "docker": "docker run -ti -p 3000:3000 beacon:0.1",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Florian Hammerschmidt",
@@ -12,6 +14,8 @@
     "body-parser": "^1.17.2",
     "cors": "^2.8.3",
     "express": "^4.15.3",
-    "mongodb": "^2.2.27"
+    "mongodb": "^2.2.27",
+    "mongoose": "^4.10.2",
+    "nodemon": "^1.11.0"
   }
 }
