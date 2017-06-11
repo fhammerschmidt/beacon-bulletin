@@ -8,8 +8,17 @@ exports.get_all_rooms = function(req, res) {
 };
 
 exports.add_a_room = function(req, res) {
-  const new_room = new Room(req.body);
-  new_room.save((err, room) => (err ? res.send(err) : res.json(room)));
+  // store list of rooms
+  if (req.body instanceof Array) {
+    req.body.map(room => {
+      const new_room = new Room(storeRoom(room));
+      new_room.save((err, room) => (err ? res.send(err) : res));
+    });
+  } else {
+    // store single room
+    const new_room = new Room(storeRoom(room));
+    new_room.save((err, room) => (err ? res.send(err) : res.json(room)));
+  }
 };
 
 exports.get_a_room = function(req, res) {
@@ -17,8 +26,16 @@ exports.get_a_room = function(req, res) {
 };
 
 exports.delete_a_room = function(req, res) {
-  Room.remove(
-    { id: req.params.roomId },
+  Room.findByIdAndRemove(req.params.roomId,
     (err, room) => (err ? res.send(err) : res.json({ message: 'Room successfully deleted' }))
   );
 };
+
+function storeRoom(room) {
+  // Create room model object from single string.
+  return {
+    name: room,
+    building: room.substring(0, room.indexOf('.')),
+    level: room.substring(room.indexOf('.') + 1, room.lastIndexOf('.')),
+  };
+}
