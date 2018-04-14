@@ -1,0 +1,6 @@
+{
+  "javascript.validate.enable": false,
+  "flow.useNPMPackagedFlow": true,
+  "editor.rulers": [120],
+  "editor.tabSize": 2
+}

@@ -41,8 +41,7 @@ class Home extends Component {
         drawerWidth={300}
         drawerPostion={DrawerLayoutAndroid.positions.Left}
         renderNavigationView={this.renderNavigationView}
-        statusBarBackgroundColor={PRIMARY_APP_COLOR}
-      >
+        statusBarBackgroundColor={PRIMARY_APP_COLOR}>
         <BeaconBulletinIcons.ToolbarAndroid
           title="Beacon Bulletin"
           style={styles.toolbar}
@@ -53,13 +52,12 @@ class Home extends Component {
         {this.renderMenuItemContent(selectedTab)}
       </DrawerLayoutAndroid>
     );
-
   }
 
   renderMenuItemContent(tab) {
     switch (tab.key) {
       case 'beacons':
-        return <BeaconDetector/>;
+        return <BeaconDetector />;
       case 'settings':
         return <Settings />;
       case 'rooms':
@@ -82,16 +80,16 @@ class Home extends Component {
     const { navigation } = this.props;
     return (
       <View style={styles.drawer}>
-        {navigation.routes.map((r, i, a) =>
+        {navigation.routes.map((r, i, a) => (
           <View key={i}>
-            { i < a.length && <Separator /> }
-            <MenuRow onPress={this.handleNavigate} key={r.key} route={r} index={i}/>
+            {i < a.length && <Separator />}
+            <MenuRow onPress={this.handleNavigate} key={r.key} route={r} index={i} />
           </View>
-        )}
+        ))}
         <Separator />
       </View>
     );
-  }
+  };
 
   handleIconClicked = () => {
     this.drawer.openDrawer();
@@ -108,9 +106,7 @@ class Home extends Component {
 }
 
 function Separator(props) {
-  return (
-    <View style={[ styles.separator, props.style ]}/>
-  );
+  return <View style={[styles.separator, props.style]} />;
 }
 
 export default connect(mapStateToProps)(Home);

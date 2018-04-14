@@ -48,7 +48,7 @@ class Navigation extends Component {
   };
 
   renderScene = () => {
-    return <Home/>;
+    return <Home />;
   };
 
   renderHeader = () => {

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
+    "backend": "docker-compose up",
     "docker": "docker run -ti -p 3000:3000 beacon:0.1",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

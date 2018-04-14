@@ -2,10 +2,7 @@
 import type { AppAction } from './app';
 import type { DataAction } from './data';
 
-export type Action =
-| AppAction
-| DataAction
-;
+export type Action = AppAction | DataAction;
 
 export type Dispatch = (action: Action) => void;
 

@@ -2,5 +2,6 @@ node_modules/
 ios/
 android/
 common/fonts/
+flow-typed/
 **/webpack.config*.js
 **/devServer.js

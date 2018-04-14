@@ -18,17 +18,14 @@ export default class RoomCell extends Component {
       <TouchableHighlight onPress={this.handleRowPressed}>
         <View style={styles.cell}>
           <Text style={styles.iconContainer} type="room">
-            <BeaconBulletinIcons name="account_balance" size={24}/>
+            <BeaconBulletinIcons name="account_balance" size={24} />
           </Text>
           <Text numberOfLines={1} style={styles.text}>
             {rowData.fullName}
           </Text>
-          <Text style={styles.caret}>
-            &#x25B6;
-          </Text>
+          <Text style={styles.caret}>&#x25B6;</Text>
         </View>
       </TouchableHighlight>
-
     );
   }
 

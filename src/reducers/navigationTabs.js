@@ -11,7 +11,7 @@ export type NavigationTabsState = {
   key: string,
   index: number,
   routes: TabRoute[],
-}
+};
 
 const initialState: NavigationTabsState = {
   key: 'tabs',

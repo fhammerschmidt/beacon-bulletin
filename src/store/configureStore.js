@@ -9,7 +9,7 @@ import storeConfig from './storeConfig';
 
 export default function configureStore(initialState: ?Object) {
   const sagaMiddleware = createSagaMiddleware();
-  const middlewares = [ sagaMiddleware ];
+  const middlewares = [sagaMiddleware];
 
   // eslint-disable-next-line no-underscore-dangle
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

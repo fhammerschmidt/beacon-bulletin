@@ -10,7 +10,7 @@ export type NavigationState = {
   key: string,
   index: number,
   routes: CardRoute[],
-}
+};
 
 const initialState: NavigationState = {
   key: 'global',

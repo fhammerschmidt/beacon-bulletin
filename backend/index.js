@@ -11,7 +11,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://db/app');
+mongoose.connect('mongodb://db/app', {
+  useMongoClient: true,
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -20,7 +22,7 @@ const routes = require('./api/routes');
 routes(app);
 
 app.use((req, res) => {
-  res.status(404).send({url: req.originalUrl + ' not found'})
+  res.status(404).send({ url: req.originalUrl + ' not found' });
 });
 app.listen(port, () => fetchRooms());
 

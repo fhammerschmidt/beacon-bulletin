@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { StyleSheet, Text, ListView, View, DeviceEventEmitter } from 'react-native';
 
@@ -12,8 +13,8 @@ export default class BeaconDetector extends Component {
     super(props);
     // Create our dataSource which will be displayed in the ListView
     const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2 }
-    );
+      rowHasChanged: (r1, r2) => r1 !== r2,
+    });
     this.state = {
       dataSource: ds.cloneWithRows([]),
     };
@@ -24,14 +25,12 @@ export default class BeaconDetector extends Component {
   }
 
   componentDidMount() {
-    this.beaconsDidRange = DeviceEventEmitter.addListener('beaconsDidRange',
-      data => {
-        console.log(data.beacons);
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(data.beacons),
-        });
-      }
-    );
+    this.beaconsDidRange = DeviceEventEmitter.addListener('beaconsDidRange', data => {
+      console.log(data.beacons);
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(data.beacons),
+      });
+    });
   }
 
   componentWillUnMount() {
@@ -42,13 +41,9 @@ export default class BeaconDetector extends Component {
     const { dataSource } = this.state;
     return (
       <View style={styles.container}>
-        <BeaconBulletinIcons name="settings_input_antenna" color={PRIMARY_APP_COLOR} size={36}/>
+        <BeaconBulletinIcons name="settings_input_antenna" color={PRIMARY_APP_COLOR} size={36} />
         <Text style={styles.headline}>All beacons in the area</Text>
-        <ListView
-          dataSource={dataSource}
-          enableEmptySections={true}
-          renderRow={this.renderRow}
-        />
+        <ListView dataSource={dataSource} enableEmptySections={true} renderRow={this.renderRow} />
       </View>
     );
   }
@@ -56,27 +51,15 @@ export default class BeaconDetector extends Component {
   renderRow = rowData => {
     return (
       <View style={styles.row}>
-        <Text style={styles.smallText}>
-          UUID: {rowData.uuid ? rowData.uuid : 'NA'}
-        </Text>
-        <Text style={styles.smallText}>
-          Major: {rowData.major ? rowData.major : 'NA'}
-        </Text>
-        <Text style={styles.smallText}>
-          Minor: {rowData.minor ? rowData.minor : 'NA'}
-        </Text>
-        <Text>
-          RSSI: {rowData.rssi ? rowData.rssi : 'NA'}
-        </Text>
-        <Text>
-          Proximity: {rowData.proximity ? rowData.proximity : 'NA'}
-        </Text>
-        <Text>
-          Distance: {rowData.accuracy ? `${rowData.accuracy.toFixed(2)}m` : 'NA'}
-        </Text>
+        <Text style={styles.smallText}>UUID: {rowData.uuid ? rowData.uuid : 'NA'}</Text>
+        <Text style={styles.smallText}>Major: {rowData.major ? rowData.major : 'NA'}</Text>
+        <Text style={styles.smallText}>Minor: {rowData.minor ? rowData.minor : 'NA'}</Text>
+        <Text>RSSI: {rowData.rssi ? rowData.rssi : 'NA'}</Text>
+        <Text>Proximity: {rowData.proximity ? rowData.proximity : 'NA'}</Text>
+        <Text>Distance: {rowData.accuracy ? `${rowData.accuracy.toFixed(2)}m` : 'NA'}</Text>
       </View>
     );
-  }
+  };
 }
 
 const styles = StyleSheet.create({

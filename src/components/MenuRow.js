@@ -18,7 +18,7 @@ export default class MenuRow extends Component {
     return (
       <TouchableOpacity onPress={this.handlePress}>
         <View style={styles.menuRow}>
-          { icon && <BeaconBulletinIcons name={icon} size={24} color="white"/> }
+          {icon && <BeaconBulletinIcons name={icon} size={24} color="white" />}
           <Text style={styles.menuRowText}>{title}</Text>
         </View>
       </TouchableOpacity>

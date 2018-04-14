@@ -14,8 +14,8 @@ export type DataState = {
   rangedBeacons: number[],
 };
 
-export type RoomMap = {[roomId: number]: Room};
-export type BeaconMap = {[beaconId: number]: Beacon}
+export type RoomMap = { [roomId: number]: Room };
+export type BeaconMap = { [beaconId: number]: Beacon };
 
 export type Room = {
   id: number,
