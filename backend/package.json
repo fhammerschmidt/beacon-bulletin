@@ -4,7 +4,9 @@
   "description": "Backend for the beacon bulletin mobile app.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "babel-node": "babel-node",
+    "build": "babel src -d dist",
+    "start": "nodemon --exec npm run babel-node index.js",
     "backend": "docker-compose up",
     "docker": "docker run -ti -p 3000:3000 beacon:0.1",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,11 +14,18 @@
   "author": "Florian Hammerschmidt",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.17.2",
     "cors": "^2.8.4",
     "express": "^4.15.4",
     "mongodb": "^2.2.31",
-    "mongoose": "^4.11.10",
-    "nodemon": "^1.12.0"
+    "mongoose": "^4.11.10"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.70.0",
+    "nodemon": "^1.17.3"
   }
 }

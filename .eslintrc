@@ -10,14 +10,8 @@
     "jest/globals": true
   },
   "parser": "babel-eslint",
-  "extends": [ "plugin:import/errors" ],
-  "plugins": [
-    "babel",
-    "flowtype",
-    "jest",
-    "react",
-    "react-native"
-  ],
+  "extends": ["plugin:import/errors"],
+  "plugins": ["babel", "flowtype", "jest", "react", "react-native"],
   "rules": {
     // Possible Errors
     "no-await-in-loop": 2,
@@ -138,10 +132,13 @@
     "no-undef": 2,
     "no-undef-init": 2,
     "no-undefined": 2,
-    "no-unused-vars": [ 2, {
-      "varsIgnorePattern": "^_",
-      "argsIgnorePattern": "^_"
-    } ],
+    "no-unused-vars": [
+      2,
+      {
+        "varsIgnorePattern": "^_",
+        "argsIgnorePattern": "^_"
+      }
+    ],
     // "no-use-before-define": 2,
 
     // Node.js and CommonJS
@@ -151,7 +148,7 @@
     "no-mixed-requires": 2,
     "no-new-require": 2,
     "no-path-concat": 2,
-    "no-process-env": 2,
+    "no-process-env": 0,
     "no-process-exit": 2,
     "no-restricted-modules": 2,
     "no-sync": 2,
@@ -245,7 +242,7 @@
     "arrow-parens": [2, "as-needed"],
     "arrow-spacing": 2,
     "constructor-super": 2,
-    "generator-star-spacing": [ 2, "after" ],
+    "generator-star-spacing": [2, "after"],
     "no-class-assign": 2,
     // "no-confusing-arrow": 2,
     "no-const-assign": 2,
@@ -274,7 +271,7 @@
     "yield-star-spacing": 2,
 
     // Babel
-    "babel/new-cap": [2, {"capIsNewExceptions": ["Immutable"]}],
+    "babel/new-cap": [2, { "capIsNewExceptions": ["Immutable"] }],
     "babel/object-curly-spacing": [2, "always"],
     "babel/no-invalid-this": 2,
     "babel/semi": 2,
@@ -282,7 +279,7 @@
     // Flow
     "flowtype/boolean-style": 2,
     "flowtype/define-flow-type": 2,
-    "flowtype/delimiter-dangle": [ 2, "always-multiline" ],
+    "flowtype/delimiter-dangle": [2, "always-multiline"],
     "flowtype/generic-spacing": 2,
     "flowtype/no-dupe-keys": 2,
     // "flowtype/no-primitive-constructor-types": 2,
@@ -290,7 +287,7 @@
     "flowtype/object-type-delimiter": [2, "comma"],
     // "flowtype/require-parameter-type": 2,
     // "flowtype/require-return-type": 2,
-    "flowtype/require-valid-file-annotation": [ 2, "always" ],
+    "flowtype/require-valid-file-annotation": [2, "always"],
     // "flowtype/require-variable-type": 2,
     "flowtype/semi": 2,
     // "flowtype/sort-keys": 2,
@@ -394,9 +391,9 @@
     "import/no-mutable-exports": 2,
 
     // Import - Module systems
-    "import/no-commonjs": 2,
+    "import/no-commonjs": [2, { "allowRequire": true }],
     "import/no-amd": 2,
-    "import/no-nodejs-modules": 2,
+    "import/no-nodejs-modules": 0,
     "import/unambiguous": 2,
 
     // Import - Style guide
@@ -407,7 +404,7 @@
     "import/order": 2,
     "import/newline-after-import": 2,
     // "import/prefer-default-export": 1,
-    "import/max-dependencies": ["error", {"max": 20}],
+    "import/max-dependencies": ["error", { "max": 20 }]
     // "import/no-unassigned-import": 2,
     // "import/no-named-default": 2
   }
