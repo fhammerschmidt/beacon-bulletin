@@ -1,7 +1,7 @@
 # Get NodeJS image
 FROM node:latest
 
-MAINTAINER Florian Hammerschmidt <florianh89@gmail.com>
+LABEL maintainer="florianh89@gmail.com"
 
 RUN mkdir /app
 WORKDIR /app
