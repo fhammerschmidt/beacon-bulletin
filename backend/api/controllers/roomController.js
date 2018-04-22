@@ -1,35 +1,36 @@
-'use strict';
+// @flow
+import { Room } from '../models';
 
-const mongoose = require('mongoose');
-const Room = mongoose.model('Rooms');
-
-exports.get_all_rooms = function(req, res) {
+export function getAllRooms(req: express$Request, res: express$Response) {
   Room.find({}, (err, room) => (err ? res.send(err) : res.json(room)));
-};
+}
 
-exports.add_a_room = function(req, res) {
+export function addRoom(req: express$Request, res: express$Response) {
   // store list of rooms
   if (req.body instanceof Array) {
     req.body.map(room => {
-      const new_room = new Room(storeRoom(room));
-      new_room.save((err, room) => (err ? res.send(err) : res));
+      const newRoom = new Room(storeRoom(room));
+      newRoom.save((err, room) => (err ? res.send(err) : res));
     });
-  } else {
+  } else if (typeof req.body === 'string') {
     // store single room
-    const new_room = new Room(storeRoom(room));
-    new_room.save((err, room) => (err ? res.send(err) : res.json(room)));
+    const newRoom = new Room(storeRoom(req.body));
+    newRoom.save((err, room) => (err ? res.send(err) : res.json(room)));
+  } else {
+    throw new Error('Can not store room, unsupported or unknown type.');
   }
-};
+}
 
-exports.get_a_room = function(req, res) {
+export function getRoom(req: express$Request, res: express$Response) {
   Room.findById(req.params.roomId, (err, room) => (err ? res.send(err) : res.json(room)));
-};
+}
 
-exports.delete_a_room = function(req, res) {
-  Room.findByIdAndRemove(req.params.roomId,
+export function deleteRoom(req: express$Request, res: express$Response) {
+  Room.findByIdAndRemove(
+    req.params.roomId,
     (err, room) => (err ? res.send(err) : res.json({ message: 'Room successfully deleted' }))
   );
-};
+}
 
 function storeRoom(room) {
   // Create room model object from single string.

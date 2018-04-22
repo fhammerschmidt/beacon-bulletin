@@ -1,5 +1,6 @@
-'use-strict';
-const mongoose = require('mongoose');
+// @flow
+import mongoose from 'mongoose';
+
 const Schema = mongoose.Schema;
 
 const BeaconSchema = new Schema({
@@ -9,4 +10,4 @@ const BeaconSchema = new Schema({
   assignedRooms: [String],
 });
 
-module.exports = mongoose.model('Beacons', BeaconSchema);
+export default mongoose.model('Beacons', BeaconSchema);
