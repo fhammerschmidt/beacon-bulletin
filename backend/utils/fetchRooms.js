@@ -1,43 +1,30 @@
 // @flow
-const http = require('http'); // eslint-disable-line import/no-nodejs-modules
+import axios from 'axios';
 
-module.exports = function() {
-  let data = null;
+export default function fetchRooms() {
+  const data = [];
 
-  const postData = JSON.stringify({
-    method: 'searchAny',
-    id: '',
-    params: [{ searchString: 'D1.1.002' }],
-    jsonrpc: '2.0',
-  });
+  axios
+    .get('https://bach.wu.ac.at/d/rr/api/rooms/', {})
+    .then(res => {
+      const rooms = res.data.filter(room => room.category === 'Project room').map(room => room.label.trim());
 
-  const options = {
-    method: 'POST',
-    hostname: 'gis.wu.ac.at',
-    port: null,
-    path: '/wuwien_django/api/',
-    headers: {
-      'content-type': 'application/x-www-form-urlencoded',
-      'content-length': Buffer.byteLength(postData),
-      'cache-control': 'no-cache',
-    },
-  };
-
-  const req = http.request(options, res => {
-    const chunks = [];
-
-    res.on('data', chunk => {
-      chunks.push(chunk);
+      // eslint-disable-next-line array-callback-return
+      rooms.map(room => {
+        axios
+          .get(`https://campus.wu.ac.at/de/search/${room}?format=json`)
+          .then(res1 => {
+            // Room properties are stored in the GET responses features array (it is from a map feature).
+            data.push(res1.data.features[0].properties);
+          })
+          .catch(err => {
+            console.log('Error retrieving room properties', err);
+          });
+      });
+    })
+    .catch(err => {
+      console.log('Error', err);
     });
-
-    res.on('end', () => {
-      const body = Buffer.concat(chunks);
-      data = body.toString();
-    });
-  });
-
-  req.write(postData);
-  req.end();
 
   return data;
 }
