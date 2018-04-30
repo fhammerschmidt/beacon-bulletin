@@ -9,7 +9,7 @@ import routes from './api/routes';
 import fetchRooms from './utils/fetchRooms';
 
 const app: express$Application = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 1337;
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://db/app', {

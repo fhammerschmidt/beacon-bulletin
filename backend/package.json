@@ -8,7 +8,7 @@
     "build": "babel src -d dist",
     "start": "nodemon --exec npm run babel-node index.js",
     "backend": "docker-compose up",
-    "docker": "docker run -ti -p 3000:3000 beacon:0.1",
+    "docker": "docker run -ti -p 1337:1337 beacon:0.1",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Florian Hammerschmidt",
@@ -25,7 +25,6 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
-    "flow-bin": "^0.70.0",
     "nodemon": "^1.17.3"
   }
 }
