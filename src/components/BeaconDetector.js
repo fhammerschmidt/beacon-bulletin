@@ -1,6 +1,6 @@
 // @flow
-import React, { Component } from 'react';
-import { StyleSheet, Text, ListView, View, DeviceEventEmitter } from 'react-native';
+import * as React from 'react';
+import { StyleSheet, Text, FlatList, View, DeviceEventEmitter } from 'react-native';
 
 import { PRIMARY_APP_COLOR } from '../constants';
 import detectBeacons from '../utils/detectBeacons';
@@ -8,27 +8,28 @@ import BeaconBulletinIcons from './BeaconBulletinIcons';
 
 const beaconData = require('../../docs/data.json'); // eslint-disable-line import/no-commonjs
 
-export default class BeaconDetector extends Component {
-  constructor(props) {
-    super(props);
-    // Create our dataSource which will be displayed in the ListView
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2,
-    });
-    this.state = {
-      dataSource: ds.cloneWithRows([]),
-    };
-  }
+type Props = {};
+type State = {
+  beacons: [],
+};
 
-  componentWillMount() {
-    detectBeacons(beaconData.regions[0].uuid, 'IBEACON');
-  }
+type Beacon = {
+  uuid: string,
+  major: string,
+  minor: string,
+  rssi: string,
+  proximity: string,
+  accuracy: number,
+};
+
+export default class BeaconDetector extends React.Component<Props, State> {
+  beaconsDidRange: ?Object;
 
   componentDidMount() {
+    detectBeacons(beaconData.regions[0].uuid, 'IBEACON');
     this.beaconsDidRange = DeviceEventEmitter.addListener('beaconsDidRange', data => {
-      console.log(data.beacons);
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(data.beacons),
+        beacons: data.beacons,
       });
     });
   }
@@ -38,25 +39,26 @@ export default class BeaconDetector extends Component {
   }
 
   render() {
-    const { dataSource } = this.state;
+    const { beacons } = this.state;
     return (
       <View style={styles.container}>
         <BeaconBulletinIcons name="settings_input_antenna" color={PRIMARY_APP_COLOR} size={36} />
         <Text style={styles.headline}>All beacons in the area</Text>
-        <ListView dataSource={dataSource} enableEmptySections={true} renderRow={this.renderRow} />
+        <FlatList data={beacons} renderItem={this.renderRow} />
       </View>
     );
   }
 
-  renderRow = rowData => {
+  renderRow = (info: { item: Beacon, index: number }) => {
+    const { uuid, major, minor, rssi, proximity, accuracy } = info.item;
     return (
       <View style={styles.row}>
-        <Text style={styles.smallText}>UUID: {rowData.uuid ? rowData.uuid : 'NA'}</Text>
-        <Text style={styles.smallText}>Major: {rowData.major ? rowData.major : 'NA'}</Text>
-        <Text style={styles.smallText}>Minor: {rowData.minor ? rowData.minor : 'NA'}</Text>
-        <Text>RSSI: {rowData.rssi ? rowData.rssi : 'NA'}</Text>
-        <Text>Proximity: {rowData.proximity ? rowData.proximity : 'NA'}</Text>
-        <Text>Distance: {rowData.accuracy ? `${rowData.accuracy.toFixed(2)}m` : 'NA'}</Text>
+        <Text style={styles.smallText}>UUID: {uuid ? uuid : 'NA'}</Text>
+        <Text style={styles.smallText}>Major: {major ? major : 'NA'}</Text>
+        <Text style={styles.smallText}>Minor: {minor ? minor : 'NA'}</Text>
+        <Text>RSSI: {rssi ? rssi : 'NA'}</Text>
+        <Text>Proximity: {proximity ? proximity : 'NA'}</Text>
+        <Text>Distance: {accuracy ? `${accuracy.toFixed(2)}m` : 'NA'}</Text>
       </View>
     );
   };

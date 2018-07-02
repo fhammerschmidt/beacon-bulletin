@@ -26,6 +26,6 @@ export function updateBeacon(req: express$Request, res: express$Response) {
 export function deleteBeacon(req: express$Request, res: express$Response) {
   Beacon.remove(
     { id: req.params.beaconId },
-    (err, beacon) => (err ? res.send(err) : res.json({ message: 'Beacon successfully deleted' }))
+    (err, _beacon) => (err ? res.send(err) : res.json({ message: 'Beacon successfully deleted' }))
   );
 }

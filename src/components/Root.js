@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+// @flow
+import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Navigation from './navigation';
+import Navigation from '../navigation';
 
-export default class Root extends Component {
+export default class Root extends React.Component<*> {
   render() {
     return (
       <View style={styles.container}>

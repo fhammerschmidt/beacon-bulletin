@@ -11,9 +11,8 @@ const availableRoomsSelector: (state: ReduxState) => Room[] = createSelector(
   state => availableBeaconsSelector(state),
   (data, availableBeacons) => {
     const { rooms } = data;
-    const availableRooms = availableBeacons.map(ab => {
-      return ab.assignedRooms.map(ar => rooms[ar]);
-    });
+    const availableRooms = [];
+    availableBeacons.map(ab => ab.assignedRooms.map(ar => availableRooms.push(rooms.byId[ar])));
 
     return availableRooms;
   }

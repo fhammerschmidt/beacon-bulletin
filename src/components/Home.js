@@ -1,42 +1,39 @@
 // @flow
-import React, { Component } from 'react';
+import * as React from 'react';
 import { DrawerLayoutAndroid, StyleSheet, View } from 'react-native';
-import { connect } from 'react-redux';
-import { actions as navigationActions } from 'react-native-navigation-redux-helpers';
+import { connect, type Connector } from 'react-redux';
 
 import { PRIMARY_APP_COLOR } from '../constants';
 import type { ReduxState } from '../reducers';
-import type { Dispatch } from '../actions';
-import { HomeRoute } from '../routes';
+import type { DispatchProps } from '../actions';
 import BeaconDetector from './BeaconDetector';
 import MenuRow from './MenuRow';
 import RoomList from './RoomList';
 import Settings from './Settings';
 import BeaconBulletinIcons from './BeaconBulletinIcons';
 
-const { jumpTo, pushRoute } = navigationActions;
-
 const toolbarHeight = 56;
 
-function mapStateToProps(state: ReduxState) {
+function mapStateToProps(_state: ReduxState): StoreProps {
   return {
-    navigation: state.navigationTabs,
+    navigation: {},
   };
 }
 
-class Home extends Component {
+type StoreProps = {
+  navigation: Object,
+};
+
+type Props = StoreProps & DispatchProps;
+
+class Home extends React.Component<Props> {
   drawer: Object;
-  props: {
-    navigation: Object,
-    dispatch: Dispatch,
-  };
 
   render() {
     const selectedTab = this.props.navigation.routes[this.props.navigation.index];
 
     return (
       <DrawerLayoutAndroid
-        ref={this.setDrawerRef}
         drawerBackgroundColor={PRIMARY_APP_COLOR}
         drawerWidth={300}
         drawerPostion={DrawerLayoutAndroid.positions.Left}
@@ -66,16 +63,6 @@ class Home extends Component {
     }
   }
 
-  handleActionSelected = position => {
-    if (position === 0) {
-      this.props.dispatch(pushRoute(HomeRoute), 'global');
-    }
-  };
-
-  setDrawerRef = drawer => {
-    this.drawer = drawer;
-  };
-
   renderNavigationView = () => {
     const { navigation } = this.props;
     return (
@@ -83,7 +70,7 @@ class Home extends Component {
         {navigation.routes.map((r, i, a) => (
           <View key={i}>
             {i < a.length && <Separator />}
-            <MenuRow onPress={this.handleNavigate} key={r.key} route={r} index={i} />
+            <MenuRow onPress={this.handlePress} key={r.key} route={r} index={i} />
           </View>
         ))}
         <Separator />
@@ -95,21 +82,22 @@ class Home extends Component {
     this.drawer.openDrawer();
   };
 
-  handleNavigate = index => {
-    this.handleJump(jumpTo(index, 'tabs'));
-  };
-
   handleJump = action => {
     this.drawer.closeDrawer();
     this.props.dispatch(action);
   };
+
+  handlePress = () => {
+    // TODO
+  };
 }
 
-function Separator(props) {
-  return <View style={[styles.separator, props.style]} />;
+function Separator() {
+  return <View style={styles.separator} />;
 }
 
-export default connect(mapStateToProps)(Home);
+const connector: Connector<{}, Props> = connect(mapStateToProps);
+export default connector(Home);
 
 const styles = StyleSheet.create({
   drawer: {

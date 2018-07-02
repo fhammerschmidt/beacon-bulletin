@@ -46,7 +46,7 @@ const initialState: DataState = {
 
 export default function app(state: DataState = initialState, action: Action): DataState {
   switch (action.type) {
-    case 'FETCH_BEACONS_SUCCESS':
+    case 'FETCH_BEACONS_SUCCESS': {
       return {
         ...state,
         beacons: {
@@ -54,6 +54,7 @@ export default function app(state: DataState = initialState, action: Action): Da
           byId: keyBy(action.beacons, 'id'),
         },
       };
+    }
     case 'FETCH_ROOMS_SUCCESS':
       return {
         ...state,
@@ -62,8 +63,6 @@ export default function app(state: DataState = initialState, action: Action): Da
           byId: keyBy(action.rooms, 'id'),
         },
       };
-    case 'RESET_APPLICATION':
-      return initialState;
     default:
       return state;
   }

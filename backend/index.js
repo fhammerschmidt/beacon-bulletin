@@ -22,10 +22,10 @@ app.use(bodyParser.json());
 routes(app);
 
 app.use((req: express$Request, res: express$Response) => {
-  res.status(404).send({ url: req.originalUrl + ' not found' });
+  res.status(404).send({ url: `${req.originalUrl} not found` });
 });
 
 app.listen(port, () => {
-  console.log('Beacon Bulletin Server was started on port: ' + port);
+  console.log(`Beacon Bulletin Server was started on port: ${port}`);
   fetchRooms();
 });

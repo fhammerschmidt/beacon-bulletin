@@ -1,17 +1,16 @@
 // @flow
-import React, { Component } from 'react';
+import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { PRIMARY_APP_COLOR } from '../constants';
-import type { TabRoute } from '../reducers/navigationTabs';
 import BeaconBulletinIcons from './BeaconBulletinIcons';
 
-export default class MenuRow extends Component {
-  props: {
-    route: TabRoute,
-    index: number,
-    onPress: () => void,
-  };
+type Props = {
+  route: Object,
+  index: number,
+  onPress: (index: number) => void,
+};
 
+export default class MenuRow extends React.Component<Props> {
   render() {
     const { title, icon } = this.props.route;
 

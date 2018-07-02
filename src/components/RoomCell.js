@@ -1,11 +1,11 @@
 // @flow
-import React, { Component } from 'react';
+import * as React from 'react';
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 
 import type { Room } from '../reducers/data';
 import BeaconBulletinIcons from './BeaconBulletinIcons';
 
-export default class RoomCell extends Component {
+export default class RoomCell extends React.Component<*> {
   props: {
     rowData: Room,
     onRowPressed: (id: number) => void,

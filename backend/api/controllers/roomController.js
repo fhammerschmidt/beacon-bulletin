@@ -10,7 +10,7 @@ export function addRoom(req: express$Request, res: express$Response) {
   if (req.body instanceof Array) {
     req.body.map(room => {
       const newRoom = new Room(storeRoom(room));
-      newRoom.save((err, room) => (err ? res.send(err) : res));
+      return newRoom.save((err, _room) => (err ? res.send(err) : res));
     });
   } else if (typeof req.body === 'string') {
     // store single room
@@ -28,7 +28,7 @@ export function getRoom(req: express$Request, res: express$Response) {
 export function deleteRoom(req: express$Request, res: express$Response) {
   Room.findByIdAndRemove(
     req.params.roomId,
-    (err, room) => (err ? res.send(err) : res.json({ message: 'Room successfully deleted' }))
+    (err, _room) => (err ? res.send(err) : res.json({ message: 'Room successfully deleted' }))
   );
 }
 

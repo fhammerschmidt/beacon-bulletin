@@ -1,14 +1,14 @@
 // @flow
-import React, { Component } from 'react';
+import * as React from 'react';
 import { AppRegistry } from 'react-native';
 import { Provider } from 'react-redux';
 
 import configureStore from './store/configureStore';
 import Root from './components/Root';
 
-const store = configureStore();
+const store = configureStore({});
 
-class BeaconBulletin extends Component {
+class BeaconBulletin extends React.Component<*> {
   render() {
     return (
       <Provider store={store}>

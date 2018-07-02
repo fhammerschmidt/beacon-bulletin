@@ -1,49 +1,41 @@
 // @flow
-import React, { Component } from 'react';
-import { ListView, StyleSheet, View } from 'react-native';
-import { connect } from 'react-redux';
+import * as React from 'react';
+import { FlatList, StyleSheet, View } from 'react-native';
+import { connect, type Connector } from 'react-redux';
 
 import type { ReduxState } from '../reducers';
+import type { DataState /*, Room */ } from '../reducers/data';
 import RoomCell from './RoomCell';
 
 const testdata = require('../../docs/data.json'); // eslint-disable-line import/no-commonjs
 
-function mapStateToProps(state: ReduxState) {
+type OwnProps = {
+  // listData: Room[],
+};
+
+type StoreProps = {
+  data: DataState,
+};
+
+type Props = OwnProps & StoreProps;
+
+function mapStateToProps(state: ReduxState): StoreProps {
   return {
     data: state.data,
   };
 }
 
-type Props = {
-  listData: Object,
-};
-
-class RoomList extends Component {
-  props: Props;
-  state: {
-    dataSource: ListView.DataSource,
-  };
-
-  constructor(props: Props) {
-    super(props);
-
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2,
-    });
-    this.state = {
-      dataSource: ds.cloneWithRows(testdata.rooms),
-    };
-  }
-
+class RoomList extends React.Component<Props> {
   render() {
+    // const { listData } = this.props;
     return (
       <View style={styles.roomList}>
-        <ListView dataSource={this.state.dataSource} renderRow={this.renderRow} />
+        <FlatList data={testdata.rooms} renderItem={this.renderRow} />
       </View>
     );
   }
 
-  renderRow = (rowData, _sectionID, _rowID) => {
+  renderRow = rowData => {
     return <RoomCell rowData={rowData} onRowPressed={this.handleRoomCellPressed} />;
   };
 
@@ -52,7 +44,8 @@ class RoomList extends Component {
   };
 }
 
-export default connect(mapStateToProps)(RoomList);
+const connector: Connector<{}, Props> = connect(mapStateToProps);
+export default connector(RoomList);
 
 const styles = StyleSheet.create({
   roomList: {
