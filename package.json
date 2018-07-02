@@ -25,7 +25,7 @@
     "react-native-beacons-manager": "^1.0.4",
     "react-native-bluetooth-state": "^2.0.0",
     "react-native-vector-icons": "^4.2.0",
-    "react-navigation": "^1.5.11",
+    "react-navigation": "^2.5.5",
     "react-redux": "^5.0.5",
     "redux": "^3.7.1",
     "redux-persist": "^4.8.1",

@@ -1,22 +1,18 @@
 // @flow
-import * as React from 'react';
-import { StackNavigator } from 'react-navigation';
-
-type StoreProps = {
-  navigation: Object,
-};
-
-type Props = StoreProps;
-
-class HomeScreen extends React.Component<Props> {
-  render() {
-    return null;
-  }
-}
+import { createMaterialTopTabNavigator } from 'react-navigation';
+import BeaconsScreen from '../components/BeaconDetector';
+import RoomsScreen from '../components/RoomList';
+import SettingsScreen from '../components/Settings';
 
 // eslint-disable-next-line babel/new-cap
-export default StackNavigator({
-  Home: {
-    screen: HomeScreen,
+export default createMaterialTopTabNavigator({
+  Beacons: {
+    screen: BeaconsScreen,
+  },
+  Rooms: {
+    screen: RoomsScreen,
+  },
+  Settings: {
+    screen: SettingsScreen,
   },
 });
