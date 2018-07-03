@@ -1,3 +1,4 @@
+// @flow
 import { PermissionsAndroid } from 'react-native';
 import Beacons from 'react-native-beacons-manager';
 
@@ -25,9 +26,11 @@ export default function detectBeacons(uuid: string, beaconType: Beacon) {
     .catch(error => console.warn('Error while scanning for beacons', error));
 }
 
-function requestCoarseLocationPermission(): Promise<boolean> {
-  return PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION, {
+async function requestCoarseLocationPermission(): Promise<boolean> {
+  const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION, {
     title: 'Please grant access to your (coarse) location.',
     message: 'This app only works with access to fine and coarse location to interact with bluetooth beacons',
   });
+
+  return granted === PermissionsAndroid.RESULTS.GRANTED;
 }

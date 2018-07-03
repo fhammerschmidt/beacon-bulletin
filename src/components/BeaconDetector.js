@@ -25,6 +25,13 @@ type Beacon = {
 export default class BeaconDetector extends React.Component<Props, State> {
   beaconsDidRange: ?Object;
 
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      beacons: [],
+    };
+  }
+
   componentDidMount() {
     detectBeacons(beaconData.regions[0].uuid, 'IBEACON');
     this.beaconsDidRange = DeviceEventEmitter.addListener('beaconsDidRange', data => {
