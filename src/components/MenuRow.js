@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { PRIMARY_APP_COLOR } from '../constants';
-import BeaconBulletinIcons from './BeaconBulletinIcons';
+import Icon from './Icon';
 
 type Props = {
   route: Object,
@@ -17,7 +17,7 @@ export default class MenuRow extends React.Component<Props> {
     return (
       <TouchableOpacity onPress={this.handlePress}>
         <View style={styles.menuRow}>
-          {icon && <BeaconBulletinIcons name={icon} size={24} color="white" />}
+          {icon && <Icon name={icon} size={24} color="white" />}
           <Text style={styles.menuRowText}>{title}</Text>
         </View>
       </TouchableOpacity>

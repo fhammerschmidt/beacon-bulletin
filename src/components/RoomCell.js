@@ -3,7 +3,7 @@ import * as React from 'react';
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 
 import type { Room } from '../reducers/data';
-import BeaconBulletinIcons from './BeaconBulletinIcons';
+import Icon from './Icon';
 
 export default class RoomCell extends React.Component<*> {
   props: {
@@ -18,7 +18,7 @@ export default class RoomCell extends React.Component<*> {
       <TouchableHighlight onPress={this.handleRowPressed}>
         <View style={styles.cell}>
           <Text style={styles.iconContainer} type="room">
-            <BeaconBulletinIcons name="account_balance" size={24} />
+            <Icon name="account_balance" size={24} />
           </Text>
           <Text numberOfLines={1} style={styles.text}>
             {rowData.fullName}

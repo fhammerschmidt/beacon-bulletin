@@ -6,6 +6,7 @@ import android.util.Log;
 import com.facebook.react.ReactApplication;
 import com.mackentoch.beaconsandroid.BeaconsAndroidPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
+import com.artirigo.bluetoothstate.RNBluetoothStatePackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -28,7 +29,8 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
           new BeaconsAndroidPackage(),
-          new VectorIconsPackage()
+          new VectorIconsPackage(),
+          new RNBluetoothStatePackage()
       );
     }
 

@@ -3831,9 +3831,13 @@ react-native-beacons-manager@^1.0.4:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/react-native-beacons-manager/-/react-native-beacons-manager-1.0.7.tgz#b25a70e80f2b025013f3e2156e3ba59055078364"
 
-react-native-bluetooth-state@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-bluetooth-state/-/react-native-bluetooth-state-2.0.0.tgz#a38eb7d68e0f5977375e41e20b5020ae27c3e800"
+"react-native-bluetooth-state@https://github.com/Artirigo/react-native-bluetooth-state.git":
+  version "2.3.0"
+  resolved "https://github.com/Artirigo/react-native-bluetooth-state.git#9c33da9a7f209c558f15f14b76ddba2803bc7af8"
+
+react-native-bluetooth-status@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/react-native-bluetooth-status/-/react-native-bluetooth-status-1.1.3.tgz#74def98a4ecc1848b3a499fc705bfeb290a44ca2"
 
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"

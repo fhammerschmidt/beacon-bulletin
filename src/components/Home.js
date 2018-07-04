@@ -10,7 +10,7 @@ import BeaconDetector from './BeaconDetector';
 import MenuRow from './MenuRow';
 import RoomList from './RoomList';
 import Settings from './Settings';
-import BeaconBulletinIcons from './BeaconBulletinIcons';
+import Icon from './Icon';
 
 const toolbarHeight = 56;
 
@@ -39,7 +39,7 @@ class Home extends React.Component<Props> {
         drawerPostion={DrawerLayoutAndroid.positions.Left}
         renderNavigationView={this.renderNavigationView}
         statusBarBackgroundColor={PRIMARY_APP_COLOR}>
-        <BeaconBulletinIcons.ToolbarAndroid
+        <Icon.ToolbarAndroid
           title="Beacon Bulletin"
           style={styles.toolbar}
           titleColor="white"

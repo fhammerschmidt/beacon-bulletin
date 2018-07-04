@@ -4,7 +4,7 @@ import { StyleSheet, Text, FlatList, View, DeviceEventEmitter } from 'react-nati
 
 import { PRIMARY_APP_COLOR } from '../constants';
 import detectBeacons from '../utils/detectBeacons';
-import BeaconBulletinIcons from './BeaconBulletinIcons';
+import Icon from './Icon';
 
 const beaconData = require('../../docs/data.json'); // eslint-disable-line import/no-commonjs
 
@@ -22,34 +22,54 @@ type Beacon = {
   accuracy: number,
 };
 
-export default class BeaconDetector extends React.Component<Props, State> {
-  beaconsDidRange: ?Object;
+type EmitterSubscription = {
+  remove(): void,
+};
 
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      beacons: [],
-    };
+export default class BeaconDetector extends React.Component<Props, State> {
+  beaconsDidRange: EmitterSubscription;
+  regionDidEnter: EmitterSubscription;
+  regionDidExit: EmitterSubscription;
+
+  state = {
+    beacons: [],
+    regions: [],
+  };
+
+  UNSAFE_componentWillMount() {
+    const region = { identifier: 'REGION1', uuid: beaconData.regions[0].uuid };
+    detectBeacons(region, 'IBEACON');
   }
 
   componentDidMount() {
-    detectBeacons(beaconData.regions[0].uuid, 'IBEACON');
+    console.log(beaconData);
     this.beaconsDidRange = DeviceEventEmitter.addListener('beaconsDidRange', data => {
+      console.log('beaconData', data);
       this.setState({
         beacons: data.beacons,
       });
     });
+
+    this.regionDidEnter = DeviceEventEmitter.addListener('regionDidEnter', data => {
+      console.log('monitoring - regionDidEnter data: ', data);
+    });
+
+    this.regionDidExit = DeviceEventEmitter.addListener('regionDidExit', data => {
+      console.log('monitoring - regionDidExit data: ', data);
+    });
   }
 
   componentWillUnMount() {
-    this.beaconsDidRange = null;
+    this.beaconsDidRange.remove();
+    this.regionDidEnter.remove();
+    this.regionDidExit.remove();
   }
 
   render() {
     const { beacons } = this.state;
     return (
       <View style={styles.container}>
-        <BeaconBulletinIcons name="settings_input_antenna" color={PRIMARY_APP_COLOR} size={36} />
+        <Icon name="settings_input_antenna" color={PRIMARY_APP_COLOR} size={36} />
         <Text style={styles.headline}>All beacons in the area</Text>
         <FlatList data={beacons} renderItem={this.renderRow} />
       </View>
@@ -59,7 +79,7 @@ export default class BeaconDetector extends React.Component<Props, State> {
   renderRow = (info: { item: Beacon, index: number }) => {
     const { uuid, major, minor, rssi, proximity, accuracy } = info.item;
     return (
-      <View style={styles.row}>
+      <View key={info.index} style={styles.row}>
         <Text style={styles.smallText}>UUID: {uuid ? uuid : 'NA'}</Text>
         <Text style={styles.smallText}>Major: {major ? major : 'NA'}</Text>
         <Text style={styles.smallText}>Minor: {minor ? minor : 'NA'}</Text>
