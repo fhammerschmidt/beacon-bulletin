@@ -31,7 +31,7 @@ export default function detectBeacons(region: Region, _beaconType: Beacon) {
     .catch(error => console.log(`Beacons monitoring not started, error: ${error}`));
 
   // Range beacons inside the region
-  Beacons.startRangingBeaconsInRegion('REGION1')
+  Beacons.startRangingBeaconsInRegion(region)
     .then(() => console.log('Beacons ranging started succesfully'))
     .catch(error => console.log(`Beacons ranging not started, error: ${error}`));
 }

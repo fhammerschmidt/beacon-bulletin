@@ -8,11 +8,6 @@ import Icon from './Icon';
 
 const beaconData = require('../../docs/data.json'); // eslint-disable-line import/no-commonjs
 
-type Props = {};
-type State = {
-  beacons: [],
-};
-
 type Beacon = {
   uuid: string,
   major: string,
@@ -26,6 +21,11 @@ type EmitterSubscription = {
   remove(): void,
 };
 
+type Props = {};
+type State = {
+  beacons: Beacon[],
+};
+
 export default class BeaconDetector extends React.Component<Props, State> {
   beaconsDidRange: EmitterSubscription;
   regionDidEnter: EmitterSubscription;
@@ -36,12 +36,13 @@ export default class BeaconDetector extends React.Component<Props, State> {
     regions: [],
   };
 
-  UNSAFE_componentWillMount() {
-    const region = { identifier: 'REGION1', uuid: beaconData.regions[0].uuid };
-    detectBeacons(region, 'IBEACON');
-  }
-
   componentDidMount() {
+    // const uuid = '01122334-4556-6778-899a-abbccddeeff0';
+    const { uuid } = beaconData.regions[0];
+    // ADAFRUIT Bluefruit Beacon UUID: 01122334-4556-6778-899a-abbccddeeff0
+    const region = { identifier: 'REGION1', uuid };
+    detectBeacons(region, 'IBEACON');
+
     console.log(beaconData);
     this.beaconsDidRange = DeviceEventEmitter.addListener('beaconsDidRange', data => {
       console.log('beaconData', data);
@@ -71,7 +72,7 @@ export default class BeaconDetector extends React.Component<Props, State> {
       <View style={styles.container}>
         <Icon name="settings_input_antenna" color={PRIMARY_APP_COLOR} size={36} />
         <Text style={styles.headline}>All beacons in the area</Text>
-        <FlatList data={beacons} renderItem={this.renderRow} />
+        <FlatList data={beacons} renderItem={this.renderRow} keyExtractor={this.keyExtractor} />
       </View>
     );
   }
@@ -79,7 +80,7 @@ export default class BeaconDetector extends React.Component<Props, State> {
   renderRow = (info: { item: Beacon, index: number }) => {
     const { uuid, major, minor, rssi, proximity, accuracy } = info.item;
     return (
-      <View key={info.index} style={styles.row}>
+      <View style={styles.row}>
         <Text style={styles.smallText}>UUID: {uuid ? uuid : 'NA'}</Text>
         <Text style={styles.smallText}>Major: {major ? major : 'NA'}</Text>
         <Text style={styles.smallText}>Minor: {minor ? minor : 'NA'}</Text>
@@ -89,6 +90,8 @@ export default class BeaconDetector extends React.Component<Props, State> {
       </View>
     );
   };
+
+  keyExtractor = (item: Beacon, index: number) => index.toString();
 }
 
 const styles = StyleSheet.create({
