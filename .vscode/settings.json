@@ -1,6 +1,10 @@
 {
   "javascript.validate.enable": false,
+  "typescript.validate.enable": false,
   "flow.useNPMPackagedFlow": true,
   "editor.rulers": [120],
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "files.associations": {
+    "ios": "cpp"
+  }
 }

@@ -58,3 +58,6 @@ docs/thesis-plan.md
 
 # Bundle artifact
 *.jsbundle
+
+# Backend dist
+backend/dist/
