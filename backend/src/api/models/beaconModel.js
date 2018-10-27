@@ -10,4 +10,13 @@ const BeaconSchema = new Schema({
   assignedRooms: [String],
 });
 
+export class BeaconDoc /* :: extends Mongoose$Document */ {
+  region: string;
+  major: string;
+  minor: string;
+  assignedRooms: Array<string>;
+}
+
+BeaconSchema.loadClass(BeaconDoc);
+
 export default mongoose.model('Beacons', BeaconSchema);

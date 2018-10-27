@@ -15,14 +15,16 @@ type BeaconBulletinRoom = {
   name: string,
   building: string,
   level: string,
+  roomId: number,
 };
 
 export default function storeBachApiRoom(room: BachApiRoom): BeaconBulletinRoom {
-  const { building, label } = room;
+  const { building, label, id } = room;
 
   return {
     name: label,
     building,
     level: label.substring(label.indexOf('.') + 1, label.lastIndexOf('.')),
+    roomId: id,
   };
 }

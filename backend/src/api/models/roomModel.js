@@ -35,6 +35,16 @@ const RoomSchema = new Schema({
   name: String,
   building: String,
   level: String,
+  roomId: Number,
 });
+
+export class RoomDoc /* :: extends Mongoose$Document */ {
+  name: string;
+  building: string;
+  level: string;
+  roomId: number;
+}
+
+RoomSchema.loadClass(RoomDoc);
 
 export default mongoose.model('Rooms', RoomSchema);
