@@ -25,4 +25,7 @@ export default function routes(app: express$Application) {
     .route('/room/:roomId')
     .get(getRoom)
     .delete(deleteRoom);
+
+  // Booking Routes
+  // TODO
 }

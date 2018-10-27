@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 
 import _Beacon from './api/models/beaconModel';
 import _Room from './api/models/roomModel';
+import _Booking from './api/models/bookingModel';
 import routes from './api/routes';
 import fetchRooms from './utils/fetchRooms';
 
@@ -12,9 +13,12 @@ const app: express$Application = express();
 const port = process.env.PORT || 1337;
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://db/app', {
-  useMongoClient: true,
-});
+mongoose.connect(
+  'mongodb://db/app',
+  {
+    useMongoClient: true,
+  }
+);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
