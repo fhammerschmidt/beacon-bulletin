@@ -1,10 +1,12 @@
 // @flow
 import { Room } from '../models';
 
+// GET /rooms
 export function getAllRooms(req: express$Request, res: express$Response) {
   Room.find({}, (err, room) => (err ? res.send(err) : res.json(room)));
 }
 
+// POST /rooms
 export function addRoom(req: express$Request, res: express$Response) {
   // store list of rooms
   if (req.body instanceof Array) {
@@ -21,10 +23,12 @@ export function addRoom(req: express$Request, res: express$Response) {
   }
 }
 
+// GET /rooms/{roomId}
 export function getRoom(req: express$Request, res: express$Response) {
   Room.findById(req.params.roomId, (err, room) => (err ? res.send(err) : res.json(room)));
 }
 
+// DELETE /rooms/{roomId}
 export function deleteRoom(req: express$Request, res: express$Response) {
   Room.findByIdAndRemove(
     req.params.roomId,
