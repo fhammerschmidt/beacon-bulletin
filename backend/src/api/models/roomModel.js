@@ -1,7 +1,5 @@
 // @flow
-import mongoose from 'mongoose';
-
-const Schema = mongoose.Schema;
+import mongoose, { Schema, type MongooseDocument } from 'mongoose';
 
 const RoomSchema = new Schema({
   // Room Schema GIS application part

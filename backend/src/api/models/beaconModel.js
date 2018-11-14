@@ -1,7 +1,5 @@
 // @flow
-import mongoose from 'mongoose';
-
-const Schema = mongoose.Schema;
+import mongoose, { Schema } from 'mongoose';
 
 const BeaconSchema = new Schema({
   region: String,

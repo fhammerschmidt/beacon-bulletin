@@ -1,13 +1,15 @@
 // @flow
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
-const BookingSchema = new mongoose.Schema({
+const BookingSchema = new Schema({
+  day: String,
   start: String,
   duration: Number,
   roomId: String,
 });
 
 export class BookingDoc /* :: extends Mongoose$Document */ {
+  day: string;
   start: string;
   duration: number;
   roomId: string;
