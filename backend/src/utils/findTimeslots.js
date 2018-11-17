@@ -7,6 +7,7 @@ type Booking = {
   roomId: string,
 };
 
+// Time from 08:00 - 17:00
 const timeslotsInNumbers = [
   480,
   510,
@@ -53,16 +54,3 @@ export default function findTimeslots(bookings: Booking[], date: string) {
 
   return availableTimeslots.map(ts => numberToTimestring(ts));
 }
-
-// Test
-const day = '2018-11-15';
-console.log(
-  'findTimeslots',
-  findTimeslots(
-    [
-      { day: '2018-11-15', duration: 30, roomId: '', start: '09:00' },
-      { day: '2018-11-15', duration: 60, roomId: '', start: '11:00' },
-    ],
-    day
-  )
-);

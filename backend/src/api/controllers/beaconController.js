@@ -1,31 +1,45 @@
 // @flow
 import { Beacon } from '../models';
 
+// GET /beacons
 export function getAllBeacons(req: express$Request, res: express$Response) {
-  Beacon.find({}, (err, beacon) => (err ? res.send(err) : res.json(beacon)));
+  Beacon.find()
+    .then(beacon => res.json(beacon))
+    .catch(err => res.send(err));
 }
 
-export function addBeacon(req: express$Request, res: express$Response) {
-  const newBeacon = new Beacon(req.body);
-  newBeacon.save((err, beacon) => (err ? res.send(err) : res.json(beacon)));
+// POST /beacons
+export function addBeacons(req: express$Request, res: express$Response) {
+  if (req.body instanceof Array) {
+    Beacon.insertMany(req.body)
+      .then(beacons => {
+        res.json(beacons);
+      })
+      .catch(err => {
+        res.send(err);
+      });
+  } else {
+    res.send('Can not store room, unsupported or unknown type.');
+  }
 }
 
+// GET /beacons/{beaconId}
 export function getBeacon(req: express$Request, res: express$Response) {
-  Beacon.findById(req.params.beaconId, (err, beacon) => (err ? res.send(err) : res.json(beacon)));
+  Beacon.findById(req.params.beaconId)
+    .then(beacon => res.json(beacon))
+    .catch(err => res.send(err));
 }
 
+// PUT /beacons/{beaconId}
 export function updateBeacon(req: express$Request, res: express$Response) {
-  Beacon.findOneAndUpdate(
-    req.params.beaconId,
-    req.body,
-    { new: true },
-    (err, beacon) => (err ? res.send(err) : res.json(beacon))
-  );
+  Beacon.findOneAndUpdate(req.params.beaconId, req.body, { new: true })
+    .then(beacon => res.json(beacon))
+    .catch(err => res.send(err));
 }
 
+// DELETE /beacons/{beaconId}
 export function deleteBeacon(req: express$Request, res: express$Response) {
-  Beacon.remove(
-    { id: req.params.beaconId },
-    (err, _beacon) => (err ? res.send(err) : res.json({ message: 'Beacon successfully deleted' }))
-  );
+  Beacon.findOneAndRemove(req.params.beaconId)
+    .then(() => res.json({ message: 'Beacon successfully deleted' }))
+    .catch(err => res.send(err));
 }

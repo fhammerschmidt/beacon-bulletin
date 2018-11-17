@@ -1,6 +1,6 @@
 // @flow
-import { getAllBeacons, addBeacon, getBeacon, updateBeacon, deleteBeacon } from '../controllers/beaconController';
-import { getAllRooms, addRoom, getRoom, deleteRoom } from '../controllers/roomController';
+import { getAllBeacons, addBeacons, getBeacon, updateBeacon, deleteBeacon } from '../controllers/beaconController';
+import { getAllRooms, addRooms, getRoom, deleteRoom } from '../controllers/roomController';
 import {
   getBooking,
   getAllBookings,
@@ -14,10 +14,10 @@ export default function routes(app: express$Application) {
   app
     .route('/beacons')
     .get(getAllBeacons)
-    .post(addBeacon);
+    .post(addBeacons);
 
   app
-    .route('/beacon/:beaconId')
+    .route('/beacons/:beaconId')
     .get(getBeacon)
     .put(updateBeacon)
     .delete(deleteBeacon);
@@ -26,10 +26,10 @@ export default function routes(app: express$Application) {
   app
     .route('/rooms')
     .get(getAllRooms)
-    .post(addRoom);
+    .post(addRooms);
 
   app
-    .route('/room/:roomId')
+    .route('/rooms/:roomId')
     .get(getRoom)
     .delete(deleteRoom);
 
@@ -37,13 +37,13 @@ export default function routes(app: express$Application) {
   app.route('/bookings').get(getAllBookings);
 
   app
-    .route('/booking/:bookingId')
+    .route('/bookings/:bookingId')
     .get(getBooking)
     .delete(deleteBooking);
 
   // Booking actions dependent on rooms
   app
-    .route('/booking/room/:roomId')
+    .route('/bookings/rooms/:roomId')
     .get(getTimeslots)
     .post(createBooking)
     .delete(deleteBooking);

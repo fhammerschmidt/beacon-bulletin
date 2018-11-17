@@ -1,5 +1,5 @@
 // @flow
-import mongoose, { Schema, type MongooseDocument } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 const RoomSchema = new Schema({
   // Room Schema GIS application part
@@ -33,14 +33,12 @@ const RoomSchema = new Schema({
   name: String,
   building: String,
   level: String,
-  roomId: Number,
 });
 
 export class RoomDoc /* :: extends Mongoose$Document */ {
   name: string;
   building: string;
   level: string;
-  roomId: number;
 }
 
 RoomSchema.loadClass(RoomDoc);

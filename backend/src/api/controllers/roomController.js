@@ -3,37 +3,40 @@ import { Room } from '../models';
 
 // GET /rooms
 export function getAllRooms(req: express$Request, res: express$Response) {
-  Room.find({}, (err, room) => (err ? res.send(err) : res.json(room)));
+  Room.find()
+    .then(room => res.json(room))
+    .catch(err => res.send(err));
 }
 
 // POST /rooms
-export function addRoom(req: express$Request, res: express$Response) {
+export function addRooms(req: express$Request, res: express$Response) {
   // store list of rooms
   if (req.body instanceof Array) {
-    req.body.map(room => {
-      const newRoom = new Room(storeRoom(room));
-      return newRoom.save((err, _room) => (err ? res.send(err) : res));
-    });
-  } else if (typeof req.body === 'string') {
-    // store single room
-    const newRoom = new Room(storeRoom(req.body));
-    newRoom.save((err, room) => (err ? res.send(err) : res.json(room)));
+    const newRooms = req.body.map(room => storeRoom(room));
+    Room.insertMany(newRooms)
+      .then(rooms => {
+        res.json(rooms);
+      })
+      .catch(err => {
+        res.send(err);
+      });
   } else {
-    throw new Error('Can not store room, unsupported or unknown type.');
+    res.send('Can not store room, unsupported or unknown type.');
   }
 }
 
 // GET /rooms/{roomId}
 export function getRoom(req: express$Request, res: express$Response) {
-  Room.findById(req.params.roomId, (err, room) => (err ? res.send(err) : res.json(room)));
+  Room.find({ name: req.params.roomId })
+    .then(room => res.json(room))
+    .catch(err => res.send(err));
 }
 
 // DELETE /rooms/{roomId}
 export function deleteRoom(req: express$Request, res: express$Response) {
-  Room.findByIdAndRemove(
-    req.params.roomId,
-    (err, _room) => (err ? res.send(err) : res.json({ message: 'Room successfully deleted' }))
-  );
+  Room.find({ name: req.params.roomId })
+    .then(() => res.json({ message: 'Room successfully deleted' }))
+    .catch(err => res.send(err));
 }
 
 function storeRoom(room) {

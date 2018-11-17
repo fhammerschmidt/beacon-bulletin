@@ -31,5 +31,5 @@ app.use((req: express$Request, res: express$Response) => {
 
 app.listen(port, () => {
   console.log(`Beacon Bulletin Server was started on port: ${port}`);
-  fetchRooms();
+  // fetchRooms();
 });
