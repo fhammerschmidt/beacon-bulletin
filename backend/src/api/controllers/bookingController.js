@@ -1,5 +1,6 @@
 // @flow
 import { Booking } from '../models';
+import { BookingDoc } from '../models/bookingModel';
 import findTimeslots from '../../utils/findTimeslots';
 
 // GET /booking/{bookingId}
@@ -17,8 +18,8 @@ export function getAllBookings(req: express$Request, res: express$Response) {
     .catch(err => res.send(err));
 }
 
-// GET /booking/byRoom/{roomId}/ for today or
-// GET /booking/byRoom/{roomId}/?date=YYYY-MM-DD for any future date
+// GET /bookings/rooms/{roomId}/ for today or
+// GET /bookings/rooms/{roomId}/?date=YYYY-MM-DD for any future date
 // returns an array of date isoStrings
 export function getTimeslots(req: express$Request, res: express$Response) {
   let date = new Date().toISOString().split('T')[0];
@@ -39,31 +40,41 @@ export function getTimeslots(req: express$Request, res: express$Response) {
     .catch(err => res.send(err));
 }
 
-// POST /booking/byRoom/{roomId}/
+// POST /bookings
 // Request body contains start and duration, day is optional (default today)
 // returns a booking id (UUID)
 export function createBooking(req: express$Request, res: express$Response) {
-  // store list of bookings
-  const newBookings = req.body.map(booking => storeBooking(booking));
-  Booking.insertMany(newBookings)
-    .then(rooms => {
-      res.json(rooms);
-    })
-    .catch(err => {
-      res.send(err);
-    });
+  const bookingProposal = req.body;
+  console.log('booookingchecked', bookingProposal);
+  if (checkBooking(bookingProposal)) {
+    console.log('booookingchecked', bookingProposal);
+    const booking = new Booking(bookingProposal);
+    booking
+      .save()
+      .then(bookingResult => {
+        res.json(bookingResult);
+      })
+      .catch(err => {
+        res.send(err);
+      });
+  }
 }
 
-// DELETE /booking/{bookingId}/ to delete all bookings for that specific room or
-export function deleteBooking(_req: express$Request, _res: express$Response) {
+// DELETE /bookings/{bookingId}/ to delete a specific booking
+export function deleteBooking(req: express$Request, res: express$Response) {
+  Booking.find({ name: req.params.bookingId })
+    .then(() => res.json({ message: `Booking ${req.params.bookingId} successfully deleted` }))
+    .catch(err => res.send(err));
+}
+
+// DELETE /bookings/rooms/{roomId} to delete all bookings for that specific room
+export function deleteBookingsForRoom(_req: express$Request, _res: express$Response) {
   // TODO
 }
 
-function storeBooking(booking) {
-  // Create room model object from single string.
-  return {
-    name: room,
-    building: room.substring(0, room.indexOf('.')),
-    level: room.substring(room.indexOf('.') + 1, room.lastIndexOf('.')),
-  };
-}
+const stringIsValid = (str: string) => Boolean(str) && str.length > 0;
+const durationIsValid = (duration: number) => duration >= 30 && duration <= 120;
+const checkBooking = ({ day, start, duration, roomId }) => {
+  console.log(day, stringIsValid(day), durationIsValid(duration));
+  return stringIsValid(day) && stringIsValid(start) && stringIsValid(roomId) && durationIsValid(duration);
+};
