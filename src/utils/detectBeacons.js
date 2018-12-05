@@ -1,6 +1,6 @@
 // @flow
 import { PermissionsAndroid } from 'react-native';
-import Beacons from 'react-native-beacons-manager';
+import Beacons from '@nois/react-native-beacons-manager';
 
 export type Beacon = 'IBEACON' | 'ALTBEACON' | 'EDDYSTONE_TLM' | 'EDDYSTONE_UID' | 'EDDYSTONE_URL';
 
