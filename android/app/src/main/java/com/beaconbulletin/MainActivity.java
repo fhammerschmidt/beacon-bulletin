@@ -1,4 +1,4 @@
-package com.beaconbulletin;
+package rocks.hammerschmidt.beaconbulletin;
 
 import com.facebook.react.ReactActivity;
 
