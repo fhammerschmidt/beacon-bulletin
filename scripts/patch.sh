@@ -12,7 +12,7 @@ function patchModule {
   patch -d ./node_modules -N -p0 <./scripts/patches/$1
 }
 
-patchModule 'react-native-bluetooth-status.patch'
+patchModule 'react-native-bluetooth-state.patch'
 patchModule 'react-native-beacons-manager.patch'
 
 touch $marker_file

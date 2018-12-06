@@ -130,7 +130,7 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-bluetooth-status')
+    implementation project(':react-native-bluetooth-state')
     implementation project(':@nois_react-native-beacons-manager')
     implementation project(':react-native-vector-icons')
 

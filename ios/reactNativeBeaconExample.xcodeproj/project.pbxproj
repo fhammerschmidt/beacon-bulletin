@@ -148,7 +148,6 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		D3A0A88ECA80461AB8351DF3 /* RNBluetoothState.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNBluetoothState.xcodeproj; path = "../node_modules/react-native-bluetooth-state/RNBluetoothState.xcodeproj"; sourceTree = "<group>"; };
 		EC70A31A2AA343199D681943 /* libRNBeacon.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBeacon.a; sourceTree = "<group>"; };
-		B750B5B1A6424BFCBDAA4FD0 /* RNBluetoothManager.xcodeproj */ = {isa = PBXFileReference; name = "RNBluetoothManager.xcodeproj"; path = "../node_modules/react-native-bluetooth-status/ios/RNBluetoothManager.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		DB2438B4A48E4AE2875E6607 /* libRNBluetoothManager.a */ = {isa = PBXFileReference; name = "libRNBluetoothManager.a"; path = "libRNBluetoothManager.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		531025DE3D1346C1ABB5F7C6 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; name = "RNVectorIcons.xcodeproj"; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		6EFD028DF8374E44BE1C12D9 /* libRNVectorIcons.a */ = {isa = PBXFileReference; name = "libRNVectorIcons.a"; path = "libRNVectorIcons.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
@@ -704,7 +703,6 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-bluetooth-state/**",
 					"$(SRCROOT)/../node_modules/react-native-ibeacon",
-					"$(SRCROOT)/../node_modules/react-native-bluetooth-status/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 				);
 				INFOPLIST_FILE = beaconBulletin/Info.plist;
@@ -727,7 +725,6 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-bluetooth-state/**",
 					"$(SRCROOT)/../node_modules/react-native-ibeacon",
-					"$(SRCROOT)/../node_modules/react-native-bluetooth-status/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 				);
 				INFOPLIST_FILE = beaconBulletin/Info.plist;

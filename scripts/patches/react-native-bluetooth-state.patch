@@ -1,7 +1,7 @@
-diff -Naur react-native-bluetooth-status/android/build.gradle react-native-bluetooth-status-patched/android/build.gradle
---- react-native-bluetooth-status/android/build.gradle	2018-12-05 20:57:36.000000000 +0100
-+++ react-native-bluetooth-status-patched/android/build.gradle	2018-12-05 21:04:33.000000000 +0100
-@@ -13,13 +13,17 @@
+diff -Naur react-native-bluetooth-state/android/build.gradle react-native-bluetooth-state-patched/android/build.gradle
+--- react-native-bluetooth-state/android/build.gradle	2017-08-30 15:49:18.000000000 +0200
++++ react-native-bluetooth-state-patched/android/build.gradle	2018-12-06 23:23:34.000000000 +0100
+@@ -1,13 +1,17 @@
  
  apply plugin: 'com.android.library'
  
@@ -22,11 +22,11 @@ diff -Naur react-native-bluetooth-status/android/build.gradle react-native-bluet
 +        targetSdkVersion safeExtGet('targetSdkVersion', 26)
          versionCode 1
          versionName "1.0"
-     }
-@@ -33,5 +37,5 @@
+         ndk {
+@@ -20,5 +24,5 @@
  }
  
  dependencies {
--    compile 'com.facebook.react:react-native:+'
-+    implementation 'com.facebook.react:react-native:+'
+-    compile 'com.facebook.react:react-native:0.20.+'
++    implementation 'com.facebook.react:react-native:0.20.+'
  }
