@@ -1,36 +1,22 @@
 // @flow
 import keyBy from 'lodash/keyBy';
+import type { Beacon, Room } from '../../apiTypes';
 import type { Action } from '../actions';
 
 export type DataState = {
   rooms: {
     byId: RoomMap,
-    ids: number[],
+    ids: string[],
   },
   beacons: {
     byId: BeaconMap,
-    ids: number[],
+    ids: string[],
   },
-  rangedBeacons: number[],
+  rangedBeacons: string[],
 };
 
-export type RoomMap = { [roomId: number]: Room };
-export type BeaconMap = { [beaconId: number]: Beacon };
-
-export type Room = {
-  id: number,
-  building: string,
-  level: string,
-  fullName: string,
-};
-
-export type Beacon = {
-  id: number, // Not the beacon UUID!
-  region: string,
-  major: number,
-  minor: number,
-  assignedRooms: number[],
-};
+export type RoomMap = { [roomId: string]: Room };
+export type BeaconMap = { [beaconId: string]: Beacon };
 
 const initialState: DataState = {
   rooms: {

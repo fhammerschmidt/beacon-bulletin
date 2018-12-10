@@ -1,5 +1,5 @@
 // @flow
-import { combineReducers } from 'redux';
+import { combineReducers, type CombinedReducer } from 'redux';
 
 import type { AppState } from './app';
 import type { DataState } from './data';
@@ -12,7 +12,9 @@ export type ReduxState = {
   data: DataState,
 };
 
-export default combineReducers({
-  app,
-  data,
-});
+export default function combine(): CombinedReducer<ReduxState, {}> {
+  return combineReducers({
+    app,
+    data,
+  });
+}

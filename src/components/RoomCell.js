@@ -2,13 +2,13 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 
-import type { Room } from '../reducers/data';
+import type { Room } from '../../apiTypes';
 import Icon from './Icon';
 
 export default class RoomCell extends React.Component<*> {
   props: {
     rowData: Room,
-    onRowPressed: (id: number) => void,
+    onRowPressed: (id: string) => void,
   };
 
   render() {
@@ -21,7 +21,7 @@ export default class RoomCell extends React.Component<*> {
             <Icon name="account_balance" size={24} />
           </Text>
           <Text numberOfLines={1} style={styles.text}>
-            {rowData.fullName}
+            {rowData.name}
           </Text>
           <Text style={styles.caret}>&#x25B6;</Text>
         </View>
@@ -31,7 +31,7 @@ export default class RoomCell extends React.Component<*> {
 
   handleRowPressed = () => {
     const { rowData, onRowPressed } = this.props;
-    onRowPressed(rowData.id);
+    onRowPressed(rowData.name);
   };
 }
 

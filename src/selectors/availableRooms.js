@@ -1,8 +1,8 @@
 // @flow
 import { createSelector } from 'reselect';
 
+import type { Room } from '../../apiTypes';
 import type { ReduxState } from '../reducers';
-import type { Room } from '../reducers/data';
 import availableBeaconsSelector from './availableBeacons';
 
 // This selector takes the ids of all available beacons and returns all the rooms assigned to it
