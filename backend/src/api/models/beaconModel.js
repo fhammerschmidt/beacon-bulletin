@@ -16,5 +16,6 @@ export class BeaconDoc /* :: extends Mongoose$Document */ {
 }
 
 BeaconSchema.loadClass(BeaconDoc);
+BeaconSchema.set('toJSON', { virtuals: true });
 
 export default mongoose.model('Beacons', BeaconSchema);

@@ -16,5 +16,6 @@ export class BookingDoc /* :: extends Mongoose$Document */ {
 }
 
 BookingSchema.loadClass(BookingDoc);
+BookingSchema.set('toJSON', { virtuals: true });
 
 export default mongoose.model('Bookings', BookingSchema);

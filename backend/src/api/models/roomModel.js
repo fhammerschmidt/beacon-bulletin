@@ -42,5 +42,6 @@ export class RoomDoc /* :: extends Mongoose$Document */ {
 }
 
 RoomSchema.loadClass(RoomDoc);
+RoomSchema.set('toJSON', { virtuals: true });
 
 export default mongoose.model('Rooms', RoomSchema);
