@@ -136,6 +136,14 @@ declare module 'react-navigation' {
     +type: 'Navigation/TOGGLE_DRAWER',
     +key?: string,
   |};
+  declare export type NavigationDrawerOpenedAction = {|
+    +type: 'Navigation/DRAWER_OPENED',
+    +key?: string,
+  |};
+  declare export type NavigationDrawerClosedAction = {|
+    +type: 'Navigation/DRAWER_CLOSED',
+    +key?: string,
+  |};
 
   declare export type NavigationAction =
     | NavigationBackAction
@@ -150,7 +158,9 @@ declare module 'react-navigation' {
     | NavigationCompleteTransitionAction
     | NavigationOpenDrawerAction
     | NavigationCloseDrawerAction
-    | NavigationToggleDrawerAction;
+    | NavigationToggleDrawerAction
+    | NavigationDrawerOpenedAction
+    | NavigationDrawerClosedAction;
 
   /**
    * NavigationState is a tree of routes for a single navigator, where each
@@ -175,7 +185,7 @@ declare module 'react-navigation' {
 
   declare export type NavigationRoute = NavigationLeafRoute | NavigationStateRoute;
 
-  declare export type NavigationLeafRoute = {
+  declare export type NavigationLeafRoute = {|
     /**
      * React's key used by some navigators. No need to specify these manually,
      * they will be defined by the router.
@@ -195,9 +205,12 @@ declare module 'react-navigation' {
      * e.g. `{ car_id: 123 }` in a route that displays a car.
      */
     params?: NavigationParams,
-  };
+  |};
 
-  declare export type NavigationStateRoute = NavigationLeafRoute & NavigationState;
+  declare export type NavigationStateRoute = {|
+    ...NavigationLeafRoute,
+    ...$Exact<NavigationState>,
+  |};
 
   /**
    * Router
@@ -369,10 +382,18 @@ declare module 'react-navigation' {
     mode?: 'card' | 'modal',
     headerMode?: HeaderMode,
     headerTransitionPreset?: 'fade-in-place' | 'uikit',
+    headerLayoutPreset?: 'left' | 'center',
+    headerBackTitleVisible?: boolean,
     cardStyle?: ViewStyleProp,
-    transitionConfig?: () => TransitionConfig,
+    transitionConfig?: (
+      transitionProps: NavigationTransitionProps,
+      prevTransitionProps: ?NavigationTransitionProps,
+      isModal: boolean
+    ) => TransitionConfig,
     onTransitionStart?: () => void,
     onTransitionEnd?: () => void,
+    transparentCard?: boolean,
+    disableKeyboardHandling?: boolean,
   |};
 
   declare export type StackNavigatorConfig = {|
@@ -469,7 +490,29 @@ declare module 'react-navigation' {
     +state: S,
     dispatch: NavigationDispatch,
     addListener: (eventName: string, callback: NavigationEventCallback) => NavigationEventSubscription,
-    getParam: (paramName: string, fallback?: any) => any,
+    getParam: <ParamName: string>(
+      paramName: ParamName,
+      fallback?: $ElementType<
+        $PropertyType<
+          {|
+            ...{| params: {| [ParamName]: void |} |},
+            ...$Exact<S>,
+          |},
+          'params'
+        >,
+        ParamName
+      >
+    ) => $ElementType<
+      $PropertyType<
+        {|
+          ...{| params: {| [ParamName]: void |} |},
+          ...$Exact<S>,
+        |},
+        'params'
+      >,
+      ParamName
+    >,
+    dangerouslyGetParent: () => NavigationScreenProp<*>,
     isFocused: () => boolean,
     // Shared action creators that exist for all routers
     goBack: (routeKey?: ?string) => boolean,
@@ -506,10 +549,27 @@ declare module 'react-navigation' {
   }>;
 
   /**
+   * NavigationEvents component
+   */
+
+  declare type _NavigationEventsProps = {
+    navigation?: NavigationScreenProp<NavigationState>,
+    onWillFocus?: NavigationEventCallback,
+    onDidFocus?: NavigationEventCallback,
+    onWillBlur?: NavigationEventCallback,
+    onDidBlur?: NavigationEventCallback,
+  };
+  declare export var NavigationEvents: React$ComponentType<_NavigationEventsProps>;
+
+  /**
    * Navigation container
    */
 
-  declare export type NavigationContainer<State: NavigationState, Options: {}, Props: {}> = React$ComponentType<{
+  declare export type NavigationContainer<
+    State: NavigationState,
+    Options: {},
+    Props: {}
+  > = React$StatelessFunctionalComponent<{
     ...Props,
     ...NavigationContainerProps<State, Options>,
   }> &
@@ -708,7 +768,7 @@ declare module 'react-navigation' {
       actions: Array<NavigationNavigateAction>,
     }) => NavigationResetAction,
     replace: (payload: {
-      key: string,
+      key?: string,
       routeName: string,
       params?: NavigationParams,
       action?: NavigationNavigateAction,
@@ -722,6 +782,8 @@ declare module 'react-navigation' {
     OPEN_DRAWER: 'Navigation/OPEN_DRAWER',
     CLOSE_DRAWER: 'Navigation/CLOSE_DRAWER',
     TOGGLE_DRAWER: 'Navigation/TOGGLE_DRAWER',
+    DRAWER_OPENED: 'Navigation/DRAWER_OPENED',
+    DRAWER_CLOSED: 'Navigation/DRAWER_CLOSED',
 
     openDrawer: (payload: {
       key?: string,
@@ -1079,6 +1141,6 @@ declare module 'react-navigation' {
     dispatch: NavigationDispatch,
     actionSubscribers: Set<NavigationEventCallback>,
     getScreenProps: () => {},
-    getCurrentNavigation: () => NavigationScreenProp<State>
+    getCurrentNavigation: () => ?NavigationScreenProp<State>
   ): NavigationScreenProp<State>;
 }
