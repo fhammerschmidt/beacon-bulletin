@@ -7,7 +7,7 @@ import configureStore from './store/configureStore';
 import Root from './components/Root';
 
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
-const store = configureStore({});
+const { store } = configureStore({});
 
 class BeaconBulletin extends React.Component<*> {
   render() {
