@@ -16,7 +16,7 @@
     "axios": "^0.18.0",
     "body-parser": "^1.17.2",
     "cors": "^2.8.4",
-    "express": "^4.15.4",
+    "express": "^4.16.4",
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.10"
   },
@@ -25,5 +25,8 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
     "nodemon": "^1.17.3"
+  },
+  "resolutions": {
+    "**/event-stream": "^4.0.1"
   }
 }
