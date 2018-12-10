@@ -12,10 +12,14 @@ export default function fetchRooms() {
       },
     })
     .then(res => {
-      res.data.filter(room => room.category === 'Project room').map(room => {
-        const newRoom = new Room(storeBachApiRoom(room));
-        return newRoom.save((err, created) => (err ? console.log(err) : console.log(created, ' stored successfully')));
-      });
+      res.data
+        .filter(room => room.category === 'Project room')
+        .map(room => {
+          const newRoom = new Room(storeBachApiRoom(room));
+          return newRoom.save((err, created) =>
+            err ? console.log(err) : console.log(created, ' stored successfully')
+          );
+        });
 
       // eslint-disable-next-line array-callback-return
       // rooms.map(room => {

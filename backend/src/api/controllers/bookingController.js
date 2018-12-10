@@ -1,7 +1,8 @@
 // @flow
+import type { ApiBooking } from '../../../../apiTypes';
 import { Booking } from '../models';
-import { BookingDoc } from '../models/bookingModel';
 import findTimeslots from '../../utils/findTimeslots';
+import checkBooking from '../../utils/checkBooking';
 
 // GET /booking/{bookingId}
 export function getBooking(req: express$Request, res: express$Response) {
@@ -43,11 +44,9 @@ export function getTimeslots(req: express$Request, res: express$Response) {
 // POST /bookings
 // Request body contains start and duration, day is optional (default today)
 // returns a booking id (UUID)
-export function createBooking(req: express$Request, res: express$Response) {
-  const bookingProposal = req.body;
-  console.log('booookingchecked', bookingProposal);
+export function createBooking(req: any, res: express$Response) {
+  const bookingProposal: ApiBooking = req.body;
   if (checkBooking(bookingProposal)) {
-    console.log('booookingchecked', bookingProposal);
     const booking = new Booking(bookingProposal);
     booking
       .save()
@@ -71,10 +70,3 @@ export function deleteBooking(req: express$Request, res: express$Response) {
 export function deleteBookingsForRoom(_req: express$Request, _res: express$Response) {
   // TODO
 }
-
-const stringIsValid = (str: string) => Boolean(str) && str.length > 0;
-const durationIsValid = (duration: number) => duration >= 30 && duration <= 120;
-const checkBooking = ({ day, start, duration, roomId }) => {
-  console.log(day, stringIsValid(day), durationIsValid(duration));
-  return stringIsValid(day) && stringIsValid(start) && stringIsValid(roomId) && durationIsValid(duration);
-};

@@ -1,5 +1,6 @@
 // @flow
 import { Room } from '../models';
+import type { ApiRoom } from '../../../../apiTypes';
 
 // GET /rooms
 export function getAllRooms(req: express$Request, res: express$Response) {
@@ -12,7 +13,7 @@ export function getAllRooms(req: express$Request, res: express$Response) {
 export function addRooms(req: express$Request, res: express$Response) {
   // store list of rooms
   if (req.body instanceof Array) {
-    const newRooms = req.body.map(room => storeRoom(room));
+    const newRooms: ApiRoom[] = req.body.map(room => storeRoom(room));
     Room.insertMany(newRooms)
       .then(rooms => {
         res.json(rooms);
@@ -39,7 +40,7 @@ export function deleteRoom(req: express$Request, res: express$Response) {
     .catch(err => res.send(err));
 }
 
-function storeRoom(room) {
+function storeRoom(room: string): ApiRoom {
   // Create room model object from single string.
   return {
     name: room,

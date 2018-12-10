@@ -1,11 +1,5 @@
 // @flow
-
-type Booking = {
-  day: string,
-  start: string,
-  duration: number,
-  roomId: string,
-};
+import type { ApiBooking } from '../../../apiTypes';
 
 // Time from 08:00 - 17:00
 const timeslotsInNumbers = [
@@ -38,7 +32,7 @@ const numberToTimestring = (num: number) =>
 
 const timestringToNumber = (ts: string) => parseInt(ts.substring(0, 2), 10) * 60 + parseInt(ts.substring(3, 5), 10);
 
-export default function findTimeslots(bookings: Booking[], date: string) {
+export default function findTimeslots(bookings: ApiBooking[], date: string): string[] {
   const bookingsOfDate = bookings.filter(booking => booking.day === date);
   const newDate = new Date();
   const isToday = date === newDate.toISOString().split('T')[0];
