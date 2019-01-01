@@ -7,8 +7,9 @@
     "babel-node": "babel-node",
     "build": "rm -r dist && babel ./src -d dist",
     "start": "nodemon --exec npm run babel-node ./src/index.js",
+    "serve": "node dist/index.js",
     "backend": "docker-compose up",
-    "docker": "docker run -ti -p 1337:1337 beacon:0.1"
+    "backend:prod": "docker-compose -f docker-compose.prod.yml up"
   },
   "author": "Florian Hammerschmidt",
   "license": "MIT",

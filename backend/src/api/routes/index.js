@@ -11,6 +11,8 @@ import {
 } from '../controllers/bookingController';
 
 export default function routes(app: express$Application) {
+  // Avoid 404 for default route, get beacons.
+  app.route('/').get(getAllBeacons);
   // Beacon Routes
   app
     .route('/beacons')

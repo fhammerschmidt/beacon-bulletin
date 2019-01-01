@@ -9,10 +9,10 @@ services:
     depends_on:
       - db
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
     ports:
       - 1337:1337
-    command: npm run start
+    command: npm run serve
   db:
     image: mongo
     expose:
