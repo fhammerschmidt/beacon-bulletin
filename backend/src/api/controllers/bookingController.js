@@ -1,6 +1,6 @@
 // @flow
 import type { ApiBooking } from '../../../../apiTypes';
-import { Booking } from '../models';
+import { Room, Booking } from '../models';
 import findTimeslots from '../../utils/findTimeslots';
 import checkBooking from '../../utils/checkBooking';
 
@@ -46,17 +46,29 @@ export function getTimeslots(req: express$Request, res: express$Response) {
 // returns a booking id (UUID)
 export function createBooking(req: any, res: express$Response) {
   const bookingProposal: ApiBooking = req.body;
-  if (checkBooking(bookingProposal)) {
-    const booking = new Booking(bookingProposal);
-    booking
-      .save()
-      .then(bookingResult => {
-        res.json(bookingResult);
-      })
-      .catch(err => {
-        res.send(err);
-      });
-  }
+  Room.count({ id: bookingProposal.roomId })
+    .then(count => {
+      if (count > 0) {
+        res.status(400);
+        res.send('Room does not exist');
+      }
+
+      if (!checkBooking(bookingProposal)) {
+        res.status(400);
+        res.send('Booking invalid');
+      }
+
+      const booking = new Booking(bookingProposal);
+      booking
+        .save()
+        .then(bookingResult => {
+          res.json(bookingResult);
+        })
+        .catch(err => {
+          res.send(err);
+        });
+    })
+    .catch(err => res.send(err));
 }
 
 // DELETE /bookings/{bookingId}/ to delete a specific booking
