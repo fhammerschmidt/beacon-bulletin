@@ -16,7 +16,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(
   'mongodb://db/app',
   {
-    useMongoClient: true,
+    useNewUrlParser: true,
   }
 );
 
@@ -31,5 +31,5 @@ app.use((req: express$Request, res: express$Response) => {
 
 app.listen(port, () => {
   console.log(`Beacon Bulletin Server was started on port: ${port}`);
-  // fetchRooms();
+  fetchRooms();
 });
