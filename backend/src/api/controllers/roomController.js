@@ -35,8 +35,15 @@ export function getRoom(req: express$Request, res: express$Response) {
 
 // DELETE /rooms/{roomId}
 export function deleteRoom(req: express$Request, res: express$Response) {
-  Room.find({ name: req.params.roomId })
+  Room.deleteOne({ name: req.params.roomId })
     .then(() => res.json({ message: 'Room successfully deleted' }))
+    .catch(err => res.send(err));
+}
+
+// DELETE /rooms
+export function deleteAllRooms(req: express$Request, res: express$Response) {
+  Room.deleteMany({})
+    .then(() => res.json({ message: 'All rooms successfully deleted' }))
     .catch(err => res.send(err));
 }
 

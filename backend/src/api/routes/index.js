@@ -1,6 +1,6 @@
 // @flow
 import { getAllBeacons, addBeacons, getBeacon, updateBeacon, deleteBeacon } from '../controllers/beaconController';
-import { getAllRooms, addRooms, getRoom, deleteRoom } from '../controllers/roomController';
+import { getAllRooms, addRooms, getRoom, deleteRoom, deleteAllRooms } from '../controllers/roomController';
 import {
   getBooking,
   getAllBookings,
@@ -30,6 +30,8 @@ export default function routes(app: express$Application) {
     .route('/rooms')
     .get(getAllRooms)
     .post(addRooms);
+
+  app.route('/rooms/deleteAll').delete(deleteAllRooms);
 
   app
     .route('/rooms/:roomId')
