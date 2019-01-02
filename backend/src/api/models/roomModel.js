@@ -30,9 +30,9 @@ const RoomSchema = new Schema({
 		"id": 6446,
 		"label": "D1.1.050"
  */
-  name: String,
-  building: String,
-  level: String,
+  name: { type: String, unique: true, required: true, dropUps: true },
+  building: { type: String, required: true },
+  level: { type: String, required: true },
 });
 
 export class RoomDoc /* :: extends Mongoose$Document */ {

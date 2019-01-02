@@ -2,9 +2,9 @@
 import mongoose, { Schema } from 'mongoose';
 
 const BeaconSchema = new Schema({
-  region: String,
-  major: String,
-  minor: String,
+  region: { type: String, required: true },
+  major: { type: String, required: true },
+  minor: { type: String, required: true },
   assignedRooms: [String],
 });
 
