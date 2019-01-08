@@ -3,10 +3,9 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { persistStore } from 'redux-persist';
 
-import rootReducer from '../reducers';
-
-import rootSaga from '../sagas';
 import { notifyPersistorBootstrapped } from '../utils/persist';
+import { makeRootReducer } from '../reducers';
+import rootSaga from '../sagas';
 
 export default function configureStore(initialState: Object) {
   const sagaMiddleware = createSagaMiddleware();
@@ -18,7 +17,7 @@ export default function configureStore(initialState: Object) {
   const storeEnhancer = composeEnhancers(applyMiddleware(sagaMiddleware));
 
   // $FlowFixMe
-  const store = createStore(rootReducer, initialState, storeEnhancer);
+  const store = createStore(makeRootReducer(), initialState, storeEnhancer);
   sagaMiddleware.run(rootSaga, store.dispatch);
 
   // Persist store using redux-persist.
@@ -34,7 +33,7 @@ export default function configureStore(initialState: Object) {
       console.info('[HMR] Replacing reducers');
 
       // eslint-disable-next-line global-require
-      store.replaceReducer(rootReducer);
+      store.replaceReducer(require('../reducers').makeRootReducer());
     });
   }
 

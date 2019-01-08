@@ -17,7 +17,6 @@
     "postinstall": "npm run patch",
     "patch": "./scripts/patch.sh",
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "server": "nodemon backend/index.js --exec babel-node --presets es2015",
     "flow": "flow check",
     "format": "prettier --write '@(src|scripts)/**/*.@(js|css)'"
   },

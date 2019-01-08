@@ -14,6 +14,7 @@ import fetchSaga from './fetch';
 import { take, put, fork } from 'redux-saga/effects';
 
 export default function* fetchAppDataSaga(): Generator<*, *, *> {
+  console.log('yeeeaeaaaaaah');
   yield fork(doFetchRooms());
   yield fork(doFetchBeacons());
 
