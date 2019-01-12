@@ -14,6 +14,10 @@ export type DataAction =
   | {| type: 'FETCH_BOOKINGS_STARTED' |}
   | {| type: 'FETCH_BOOKINGS_SUCCESS', bookings: Booking[] |}
   | {| type: 'FETCH_BOOKINGS_ERROR', error: Object |}
+  | {| type: 'FETCH_BOOKING' |}
+  | {| type: 'FETCH_BOOKING_STARTED' |}
+  | {| type: 'FETCH_BOOKING_SUCCESS', booking: Booking |}
+  | {| type: 'FETCH_BOOKING_ERROR', error: Object |}
   | {| type: 'POST_BOOKING', booking: Booking |}
   | {| type: 'POST_BOOKING_STARTED' |}
   | {| type: 'POST_BOOKING_SUCCESS' |}
@@ -66,4 +70,36 @@ export function fetchBookingsSuccess(bookings: Booking[]): DataAction {
 
 export function fetchBookingsError(error: Object): DataAction {
   return { type: 'FETCH_BOOKINGS_ERROR', error };
+}
+
+export function fetchBooking(): DataAction {
+  return { type: 'FETCH_BOOKING' };
+}
+
+export function fetchBookingStarted(): DataAction {
+  return { type: 'FETCH_BOOKING_STARTED' };
+}
+
+export function fetchBookingSuccess(booking: Booking): DataAction {
+  return { type: 'FETCH_BOOKING_SUCCESS', booking };
+}
+
+export function fetchBookingError(error: Object): DataAction {
+  return { type: 'FETCH_BOOKING_ERROR', error };
+}
+
+export function postBooking(booking: Booking): DataAction {
+  return { type: 'POST_BOOKING', booking };
+}
+
+export function postBookingStarted(): DataAction {
+  return { type: 'POST_BOOKING_STARTED' };
+}
+
+export function postBookingSuccess(): DataAction {
+  return { type: 'POST_BOOKING_SUCCESS' };
+}
+
+export function postBookingError(error: Object): DataAction {
+  return { type: 'POST_BOOKING_ERROR', error };
 }

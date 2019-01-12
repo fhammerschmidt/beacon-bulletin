@@ -28,7 +28,7 @@ const initialState: AppState = {
   initializing: true,
   networkOnline: true,
   bluetooth: false,
-  serverUrl: 'localhost:1337',
+  serverUrl: 'https://thesis.hammerschmidt.rocks',
 };
 
 export default function app(state: AppState = initialState, action: Action): AppState {
