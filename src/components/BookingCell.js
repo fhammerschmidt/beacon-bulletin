@@ -2,17 +2,21 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-import type { Room } from '../../apiTypes';
+import type { Booking } from '../../apiTypes';
 import Icon from './Icon';
 
-export default class RoomCell extends React.Component<*> {
+const createDate = ({ day, start, duration }: Booking) => {
+  return `${day} ${start} - ${start.substring(0, 3)}${duration}}`;
+};
+
+export default class BookingCell extends React.Component<*> {
   props: {
-    room: Room,
+    booking: Booking,
     onRowPressed: (id: string) => void,
   };
 
   render() {
-    const { room } = this.props;
+    const { booking } = this.props;
 
     return (
       <TouchableOpacity onPress={this.handleRowPressed}>
@@ -21,7 +25,8 @@ export default class RoomCell extends React.Component<*> {
             <Icon name="account_balance" size={24} />
           </Text>
           <Text numberOfLines={1} style={styles.text}>
-            {room.name}
+            {createDate(booking)}
+            {booking.roomId}
           </Text>
           <Text style={styles.caret}>&#x25B6;</Text>
         </View>
@@ -30,8 +35,8 @@ export default class RoomCell extends React.Component<*> {
   }
 
   handleRowPressed = () => {
-    const { room, onRowPressed } = this.props;
-    onRowPressed(room.id);
+    const { booking, onRowPressed } = this.props;
+    onRowPressed(booking.id);
   };
 }
 

@@ -3,28 +3,28 @@ import * as React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { connect, type Connector } from 'react-redux';
 
-import type { Room } from '../../apiTypes';
+import type { Booking } from '../../apiTypes';
 import type { ReduxState } from '../reducers';
-import type { RoomData } from '../reducers/data';
-import RoomCell from './RoomCell';
+import type { BookingData } from '../reducers/temp';
+import BookingCell from './BookingCell';
 
 type OwnProps = {
   navigation: any,
 };
 
 type StoreProps = {
-  data: RoomData,
+  data: BookingData,
 };
 
 type Props = OwnProps & StoreProps;
 
 function mapStateToProps(state: ReduxState): StoreProps {
   return {
-    data: state.data.rooms,
+    data: state.temp.bookings,
   };
 }
 
-class RoomList extends React.Component<Props> {
+class BookingList extends React.Component<Props> {
   render() {
     const { data } = this.props;
     return (
@@ -39,20 +39,20 @@ class RoomList extends React.Component<Props> {
   }
 
   renderRow = rowData => {
-    return <RoomCell key={rowData.item.id} room={rowData.item} onRowPressed={this.handleRoomCellPressed} />;
+    return <BookingCell key={rowData.item.id} room={rowData.item} onRowPressed={this.handleRoomCellPressed} />;
   };
 
-  handleRoomCellPressed = (roomId: string) => {
-    this.props.navigation.navigate('RoomDetail', {
-      roomId,
+  handleRoomCellPressed = (bookingId: string) => {
+    this.props.navigation.navigate('BookingDetail', {
+      bookingId,
     });
   };
 
-  keyExtractor = (item: Room, index: number) => index.toString();
+  keyExtractor = (item: Booking, index: number) => index.toString();
 }
 
 const connector: Connector<OwnProps, Props> = connect(mapStateToProps);
-export default connector(RoomList);
+export default connector(BookingList);
 
 const styles = StyleSheet.create({
   list: {

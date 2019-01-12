@@ -1,18 +1,50 @@
 // @flow
-import { createMaterialTopTabNavigator } from 'react-navigation';
+import { createMaterialTopTabNavigator, createStackNavigator } from 'react-navigation';
 import BeaconsScreen from '../components/BeaconDetector';
 import RoomsScreen from '../components/RoomList';
-import SettingsScreen from '../components/Settings';
+import RoomDetailScreen from '../components/RoomDetail';
+import BookingsScreen from '../components/BookingList';
+import BookingDetailScreen from '../components/BookingDetail';
+import AdminScreen from '../components/Admin';
 
-// eslint-disable-next-line babel/new-cap
+const RoomsStack = createStackNavigator(
+  {
+    Rooms: RoomsScreen,
+    RoomDetail: RoomDetailScreen,
+    Beacons: BeaconsScreen,
+  },
+  {
+    navigationOptions: {
+      header: null,
+    },
+  }
+);
+
+const BookingsStack = createStackNavigator(
+  {
+    Bookings: BookingsScreen,
+    BookingDetail: BookingDetailScreen,
+  },
+  {
+    navigationOptions: {
+      header: null,
+    },
+  }
+);
+
+const AdminStack = createStackNavigator(
+  {
+    Admin: AdminScreen,
+  },
+  {
+    navigationOptions: {
+      header: null,
+    },
+  }
+);
+
 export default createMaterialTopTabNavigator({
-  Beacons: {
-    screen: BeaconsScreen,
-  },
-  Rooms: {
-    screen: RoomsScreen,
-  },
-  Settings: {
-    screen: SettingsScreen,
-  },
+  Rooms: RoomsStack,
+  Bookings: BookingsStack,
+  Admin: AdminStack,
 });
