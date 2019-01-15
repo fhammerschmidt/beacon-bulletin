@@ -34,13 +34,13 @@ export default class Root extends React.Component<{}, State> {
 
   render() {
     const { bluetooth } = this.state;
-    if (bluetooth !== 'on') {
-      return (
-        <View style={styles.container}>
-          <Navigation />
-        </View>
-      );
-    }
+    // if (bluetooth !== 'on') {
+    //   return (
+    //     <View style={styles.container}>
+    //       <Navigation />
+    //     </View>
+    //   );
+    // }
     switch (bluetooth) {
       case 'on':
         return (

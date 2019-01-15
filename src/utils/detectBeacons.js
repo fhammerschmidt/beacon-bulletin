@@ -18,22 +18,16 @@ export type Region = { identifier: string, uuid: ?string };
 //   IBEACON: 'm:0-3=4c000215,i:4-19,i:20-21,i:22-23,p:24-24',
 // };
 
-export default function detectBeacons(region: Region, _beaconType: Beacon) {
+export default function detectBeacons(_region: Region, _beaconType: Beacon) {
+  Beacons.setForegroundScanPeriod(5000);
+  Beacons.setBackgroundScanPeriod(5000);
+
   console.info('Scanning in progress...');
   Beacons.checkTransmissionSupported()
     .then(PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION))
     .then(requestCoarseLocationPermission)
     .then(Beacons.detectIBeacons);
   // .then(Beacons.detectCustomBeaconLayout(beaconPatterns[beaconType]));
-
-  Beacons.startMonitoringForRegion(region)
-    .then(() => console.log('Beacons monitoring started succesfully'))
-    .catch(error => console.log(`Beacons monitoring not started, error: ${error}`));
-
-  // Range beacons inside the region
-  Beacons.startRangingBeaconsInRegion(region)
-    .then(() => console.log('Beacons ranging started succesfully'))
-    .catch(error => console.log(`Beacons ranging not started, error: ${error}`));
 }
 
 async function requestCoarseLocationPermission(): Promise<boolean> {

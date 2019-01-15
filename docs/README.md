@@ -209,5 +209,12 @@ This returns an array of available time slots:
 
 The user chooses a slot and a duration (30, 45, 60, 90 or 120 minutes), accepts a disclaimer and submits the booking
 job. The job is executed via
-`GET book room https:ach.wu.ac.at/d/rr/students/submit/?job={jobId}`
+`GET book room https:bach.wu.ac.at/d/rr/students/submit/?job={jobId}`
 where the jobId must have been created in the background in advance before the user sees the booking dropdown fields to select his wished time.
+
+Some points:
+
+- It helps to use identical beacon models. Some have a very strong reception which interferes heavily with the approximate distance calculated. There is an edge case when standing right in the middle between two beacons. Add some interference to
+  that and you are randomly more nearby the one or the other beacon. This is even worse when there are beacons in four directions. So it makes sense to only show a room detail when a beacon is in immediate proximity. With near proximity, just
+  displaying it as a list element which the user can select to view a detail is sufficient. The list is furthermore sorted
+  by the RSSI.

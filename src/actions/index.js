@@ -1,5 +1,5 @@
 // @flow
-import type { Dispatch as ReduxDispatch } from 'redux'; // eslint-disable-line import/named
+import type { Dispatch as ReduxDispatch } from 'redux';
 import type { AppAction } from './app';
 import type { DataAction } from './data';
 

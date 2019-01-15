@@ -1,69 +1,71 @@
 // @flow
 import * as React from 'react';
-import { StyleSheet, Text, FlatList, View, DeviceEventEmitter } from 'react-native';
+import { StyleSheet, Text, FlatList, View } from 'react-native';
+import Beacons, { type BeaconRegion } from '@nois/react-native-beacons-manager';
 
 import { PRIMARY_APP_COLOR } from '../constants';
-import detectBeacons from '../utils/detectBeacons';
+import detectBeacons, { type Region } from '../utils/detectBeacons';
 import Icon from './Icon';
-
-const beaconData = require('../../docs/data.json'); // eslint-disable-line import/no-commonjs
-
-type Beacon = {
-  uuid: string,
-  major: string,
-  minor: string,
-  rssi: string,
-  proximity: string,
-  accuracy: number,
-};
-
-type EmitterSubscription = {
-  remove(): void,
-};
 
 type Props = {};
 type State = {
-  beacons: Beacon[],
+  region: Region,
+  beacons: BeaconRegion[],
 };
 
+type EmitterSubscription =
+  | {
+      remove(): void,
+    }
+  | any;
+
 export default class BeaconDetector extends React.Component<Props, State> {
-  beaconsDidRange: EmitterSubscription;
-  regionDidEnter: EmitterSubscription;
-  regionDidExit: EmitterSubscription;
+  beaconsDidRangeEvent: EmitterSubscription = null;
+  beaconsDidEnterEvent: EmitterSubscription = null;
+  beaconsDidLeaveEvent: EmitterSubscription = null;
+  beaconsServiceDidConnect: any = null;
 
   state = {
+    region: { identifier: 'REGION1', uuid: 'e2c56db5-dffb-48d2-b060-d0f5a71096e0' },
     beacons: [],
-    regions: [],
   };
 
   componentDidMount() {
     // const uuid = '01122334-4556-6778-899a-abbccddeeff0';
-    const { uuid } = beaconData.regions[0];
-    // ADAFRUIT Bluefruit Beacon UUID: 01122334-4556-6778-899a-abbccddeeff0
-    const region = { identifier: 'REGION1', uuid };
-    detectBeacons(region, 'IBEACON');
+    detectBeacons(this.state.region, 'IBEACON');
 
-    console.log(beaconData);
-    this.beaconsDidRange = DeviceEventEmitter.addListener('beaconsDidRange', data => {
-      console.log('beaconData', data);
-      this.setState({
-        beacons: data.beacons,
-      });
+    // we need to wait for service connection to ensure synchronization:
+    this.beaconsServiceDidConnect = Beacons.BeaconsEventEmitter.addListener('beaconServiceConnected', () => {
+      console.log('service connected');
+      this.startRangingAndMonitoring();
     });
 
-    this.regionDidEnter = DeviceEventEmitter.addListener('regionDidEnter', data => {
-      console.log('monitoring - regionDidEnter data: ', data);
-    });
+    this.beaconsDidRangeEvent = Beacons.BeaconsEventEmitter.addListener(
+      'beaconsDidRange',
+      (response: { beacons: BeaconRegion[], uuid: string, identifier: string }) => {
+        console.log('BEACONS: ', response);
 
-    this.regionDidExit = DeviceEventEmitter.addListener('regionDidExit', data => {
-      console.log('monitoring - regionDidExit data: ', data);
-    });
+        response.beacons.forEach(beacon =>
+          this.updateBeaconState({
+            identifier: response.identifier,
+            uuid: String(beacon.uuid),
+            major: parseInt(beacon.major, 10) >= 0 ? beacon.major : '',
+            minor: parseInt(beacon.minor, 10) >= 0 ? beacon.minor : '',
+            proximity: beacon.proximity ? beacon.proximity : '',
+            rssi: beacon.rssi ? beacon.rssi : '',
+            distance: beacon.distance ? beacon.distance : 0,
+            time: new Date().getTime(),
+          })
+        );
+      }
+    );
   }
 
   componentWillUnMount() {
-    this.beaconsDidRange.remove();
-    this.regionDidEnter.remove();
-    this.regionDidExit.remove();
+    this.stopRangingAndMonitoring();
+    this.beaconsDidEnterEvent.remove();
+    this.beaconsDidLeaveEvent.remove();
+    this.beaconsDidRangeEvent.remove();
   }
 
   render() {
@@ -77,21 +79,58 @@ export default class BeaconDetector extends React.Component<Props, State> {
     );
   }
 
-  renderRow = (info: { item: Beacon, index: number }) => {
-    const { uuid, major, minor, rssi, proximity, accuracy } = info.item;
+  renderRow = (info: { item: BeaconRegion, index: number }) => {
+    const { uuid, major, minor, rssi, proximity, distance } = info.item;
     return (
       <View style={styles.row}>
-        <Text style={styles.smallText}>UUID: {uuid ? uuid : 'NA'}</Text>
+        <Text style={styles.smallText}>UUID: {uuid}</Text>
         <Text style={styles.smallText}>Major: {major ? major : 'NA'}</Text>
         <Text style={styles.smallText}>Minor: {minor ? minor : 'NA'}</Text>
         <Text>RSSI: {rssi ? rssi : 'NA'}</Text>
         <Text>Proximity: {proximity ? proximity : 'NA'}</Text>
-        <Text>Distance: {accuracy ? `${accuracy.toFixed(2)}m` : 'NA'}</Text>
+        <Text>Distance: {distance ? distance.toFixed(4) : 'NA'}</Text>
       </View>
     );
   };
 
-  keyExtractor = (item: Beacon, index: number) => index.toString();
+  keyExtractor = (item: BeaconRegion, index: number) => index.toString();
+
+  updateBeaconState = (nb: BeaconRegion) => {
+    const diffBeacon = data => !(data.uuid === nb.uuid && data.minor === nb.minor && data.major === nb.major);
+
+    const { beacons } = this.state;
+    const diffBeacons = [...beacons.filter(diffBeacon), nb];
+    // Kick out old beacons after being not in range for 30 seconds (30000ms).
+    const keptBeacons = diffBeacons.filter(b => nb.time - b.time < 30000).sort((a, b) => b.rssi - a.rssi);
+
+    this.setState({ beacons: keptBeacons });
+  };
+
+  startRangingAndMonitoring = async () => {
+    const { region } = this.state;
+
+    try {
+      await Beacons.startRangingBeaconsInRegion(region);
+      console.log('Beacons ranging started successfully');
+      await Beacons.startMonitoringForRegion(region);
+      console.log('Beacons monitoring started successfully');
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  stopRangingAndMonitoring = async () => {
+    const { region } = this.state;
+
+    try {
+      await Beacons.stopRangingBeaconsInRegion(region);
+      console.log('Beacons ranging stopped successfully');
+      await Beacons.stopMonitoringForRegion(region);
+      console.log('Beacons monitoring stopped successfully');
+    } catch (error) {
+      throw error;
+    }
+  };
 }
 
 const styles = StyleSheet.create({
