@@ -1,17 +1,18 @@
 // @flow
 import { createMaterialTopTabNavigator, createStackNavigator } from 'react-navigation';
-import BeaconsScreen from '../components/BeaconDetector';
-import RoomsScreen from '../components/RoomList';
-import RoomDetailScreen from '../components/RoomDetail';
+// import BeaconsScreen from '../components/BeaconDetector';
+// import RoomsScreen from '../components/RoomList';
+import RoomsScreen from '../components/Rooms';
+import RoomDetailScreen from '../components/RoomDetailScreen';
 import BookingsScreen from '../components/BookingList';
 import BookingDetailScreen from '../components/BookingDetail';
 import AdminScreen from '../components/Admin';
 
 const RoomsStack = createStackNavigator(
   {
+    // Beacons: BeaconsScreen,
     Rooms: RoomsScreen,
     RoomDetail: RoomDetailScreen,
-    Beacons: BeaconsScreen,
   },
   {
     navigationOptions: {

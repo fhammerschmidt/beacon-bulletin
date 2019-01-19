@@ -1,13 +1,13 @@
 // @flow
 import * as React from 'react';
-import { StyleSheet, Text, FlatList, View } from 'react-native';
 import Beacons, { type BeaconRegion } from '@nois/react-native-beacons-manager';
 
-import { PRIMARY_APP_COLOR } from '../constants';
 import detectBeacons, { type Region } from '../utils/detectBeacons';
-import Icon from './Icon';
 
-type Props = {};
+type Props = {
+  children: React.Node,
+};
+
 type State = {
   region: Region,
   beacons: BeaconRegion[],
@@ -70,30 +70,12 @@ export default class BeaconDetector extends React.Component<Props, State> {
 
   render() {
     const { beacons } = this.state;
-    return (
-      <View style={styles.container}>
-        <Icon name="settings_input_antenna" color={PRIMARY_APP_COLOR} size={36} />
-        <Text style={styles.headline}>All beacons in the area</Text>
-        <FlatList data={beacons} renderItem={this.renderRow} keyExtractor={this.keyExtractor} />
-      </View>
-    );
+    return React.Children.map(this.props.children, child => {
+      return React.cloneElement(child, {
+        beacons,
+      });
+    });
   }
-
-  renderRow = (info: { item: BeaconRegion, index: number }) => {
-    const { uuid, major, minor, rssi, proximity, distance } = info.item;
-    return (
-      <View style={styles.row}>
-        <Text style={styles.smallText}>UUID: {uuid}</Text>
-        <Text style={styles.smallText}>Major: {major ? major : 'NA'}</Text>
-        <Text style={styles.smallText}>Minor: {minor ? minor : 'NA'}</Text>
-        <Text>RSSI: {rssi ? rssi : 'NA'}</Text>
-        <Text>Proximity: {proximity ? proximity : 'NA'}</Text>
-        <Text>Distance: {distance ? distance.toFixed(4) : 'NA'}</Text>
-      </View>
-    );
-  };
-
-  keyExtractor = (item: BeaconRegion, index: number) => index.toString();
 
   updateBeaconState = (nb: BeaconRegion) => {
     const diffBeacon = data => !(data.uuid === nb.uuid && data.minor === nb.minor && data.major === nb.major);
@@ -132,24 +114,3 @@ export default class BeaconDetector extends React.Component<Props, State> {
     }
   };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  headline: {
-    fontSize: 20,
-    paddingTop: 20,
-  },
-  row: {
-    padding: 8,
-    paddingBottom: 16,
-  },
-  smallText: {
-    fontSize: 11,
-  },
-});

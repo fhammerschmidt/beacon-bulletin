@@ -3,6 +3,7 @@ import keyBy from 'lodash/keyBy';
 
 import type { Beacon, Room } from '../../apiTypes';
 import type { Action } from '../actions';
+import type { ReduxState } from '.';
 
 export type RoomMap = { [roomId: string]: Room };
 export type BeaconMap = { [beaconId: string]: Beacon };
@@ -57,4 +58,9 @@ export default function data(state: DataState = initialState, action: Action): D
     default:
       return state;
   }
+}
+
+export function roomSelector(state: ReduxState, roomId: string): Room {
+  console.log(state.data.rooms, roomId);
+  return state.data.rooms.byId[roomId];
 }

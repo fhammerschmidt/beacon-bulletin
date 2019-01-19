@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { PRIMARY_APP_COLOR } from '../constants';
+import { COLORS } from '../constants';
 import Icon from './Icon';
 
 type Props = {
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: PRIMARY_APP_COLOR,
+    backgroundColor: COLORS.PRIMARY,
     paddingHorizontal: 16,
   },
   menuRowText: {
