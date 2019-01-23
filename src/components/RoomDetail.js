@@ -2,23 +2,36 @@
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
-import type { Room } from '../../apiTypes';
+import type { Room, Booking } from '../../apiTypes';
 import { Button, IconButton } from './Button';
+import BookingCell from './BookingCell';
 
 type Props = {
   room: Room,
+  bookings: Booking[],
   onBackPress?: () => void,
+  getBookings: (roomId: string) => void,
 };
 
 export default class RoomDetail extends React.Component<Props> {
+  componentDidMount() {
+    const { room, getBookings } = this.props;
+    getBookings(room.id);
+  }
+
   render() {
     const {
       room: { name },
+      bookings,
       onBackPress,
     } = this.props;
     return (
       <View style={styles.container}>
         <DetailRow title="Room Name:" value={name} />
+        {bookings.map((booking, i) => (
+          <BookingCell key={i} booking={booking} />
+        ))}
+
         {onBackPress && <IconButton onPress={this.handleBackPressed} iconName="view_headling" label="Go back" />}
         <Button onPress={this.handleBookRoomPressed} label="Book Room now" />
       </View>

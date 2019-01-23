@@ -1,48 +1,39 @@
 // @flow
-import keyBy from 'lodash/keyBy';
-
 import type { Booking } from '../../apiTypes';
 import type { Action } from '../actions';
+import type { ReduxState } from '.';
 
-export type BookingMap = { [bookingId: string]: Booking };
-
-export type BookingData = {
-  byId: BookingMap,
-  ids: string[],
-};
+export type BookingMap = { [roomId: string]: Array<Booking> };
 
 export type TempState = {
-  bookings: BookingData,
+  bookings: BookingMap,
 };
 
 const initialState = {
-  bookings: {
-    byId: {},
-    ids: [],
-  },
+  bookings: {},
 };
 
 export default function temp(state: TempState = initialState, action: Action): TempState {
   switch (action.type) {
     case 'FETCH_BOOKINGS_SUCCESS': {
+      const { roomId, bookings } = action;
       return {
         ...state,
         bookings: {
-          ids: action.bookings.map(b => b.id),
-          byId: keyBy(action.bookings, 'id'),
-        },
-      };
-    }
-    case 'FETCH_BOOKING_SUCCESS': {
-      return {
-        ...state,
-        bookings: {
-          ids: [...state.bookings.ids, action.booking.id],
-          byId: { ...state.bookings.byId, [action.booking.id]: action.booking },
+          ...state.bookings,
+          [roomId]: bookings,
         },
       };
     }
     default:
       return state;
   }
+}
+
+export function bookingsForRoomSelector(state: ReduxState, roomId: string): Booking[] {
+  const bookings = state.temp.bookings[roomId];
+  if (bookings.length > 0) {
+    return bookings;
+  }
+  return [];
 }

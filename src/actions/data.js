@@ -10,9 +10,9 @@ export type DataAction =
   | {| type: 'FETCH_ROOMS_STARTED' |}
   | {| type: 'FETCH_ROOMS_SUCCESS', rooms: Room[] |}
   | {| type: 'FETCH_ROOMS_ERROR', error: Object |}
-  | {| type: 'FETCH_BOOKINGS' |}
+  | {| type: 'FETCH_BOOKINGS', roomId: string |}
   | {| type: 'FETCH_BOOKINGS_STARTED' |}
-  | {| type: 'FETCH_BOOKINGS_SUCCESS', bookings: Booking[] |}
+  | {| type: 'FETCH_BOOKINGS_SUCCESS', roomId: string, bookings: Booking[] |}
   | {| type: 'FETCH_BOOKINGS_ERROR', error: Object |}
   | {| type: 'FETCH_BOOKING' |}
   | {| type: 'FETCH_BOOKING_STARTED' |}
@@ -56,16 +56,16 @@ export function fetchRoomsError(error: Object): DataAction {
   return { type: 'FETCH_ROOMS_ERROR', error };
 }
 
-export function fetchBookings(): DataAction {
-  return { type: 'FETCH_BOOKINGS' };
+export function fetchBookings(roomId: string): DataAction {
+  return { type: 'FETCH_BOOKINGS', roomId };
 }
 
 export function fetchBookingsStarted(): DataAction {
   return { type: 'FETCH_BOOKINGS_STARTED' };
 }
 
-export function fetchBookingsSuccess(bookings: Booking[]): DataAction {
-  return { type: 'FETCH_BOOKINGS_SUCCESS', bookings };
+export function fetchBookingsSuccess(roomId: string, bookings: Booking[]): DataAction {
+  return { type: 'FETCH_BOOKINGS_SUCCESS', roomId, bookings };
 }
 
 export function fetchBookingsError(error: Object): DataAction {

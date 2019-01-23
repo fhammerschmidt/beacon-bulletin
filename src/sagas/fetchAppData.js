@@ -1,5 +1,5 @@
 // @flow
-import type { Beacon, Room } from '../../apiTypes';
+import type { Beacon, Room, Booking } from '../../apiTypes';
 import {
   fetchRooms,
   fetchRoomsStarted,
@@ -9,6 +9,9 @@ import {
   fetchBeaconsStarted,
   fetchBeaconsSuccess,
   fetchBeaconsError,
+  fetchBookingsStarted,
+  fetchBookingsSuccess,
+  fetchBookingsError,
 } from '../actions';
 import fetchSaga from './fetch';
 import { take, put, fork } from 'redux-saga/effects';
@@ -16,12 +19,16 @@ import { take, put, fork } from 'redux-saga/effects';
 export default function* fetchAppDataSaga(): Generator<*, *, *> {
   yield fork(doFetchRooms);
   yield fork(doFetchBeacons);
+  yield fork(doFetchBookings);
 
   yield put(fetchRooms());
   yield take('FETCH_ROOMS_SUCCESS');
 
   yield put(fetchBeacons());
   yield take('FETCH_BEACONS_SUCCESS');
+
+  // yield put(fetchBookings());
+  // yield take('FETCH_BOOKINGS_SUCCESS');
 }
 
 function* doFetchRooms(): Generator<*, *, *> {
@@ -48,6 +55,20 @@ function* doFetchBeacons(): Generator<*, *, *> {
       yield put(fetchBeaconsSuccess(beacons));
     } catch (error) {
       yield put(fetchBeaconsError(error));
+    }
+  }
+}
+
+function* doFetchBookings(): Generator<*, *, *> {
+  while (true) {
+    const action = yield take('FETCH_BOOKINGS');
+    yield put(fetchBookingsStarted());
+
+    try {
+      const bookings: Booking[] = yield* fetchSaga(`bookings/${action.roomId}`);
+      yield put(fetchBookingsSuccess(action.roomId, bookings));
+    } catch (error) {
+      yield put(fetchBookingsError(error));
     }
   }
 }

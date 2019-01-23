@@ -1,11 +1,11 @@
 // @flow
 import * as React from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { SectionList, StyleSheet, Text, View } from 'react-native';
 import { connect, type Connector } from 'react-redux';
 
 import type { Booking } from '../../apiTypes';
 import type { ReduxState } from '../reducers';
-import type { BookingData } from '../reducers/temp';
+import type { BookingMap } from '../reducers/temp';
 import BookingCell from './BookingCell';
 
 type OwnProps = {
@@ -13,7 +13,7 @@ type OwnProps = {
 };
 
 type StoreProps = {
-  data: BookingData,
+  data: BookingMap,
 };
 
 type Props = OwnProps & StoreProps;
@@ -27,10 +27,13 @@ function mapStateToProps(state: ReduxState): StoreProps {
 class BookingList extends React.Component<Props> {
   render() {
     const { data } = this.props;
+    const ids = Object.keys(data);
+
     return (
       <View style={styles.list}>
-        <FlatList
-          data={data.ids.map(id => data.byId[id])}
+        <SectionList
+          renderSectionHeader={this.renderSectionHeader}
+          sections={ids.map(id => ({ title: id, data: data[id] }))}
           renderItem={this.renderRow}
           keyExtractor={this.keyExtractor}
         />
@@ -47,6 +50,8 @@ class BookingList extends React.Component<Props> {
       bookingId,
     });
   };
+
+  renderSectionHeader = ({ section: { title } }) => <Text style={{ fontWeight: 'bold' }}>{title}</Text>;
 
   keyExtractor = (item: Booking, index: number) => index.toString();
 }

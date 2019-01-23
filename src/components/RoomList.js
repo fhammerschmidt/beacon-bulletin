@@ -5,6 +5,7 @@ import { connect, type Connector } from 'react-redux';
 import { type BeaconRegion } from '@nois/react-native-beacons-manager';
 
 import type { Room } from '../../apiTypes';
+import { fetchBookings, type DispatchProps } from '../actions';
 import type { ReduxState } from '../reducers';
 import type { RoomData, BeaconData } from '../reducers/data';
 import RoomCell from './RoomCell';
@@ -20,7 +21,7 @@ type StoreProps = {
   dataBeacons: BeaconData,
 };
 
-type Props = OwnProps & StoreProps;
+type Props = OwnProps & StoreProps & DispatchProps;
 
 function mapStateToProps(state: ReduxState): StoreProps {
   return {
@@ -45,7 +46,7 @@ class RoomList extends React.Component<Props> {
 
           return (
             <View style={styles.list}>
-              <RoomDetail room={room} />
+              <RoomDetail room={room} bookings={[]} getBookings={this.getBookings} />
               <FlatList
                 data={rooms.ids.map(id => rooms.byId[id])}
                 renderItem={this.renderRow}
@@ -67,6 +68,10 @@ class RoomList extends React.Component<Props> {
     this.props.navigation.navigate('RoomDetail', {
       roomId,
     });
+  };
+
+  getBookings = (roomId: string) => {
+    this.props.dispatch(fetchBookings(roomId));
   };
 
   keyExtractor = (item: Room, index: number) => index.toString();

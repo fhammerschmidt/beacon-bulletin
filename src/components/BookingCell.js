@@ -12,7 +12,7 @@ const createDate = ({ day, start, duration }: Booking) => {
 export default class BookingCell extends React.Component<*> {
   props: {
     booking: Booking,
-    onRowPressed: (id: string) => void,
+    onRowPressed?: (id: string) => void,
   };
 
   render() {
@@ -36,7 +36,9 @@ export default class BookingCell extends React.Component<*> {
 
   handleRowPressed = () => {
     const { booking, onRowPressed } = this.props;
-    onRowPressed(booking.id);
+    if (onRowPressed) {
+      onRowPressed(booking.id);
+    }
   };
 }
 
