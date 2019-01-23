@@ -3,10 +3,11 @@ import type { ApiBooking } from '../../../../apiTypes';
 import { Room, Booking } from '../models';
 import findTimeslots from '../../utils/findTimeslots';
 import checkBooking from '../../utils/checkBooking';
+import { getDateString } from '../../utils/date';
 
 // GET /booking/{bookingId}
 export function getBooking(req: express$Request, res: express$Response) {
-  Booking.findById()
+  Booking.findById(req.params.bookingId)
     .then(bookings => res.json(bookings))
     .catch(err => res.send(err));
 }
@@ -19,21 +20,28 @@ export function getAllBookings(req: express$Request, res: express$Response) {
     .catch(err => res.send(err));
 }
 
-// GET /bookings/rooms/{roomId}/ for today or
-// GET /bookings/rooms/{roomId}/?date=YYYY-MM-DD for any future date
+// GET /bookings/rooms/{roomId}
+export function getBookingsForRoom(req: express$Request, res: express$Response) {
+  Booking.find({ roomId: req.params.roomId })
+    .then(bookings => res.json(bookings))
+    .catch(err => res.send(err));
+}
+
+// GET /timeslots/{roomId}/ for today or
+// GET /timeslots/{roomId}/?date=YYYY-MM-DD for any future date
 // returns an array of date isoStrings
 export function getTimeslots(req: express$Request, res: express$Response) {
-  let date = new Date().toISOString().split('T')[0];
+  let date = new Date();
   if (req.query.date) {
     const newDate = req.query.date;
     if (typeof newDate === 'string') {
-      date = newDate;
+      date = new Date(newDate);
     } else {
-      date = newDate[0];
+      date = new Date(newDate[0]);
     }
   }
 
-  Booking.find({ roomId: req.params.roomId, day: date })
+  Booking.find({ roomId: req.params.roomId, day: getDateString(date) })
     .then(bookings => {
       const timeslots = findTimeslots(bookings, date);
       res.json(timeslots);
@@ -73,12 +81,14 @@ export function createBooking(req: any, res: express$Response) {
 
 // DELETE /bookings/{bookingId}/ to delete a specific booking
 export function deleteBooking(req: express$Request, res: express$Response) {
-  Booking.find({ name: req.params.bookingId })
+  Booking.find({ id: req.params.bookingId })
     .then(() => res.json({ message: `Booking ${req.params.bookingId} successfully deleted` }))
     .catch(err => res.send(err));
 }
 
 // DELETE /bookings/rooms/{roomId} to delete all bookings for that specific room
-export function deleteBookingsForRoom(_req: express$Request, _res: express$Response) {
-  // TODO
+export function deleteBookingsForRoom(req: express$Request, res: express$Response) {
+  Booking.deleteMany({ roomId: req.params.roomId })
+    .then(() => res.json({ message: `Bookings for room ${req.params.roomId} successfully deleted` }))
+    .catch(err => res.send(err));
 }

@@ -8,6 +8,7 @@ import {
   createBooking,
   deleteBooking,
   deleteBookingsForRoom,
+  getBookingsForRoom,
 } from '../controllers/bookingController';
 
 export default function routes(app: express$Application) {
@@ -49,9 +50,12 @@ export default function routes(app: express$Application) {
     .get(getBooking)
     .delete(deleteBooking);
 
-  // Booking actions dependent on rooms
+  // Booking actions depending on room
   app
     .route('/bookings/rooms/:roomId')
-    .get(getTimeslots)
+    .get(getBookingsForRoom)
     .delete(deleteBookingsForRoom);
+
+  // Timeslots for bookings depending on room
+  app.route('/timeslots/:roomId').get(getTimeslots);
 }

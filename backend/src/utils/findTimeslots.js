@@ -1,5 +1,6 @@
 // @flow
 import type { ApiBooking } from '../../../apiTypes';
+import { getDateString } from './date';
 
 // Time from 08:00 - 17:00
 const timeslotsInNumbers = [
@@ -32,18 +33,20 @@ const numberToTimestring = (num: number) =>
 
 const timestringToNumber = (ts: string) => parseInt(ts.substring(0, 2), 10) * 60 + parseInt(ts.substring(3, 5), 10);
 
-export default function findTimeslots(bookings: ApiBooking[], date: string): string[] {
-  const bookingsOfDate = bookings.filter(booking => booking.day === date);
+const hasValidTimeslots = (bod: ApiBooking, ts: number) =>
+  ts < timestringToNumber(bod.start) || ts >= timestringToNumber(bod.start) + bod.duration;
+
+export default function findTimeslots(bookings: ApiBooking[], date: Date): string[] {
+  const dateString = getDateString(date);
+  const bookingsOfDate = bookings.filter(booking => booking.day === dateString);
   const newDate = new Date();
-  const isToday = date === newDate.toISOString().split('T')[0];
+  const isToday = dateString === getDateString(newDate);
   const minutesToday = newDate.getHours() * 60 + newDate.getMinutes();
 
-  const availableTimeslots = timeslotsInNumbers.filter(
-    ts =>
-      (isToday && minutesToday < ts) ||
-      bookingsOfDate
-        .map(bod => ts < timestringToNumber(bod.start) || ts >= timestringToNumber(bod.start) + bod.duration)
-        .every(val => val === true)
+  const availableTimeslots = timeslotsInNumbers.filter(ts =>
+    isToday
+      ? bookingsOfDate.map(bod => minutesToday < ts && hasValidTimeslots(bod, ts)).every(val => val === true)
+      : bookingsOfDate.map(bod => hasValidTimeslots(bod, ts)).every(val => val === true)
   );
 
   return availableTimeslots.map(ts => numberToTimestring(ts));
