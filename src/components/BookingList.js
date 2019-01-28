@@ -28,21 +28,20 @@ class BookingList extends React.Component<Props> {
   render() {
     const { data } = this.props;
     const ids = Object.keys(data);
-
     return (
       <View style={styles.list}>
         <SectionList
+          renderItem={this.renderRow}
           renderSectionHeader={this.renderSectionHeader}
           sections={ids.map(id => ({ title: id, data: data[id] }))}
-          renderItem={this.renderRow}
           keyExtractor={this.keyExtractor}
         />
       </View>
     );
   }
 
-  renderRow = rowData => {
-    return <BookingCell key={rowData.item.id} room={rowData.item} onRowPressed={this.handleRoomCellPressed} />;
+  renderRow = ({ item, _index, _section }) => {
+    return <BookingCell key={item.id} booking={item} onRowPressed={this.handleRoomCellPressed} />;
   };
 
   handleRoomCellPressed = (bookingId: string) => {

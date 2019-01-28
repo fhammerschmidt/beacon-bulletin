@@ -5,10 +5,10 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import type { Room } from '../../apiTypes';
 import Icon from './Icon';
 
-export default class RoomCell extends React.Component<*> {
+export default class RoomCell extends React.PureComponent<*> {
   props: {
     room: Room,
-    onRowPressed: (id: string) => void,
+    onRowPressed: (room: Room) => void,
   };
 
   render() {
@@ -31,7 +31,7 @@ export default class RoomCell extends React.Component<*> {
 
   handleRowPressed = () => {
     const { room, onRowPressed } = this.props;
-    onRowPressed(room.id);
+    onRowPressed(room);
   };
 }
 

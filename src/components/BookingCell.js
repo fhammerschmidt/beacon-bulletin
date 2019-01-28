@@ -6,10 +6,10 @@ import type { Booking } from '../../apiTypes';
 import Icon from './Icon';
 
 const createDate = ({ day, start, duration }: Booking) => {
-  return `${day} ${start} - ${start.substring(0, 3)}${duration}}`;
+  return `${day} ${start} - ${start.substring(0, 3)}${duration}`;
 };
 
-export default class BookingCell extends React.Component<*> {
+export default class BookingCell extends React.PureComponent<*> {
   props: {
     booking: Booking,
     onRowPressed?: (id: string) => void,
@@ -22,12 +22,14 @@ export default class BookingCell extends React.Component<*> {
       <TouchableOpacity onPress={this.handleRowPressed}>
         <View style={styles.cell}>
           <Text style={styles.iconContainer} type="room">
-            <Icon name="account_balance" size={24} />
+            <Icon name="done" size={24} />
           </Text>
-          <Text numberOfLines={1} style={styles.text}>
-            {createDate(booking)}
-            {booking.roomId}
-          </Text>
+          <View style={styles.cellBody}>
+            <Text numberOfLines={1} style={styles.text}>
+              {createDate(booking)}
+            </Text>
+            <Text>{booking.roomId}</Text>
+          </View>
           <Text style={styles.caret}>&#x25B6;</Text>
         </View>
       </TouchableOpacity>
@@ -52,6 +54,9 @@ const styles = StyleSheet.create({
     height: 60,
     marginBottom: 4,
   },
+  cellBody: {
+    paddingHorizontal: 8,
+  },
   iconContainer: {
     borderRightWidth: 1,
     paddingHorizontal: 8,
@@ -62,7 +67,5 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     paddingHorizontal: 8,
   },
-  text: {
-    paddingHorizontal: 8,
-  },
+  text: {},
 });

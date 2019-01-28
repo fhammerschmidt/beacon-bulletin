@@ -1,15 +1,15 @@
 // @flow
 import * as React from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, ScrollView } from 'react-native';
 import { connect, type Connector } from 'react-redux';
 import { type BeaconRegion } from '@nois/react-native-beacons-manager';
 
-import type { Room } from '../../apiTypes';
-import { fetchBookings, type DispatchProps } from '../actions';
+import type { Beacon, Room } from '../../apiTypes';
 import type { ReduxState } from '../reducers';
-import type { RoomData, BeaconData } from '../reducers/data';
+import { roomListSelector, beaconListSelector } from '../reducers/data';
 import RoomCell from './RoomCell';
-import RoomDetail from './RoomDetail';
+import RoomDetailConnector from './RoomDetailConnector';
+import UserInfoView from './UserInfoView';
 
 type OwnProps = {
   navigation: any,
@@ -17,16 +17,16 @@ type OwnProps = {
 };
 
 type StoreProps = {
-  rooms: RoomData,
-  dataBeacons: BeaconData,
+  rooms: Room[],
+  dataBeacons: Beacon[],
 };
 
-type Props = OwnProps & StoreProps & DispatchProps;
+type Props = OwnProps & StoreProps;
 
 function mapStateToProps(state: ReduxState): StoreProps {
   return {
-    rooms: state.data.rooms,
-    dataBeacons: state.data.beacons,
+    rooms: roomListSelector(state),
+    dataBeacons: beaconListSelector(state),
   };
 }
 
@@ -35,43 +35,31 @@ class RoomList extends React.Component<Props> {
     const { rooms, dataBeacons, beacons } = this.props;
     if (beacons) {
       if (beacons.length > 0) {
-        const found = dataBeacons.ids
-          .map(beaconId => dataBeacons.byId[beaconId])
-          .filter(b => {
-            return b.minor === beacons[0].minor.toString();
-          });
+        const found = dataBeacons.filter(db => beacons.some(b => b.minor.toString() === db.minor));
         if (found.length > 0) {
           // Use the first room in the sorted list to display prominently.
-          const room = rooms.ids.map(roomId => rooms.byId[roomId]).filter(r => r.name === found[0].assignedRooms[0])[0];
+          const availableRooms = rooms.filter(r => found.some(f => f.assignedRooms[0] === r.name));
 
           return (
-            <View style={styles.list}>
-              <RoomDetail room={room} bookings={[]} getBookings={this.getBookings} />
-              <FlatList
-                data={rooms.ids.map(id => rooms.byId[id])}
-                renderItem={this.renderRow}
-                keyExtractor={this.keyExtractor}
-              />
-            </View>
+            <ScrollView style={styles.list}>
+              <RoomDetailConnector roomId={availableRooms[0].id} />
+              <FlatList data={availableRooms} renderItem={this.renderRow} keyExtractor={this.keyExtractor} />
+            </ScrollView>
           );
         }
       }
     }
-    return null;
+    return <UserInfoView message="No beacon in range" />;
   }
 
-  renderRow = rowData => {
-    return <RoomCell key={rowData.item.id} room={rowData.item} onRowPressed={this.handleRoomCellPressed} />;
+  renderRow = ({ item }: { item: Room }) => {
+    return <RoomCell key={item.id} room={item} onRowPressed={this.handleRoomCellPressed} />;
   };
 
-  handleRoomCellPressed = (roomId: string) => {
+  handleRoomCellPressed = (room: Room) => {
     this.props.navigation.navigate('RoomDetail', {
-      roomId,
+      roomId: room.id,
     });
-  };
-
-  getBookings = (roomId: string) => {
-    this.props.dispatch(fetchBookings(roomId));
   };
 
   keyExtractor = (item: Room, index: number) => index.toString();
