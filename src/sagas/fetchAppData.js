@@ -12,6 +12,9 @@ import {
   fetchBookingsStarted,
   fetchBookingsSuccess,
   fetchBookingsError,
+  fetchTimeslotsStarted,
+  fetchTimeslotsSuccess,
+  fetchTimeslotsError,
 } from '../actions';
 import fetchSaga from './fetch';
 import { take, put, fork } from 'redux-saga/effects';
@@ -20,15 +23,13 @@ export default function* fetchAppDataSaga(): Generator<*, *, *> {
   yield fork(doFetchRooms);
   yield fork(doFetchBeacons);
   yield fork(doFetchBookings);
+  yield fork(doFetchTimeslots);
 
   yield put(fetchRooms());
   yield take('FETCH_ROOMS_SUCCESS');
 
   yield put(fetchBeacons());
   yield take('FETCH_BEACONS_SUCCESS');
-
-  // yield put(fetchBookings());
-  // yield take('FETCH_BOOKINGS_SUCCESS');
 }
 
 function* doFetchRooms(): Generator<*, *, *> {
@@ -65,10 +66,24 @@ function* doFetchBookings(): Generator<*, *, *> {
     yield put(fetchBookingsStarted());
 
     try {
-      const bookings: Booking[] = yield* fetchSaga(`bookings/${action.roomId}`);
+      const bookings: Booking[] = yield* fetchSaga(`bookings/rooms/${action.roomId}`);
       yield put(fetchBookingsSuccess(action.roomId, bookings));
     } catch (error) {
       yield put(fetchBookingsError(error));
+    }
+  }
+}
+
+function* doFetchTimeslots(): Generator<*, *, *> {
+  while (true) {
+    const action = yield take('FETCH_TIMESLOTS');
+    yield put(fetchTimeslotsStarted());
+
+    try {
+      const timeslots: string[] = yield* fetchSaga(`timeslots/${action.roomId}`);
+      yield put(fetchTimeslotsSuccess(action.roomId, timeslots));
+    } catch (error) {
+      yield put(fetchTimeslotsError(error));
     }
   }
 }
