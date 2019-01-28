@@ -29,7 +29,7 @@ export function getBookingsForRoom(req: express$Request, res: express$Response) 
 
 // GET /timeslots/{roomId}/ for today or
 // GET /timeslots/{roomId}/?date=YYYY-MM-DD for any future date
-// returns an array of date isoStrings
+// returns an array of time strings
 export function getTimeslots(req: express$Request, res: express$Response) {
   let date = new Date();
   if (req.query.date) {

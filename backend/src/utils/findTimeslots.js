@@ -1,6 +1,6 @@
 // @flow
 import type { ApiBooking } from '../../../apiTypes';
-import { getDateString } from './date';
+import { getDateWithOffset, getDateString } from './date';
 
 // Time from 08:00 - 17:00
 const timeslotsInNumbers = [
@@ -39,15 +39,21 @@ const hasValidTimeslots = (bod: ApiBooking, ts: number) =>
 export default function findTimeslots(bookings: ApiBooking[], date: Date): string[] {
   const dateString = getDateString(date);
   const bookingsOfDate = bookings.filter(booking => booking.day === dateString);
-  const newDate = new Date();
+  const newDate = getDateWithOffset(new Date());
   const isToday = dateString === getDateString(newDate);
   const minutesToday = newDate.getHours() * 60 + newDate.getMinutes();
 
-  const availableTimeslots = timeslotsInNumbers.filter(ts =>
-    isToday
-      ? bookingsOfDate.map(bod => minutesToday < ts && hasValidTimeslots(bod, ts)).every(val => val === true)
-      : bookingsOfDate.map(bod => hasValidTimeslots(bod, ts)).every(val => val === true)
-  );
+  const availableTimeslots = timeslotsInNumbers.filter(ts => {
+    if (isToday) {
+      if (bookingsOfDate.length > 0) {
+        return bookingsOfDate.map(bod => minutesToday < ts && hasValidTimeslots(bod, ts)).every(val => val === true);
+      } else {
+        return minutesToday < ts;
+      }
+    } else {
+      return bookingsOfDate.map(bod => hasValidTimeslots(bod, ts)).every(val => val === true);
+    }
+  });
 
   return availableTimeslots.map(ts => numberToTimestring(ts));
 }
