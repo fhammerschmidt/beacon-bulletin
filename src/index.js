@@ -1,7 +1,8 @@
 // @flow
 import * as React from 'react';
-import { AppRegistry, YellowBox } from 'react-native';
+import { AppRegistry, YellowBox, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
+import { COLORS } from './constants';
 
 import configureStore from './store/configureStore';
 import Root from './components/Root';
@@ -13,6 +14,7 @@ class BeaconBulletin extends React.Component<*> {
   render() {
     return (
       <Provider store={store}>
+        <StatusBar backgroundColor={COLORS.PRIMARY} barStyle="light-content" />
         <Root />
       </Provider>
     );

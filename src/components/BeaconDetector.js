@@ -3,6 +3,7 @@ import * as React from 'react';
 import Beacons, { type BeaconRegion } from '@nois/react-native-beacons-manager';
 
 import detectBeacons, { type Region } from '../utils/detectBeacons';
+import { DEFAULT_BEACON_UUID } from '../constants';
 
 type Props = {
   children: React.Node,
@@ -26,12 +27,11 @@ export default class BeaconDetector extends React.Component<Props, State> {
   beaconsServiceDidConnect: any = null;
 
   state = {
-    region: { identifier: 'REGION1', uuid: 'e2c56db5-dffb-48d2-b060-d0f5a71096e0' },
+    region: { identifier: 'REGION1', uuid: DEFAULT_BEACON_UUID },
     beacons: [],
   };
 
   componentDidMount() {
-    // const uuid = '01122334-4556-6778-899a-abbccddeeff0';
     detectBeacons(this.state.region, 'IBEACON');
 
     // we need to wait for service connection to ensure synchronization:
