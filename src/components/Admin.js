@@ -1,21 +1,11 @@
 // @flow
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import BeaconList from './BeaconList';
 
-type OwnProps = {
-  // navigation: any,
-};
+import BeaconDetector from './BeaconDetector';
 
-type StoreProps = {};
-
-type Props = OwnProps & StoreProps;
-
-export default class Admin extends React.Component<Props> {
-  render() {
-    return (
-      <View>
-        <Text> Hallööööö </Text>
-      </View>
-    );
-  }
-}
+export default ({ navigation }: any) => (
+  <BeaconDetector>
+    <BeaconList navigation={navigation} />
+  </BeaconDetector>
+);
