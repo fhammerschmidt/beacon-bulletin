@@ -1,5 +1,6 @@
 // @flow
 import keyBy from 'lodash/keyBy';
+import flatten from 'lodash/flatten';
 
 import type { Beacon, Room } from '../../apiTypes';
 import type { Action } from '../actions';
@@ -55,12 +56,38 @@ export default function data(state: DataState = initialState, action: Action): D
           byId: keyBy(action.rooms, 'id'),
         },
       };
+    case 'POST_BEACON_SUCCESS':
+      return {
+        ...state,
+        beacons: {
+          ...state.beacons,
+          ids: [...state.beacons.ids, action.beacon.id],
+          byId: { ...state.beacons.byId, [action.beacon.id]: action.beacon },
+        },
+      };
     default:
       return state;
   }
 }
 
 export function roomSelector(state: ReduxState, roomId: string): Room {
-  console.log(state.data.rooms, roomId);
   return state.data.rooms.byId[roomId];
+}
+
+export function roomListSelector(state: ReduxState): Array<Room> {
+  return state.data.rooms.ids.map(id => state.data.rooms.byId[id]);
+}
+
+export function beaconListSelector(state: ReduxState): Array<Beacon> {
+  return state.data.beacons.ids.map(id => state.data.beacons.byId[id]);
+}
+
+export function roomsWithBeaconsSelector(state: ReduxState): Array<Room> {
+  const roomIdsWithBeacons = new Set(flatten(beaconListSelector(state).map(b => b.assignedRooms)));
+  return roomListSelector(state).filter(room => roomIdsWithBeacons.has(room.name));
+}
+
+export function roomsWithNoBeaconsSelector(state: ReduxState): Array<Room> {
+  const roomIdsWithBeacons = new Set(flatten(beaconListSelector(state).map(b => b.assignedRooms)));
+  return roomListSelector(state).filter(room => !roomIdsWithBeacons.has(room.name));
 }
