@@ -39,11 +39,12 @@ class RoomList extends React.Component<Props> {
         if (found.length > 0) {
           // Use the first room in the sorted list to display prominently.
           const availableRooms = rooms.filter(r => found.some(f => f.assignedRooms[0] === r.name));
+          const [nearestRoom, ...rest] = availableRooms;
 
           return (
             <ScrollView style={styles.list}>
-              <RoomDetailConnector roomId={availableRooms[0].id} />
-              <FlatList data={availableRooms} renderItem={this.renderRow} keyExtractor={this.keyExtractor} />
+              <RoomDetailConnector roomId={nearestRoom.id} />
+              <FlatList data={rest} renderItem={this.renderRow} keyExtractor={this.keyExtractor} />
             </ScrollView>
           );
         }

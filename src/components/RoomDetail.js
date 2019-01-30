@@ -41,6 +41,16 @@ export default class RoomDetail extends React.Component<Props, State> {
     this.handleToggleLoadingState();
   }
 
+  componentDidUpdate(prevProps: Props) {
+    const { room, getBookings } = this.props;
+
+    if (room !== prevProps.room) {
+      this.handleToggleLoadingState();
+      getBookings(room.id);
+      this.handleToggleLoadingState();
+    }
+  }
+
   render() {
     const {
       room: { name },

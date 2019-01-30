@@ -39,10 +39,6 @@ export default function temp(state: TempState = initialState, action: Action): T
           ...state.bookings,
           [booking.roomId]: [...state.bookings[booking.roomId], booking],
         },
-        timeslots: {
-          ...state.timeslots,
-          [booking.roomId]: state.timeslots[booking.roomId].filter(t => t !== booking.start),
-        },
       };
     }
     case 'FETCH_TIMESLOTS_SUCCESS': {

@@ -76,12 +76,24 @@ function* doFetchBookings(): Generator<*, *, *> {
 
 function* doFetchTimeslots(): Generator<*, *, *> {
   while (true) {
-    const action = yield take('FETCH_TIMESLOTS');
+    // Fetch timeslots after successfully posting a booking, too.
+    const action = yield take(['FETCH_TIMESLOTS', 'POST_BOOKING_SUCCESS']);
     yield put(fetchTimeslotsStarted());
 
+    // FETCH_TIMESLOTS: action.roomId / POST_BOOKING_SUCCESS: action.booking.roomId
+    let roomId = null;
+    if (action.roomId) {
+      roomId = action.roomId;
+    } else if (action.booking.roomId) {
+      roomId = action.booking.roomId;
+    } else {
+      // This should never happen.
+      throw new Error('Room ID for fetching timeslots not found.');
+    }
+
     try {
-      const timeslots: string[] = yield* fetchSaga(`timeslots/${action.roomId}`);
-      yield put(fetchTimeslotsSuccess(action.roomId, timeslots));
+      const timeslots: string[] = yield* fetchSaga(`timeslots/${roomId}`);
+      yield put(fetchTimeslotsSuccess(roomId, timeslots));
     } catch (error) {
       yield put(fetchTimeslotsError(error));
     }
