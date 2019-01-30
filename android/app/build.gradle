@@ -100,6 +100,16 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+        release {
+            if (project.hasProperty('BEACON_BULLETIN_RELEASE_STORE_FILE')) {
+                storeFile file(BEACON_BULLETIN_RELEASE_STORE_FILE)
+                storePassword BEACON_BULLETIN_RELEASE_STORE_PASSWORD
+                keyAlias BEACON_BULLETIN_RELEASE_KEY_ALIAS
+                keyPassword BEACON_BULLETIN_RELEASE_KEY_PASSWORD
+            }
+        }
+    }  
     splits {
         abi {
             reset()
@@ -112,6 +122,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
