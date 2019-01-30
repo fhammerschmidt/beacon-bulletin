@@ -62,3 +62,4 @@ docs/thesis-plan.md
 # Backend dist
 backend/dist/
 backend/deploy.sh
+deployApk.sh
