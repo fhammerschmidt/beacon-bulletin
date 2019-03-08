@@ -9,11 +9,13 @@ export type TimeslotMap = { [roomId: string]: Array<string> };
 export type TempState = {
   bookings: BookingMap,
   timeslots: TimeslotMap,
+  ts: boolean,
 };
 
 const initialState = {
   bookings: {},
   timeslots: {},
+  ts: false,
 };
 
 export default function temp(state: TempState = initialState, action: Action): TempState {
@@ -22,13 +24,12 @@ export default function temp(state: TempState = initialState, action: Action): T
       const { roomId, bookings } = action;
       return {
         ...state,
-        bookings:
-          bookings && bookings.length > 0
-            ? {
-                ...state.bookings,
-                [roomId]: bookings,
-              }
-            : state.bookings,
+        bookings: bookings
+          ? {
+              ...state.bookings,
+              [roomId]: bookings,
+            }
+          : state.bookings,
       };
     }
     case 'POST_BOOKING_SUCCESS': {
@@ -45,13 +46,12 @@ export default function temp(state: TempState = initialState, action: Action): T
       const { roomId, timeslots } = action;
       return {
         ...state,
-        timeslots:
-          timeslots && timeslots.length > 0
-            ? {
-                ...state.timeslots,
-                [roomId]: timeslots,
-              }
-            : state.timeslots,
+        timeslots: timeslots
+          ? {
+              ...state.timeslots,
+              [roomId]: timeslots,
+            }
+          : state.timeslots,
       };
     }
     default:
