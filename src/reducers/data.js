@@ -2,7 +2,7 @@
 import keyBy from 'lodash/keyBy';
 import flatten from 'lodash/flatten';
 
-import type { Beacon, Room } from '../../apiTypes';
+import type { Beacon, Room } from '../../common/apiTypes';
 import type { Action } from '../actions';
 import type { ReduxState } from '.';
 

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { SectionList, StyleSheet, Text, View } from 'react-native';
 import { connect, type Connector } from 'react-redux';
 
-import type { Booking } from '../../apiTypes';
+import type { Booking } from '../../common/apiTypes';
 import type { ReduxState } from '../reducers';
 import type { BookingMap } from '../reducers/temp';
 import BookingCell from './BookingCell';

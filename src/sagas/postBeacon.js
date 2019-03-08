@@ -1,5 +1,5 @@
 // @flow
-import { type Beacon } from '../../apiTypes';
+import { type Beacon } from '../../common/apiTypes';
 import { postBeaconStarted, postBeaconSuccess, postBeaconError } from '../actions';
 import fetchSaga from './fetch';
 import { take, put, fork } from 'redux-saga/effects';

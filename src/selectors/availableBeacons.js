@@ -1,7 +1,7 @@
 // @flow
 import { createSelector } from 'reselect';
 
-import type { Beacon } from '../../apiTypes';
+import type { Beacon } from '../../common/apiTypes';
 import type { ReduxState } from '../reducers';
 
 // This selector takes an array of beacon ids to return a list of beacons

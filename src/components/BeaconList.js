@@ -4,7 +4,7 @@ import { FlatList, StyleSheet, View } from 'react-native';
 import { connect, type Connector } from 'react-redux';
 import { type BeaconRegion } from '@nois/react-native-beacons-manager';
 
-import type { Beacon } from '../../apiTypes';
+import type { Beacon } from '../../common/apiTypes';
 import type { ReduxState } from '../reducers';
 import { beaconListSelector } from '../reducers/data';
 import UserInfoView from './UserInfoView';

@@ -1,6 +1,6 @@
 // @flow
-import type { ApiBooking } from '../../../apiTypes';
-import { getDateWithOffset, getDateString } from './date';
+import type { ApiBooking } from '../../../common/apiTypes';
+import { getDateString, numberToTimestring, timestringToNumber } from '../../../common/utils';
 
 // Time from 08:00 - 17:00
 const timeslotsInNumbers = [
@@ -27,20 +27,15 @@ const timeslotsInNumbers = [
   1080,
 ];
 
-const zeropad = (str: string) => (str.length === 2 ? str : `0${str}`);
-const numberToTimestring = (num: number) =>
-  `${zeropad(Math.trunc(num / 60).toString())}:${zeropad((num % 60).toString())}`;
-
-const timestringToNumber = (ts: string) => parseInt(ts.substring(0, 2), 10) * 60 + parseInt(ts.substring(3, 5), 10);
-
 const hasValidTimeslots = (bod: ApiBooking, ts: number) =>
   ts < timestringToNumber(bod.start) || ts >= timestringToNumber(bod.start) + bod.duration;
 
 export default function findTimeslots(bookings: ApiBooking[], date: Date): string[] {
   const dateString = getDateString(date);
   const bookingsOfDate = bookings.filter(booking => booking.day === dateString);
-  const newDate = getDateWithOffset(new Date());
+  const newDate = new Date();
   const isToday = dateString === getDateString(newDate);
+  const isInPast = date < new Date().setDate(newDate.getDate() - 1);
   const minutesToday = newDate.getHours() * 60 + newDate.getMinutes();
 
   const availableTimeslots = timeslotsInNumbers.filter(ts => {
@@ -50,6 +45,8 @@ export default function findTimeslots(bookings: ApiBooking[], date: Date): strin
       } else {
         return minutesToday < ts;
       }
+    } else if (isInPast) {
+      return false;
     } else {
       return bookingsOfDate.map(bod => hasValidTimeslots(bod, ts)).every(val => val === true);
     }

@@ -1,7 +1,7 @@
 // @flow
 import { createSelector } from 'reselect';
 
-import type { Room } from '../../apiTypes';
+import type { Room } from '../../common/apiTypes';
 import type { ReduxState } from '../reducers';
 import availableBeaconsSelector from './availableBeacons';
 

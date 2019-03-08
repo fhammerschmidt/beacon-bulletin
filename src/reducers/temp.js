@@ -1,5 +1,5 @@
 // @flow
-import type { Booking } from '../../apiTypes';
+import type { Booking } from '../../common/apiTypes';
 import type { Action } from '../actions';
 import type { ReduxState } from '.';
 

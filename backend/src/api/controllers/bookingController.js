@@ -1,9 +1,9 @@
 // @flow
-import type { ApiBooking } from '../../../../apiTypes';
+import type { ApiBooking } from '../../../../common/apiTypes';
+import { getDateString } from '../../../../common/utils';
 import { Room, Booking } from '../models';
 import findTimeslots from '../../utils/findTimeslots';
 import checkBooking from '../../utils/checkBooking';
-import { getDateString } from '../../utils/date';
 
 // GET /booking/{bookingId}
 export function getBooking(req: express$Request, res: express$Response) {

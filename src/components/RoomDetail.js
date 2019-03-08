@@ -2,7 +2,8 @@
 import * as React from 'react';
 import { Text, TouchableOpacity, StyleSheet, View, Dimensions } from 'react-native';
 
-import type { Room, ApiBooking, Booking } from '../../apiTypes';
+import type { Room, ApiBooking, Booking } from '../../common/apiTypes';
+import { getDateString, zeropad } from '../../common/utils';
 import { COLORS } from '../constants';
 import { Button, IconButton } from './Button';
 import BookingCell from './BookingCell';
@@ -23,8 +24,6 @@ type State = {
 };
 
 const screenWidth = Dimensions.get('window').width;
-
-const timestringToNumber = (ts: string) => parseInt(ts.substring(0, 2), 10) * 60 + parseInt(ts.substring(3, 5), 10);
 
 const selectTimeslot = (timeslot: string, firstTimeslot: string, selectedTimeslot: string) =>
   selectedTimeslot.length > 0 ? timeslot === selectedTimeslot : timeslot === firstTimeslot;

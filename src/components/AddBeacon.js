@@ -4,7 +4,7 @@ import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { connect, type Connector } from 'react-redux';
 import { type BeaconRegion } from '@nois/react-native-beacons-manager';
 
-import type { ApiBeacon, Room } from '../../apiTypes';
+import type { ApiBeacon, Room } from '../../common/apiTypes';
 import { postBeacon, type DispatchProps } from '../actions';
 import type { ReduxState } from '../reducers';
 import { roomsWithNoBeaconsSelector } from '../reducers/data';

@@ -4,7 +4,7 @@ import { FlatList, StyleSheet, ScrollView } from 'react-native';
 import { connect, type Connector } from 'react-redux';
 import { type BeaconRegion } from '@nois/react-native-beacons-manager';
 
-import type { Beacon, Room } from '../../apiTypes';
+import type { Beacon, Room } from '../../common/apiTypes';
 import type { ReduxState } from '../reducers';
 import { roomListSelector, beaconListSelector } from '../reducers/data';
 import RoomCell from './RoomCell';

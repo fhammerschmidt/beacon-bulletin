@@ -1,5 +1,5 @@
 // @flow
-import type { Beacon, Room, Booking, ApiBooking, ApiBeacon } from '../../apiTypes';
+import type { Beacon, Room, Booking, ApiBooking, ApiBeacon } from '../../common/apiTypes';
 
 export type DataAction =
   | {| type: 'FETCH_BEACONS' |}

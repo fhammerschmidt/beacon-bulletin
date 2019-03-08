@@ -1,5 +1,10 @@
 // @flow
-import type { Beacon, Room, Booking } from '../../apiTypes';
+import { Vibration } from 'react-native';
+
+import type { Beacon, Room, Booking } from '../../common/apiTypes';
+import { getDateString, timestringToNumber } from '../../common/utils';
+
+import { timeslotsForRoomSelector } from '../reducers/temp';
 import {
   fetchRooms,
   fetchRoomsStarted,

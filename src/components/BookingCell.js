@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-import type { Booking } from '../../apiTypes';
+import type { Booking } from '../../common/apiTypes';
 import Icon from './Icon';
 
 const createDate = ({ day, start, duration }: Booking) => {

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-import type { Room } from '../../apiTypes';
+import type { Room } from '../../common/apiTypes';
 import Icon from './Icon';
 
 export default class RoomCell extends React.PureComponent<*> {

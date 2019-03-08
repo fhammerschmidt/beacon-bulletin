@@ -1,6 +1,6 @@
 // @flow
 import { Room } from '../models';
-import type { ApiRoom } from '../../../../apiTypes';
+import type { ApiRoom } from '../../../../common/apiTypes';
 
 // GET /rooms
 export function getAllRooms(req: express$Request, res: express$Response) {

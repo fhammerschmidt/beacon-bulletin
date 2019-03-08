@@ -3,7 +3,7 @@ import * as React from 'react';
 import { connect, type Connector } from 'react-redux';
 import isNil from 'lodash/isNil';
 
-import type { Room, Booking, ApiBooking } from '../../apiTypes';
+import type { Room, Booking, ApiBooking } from '../../common/apiTypes';
 import { fetchBookings, fetchTimeslots, postBooking, type DispatchProps } from '../actions';
 import type { ReduxState } from '../reducers';
 import { roomSelector } from '../reducers/data';

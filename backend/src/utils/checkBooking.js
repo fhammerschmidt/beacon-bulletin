@@ -1,5 +1,5 @@
 // @flow
-import type { ApiBooking } from '../../../apiTypes';
+import type { ApiBooking } from '../../../common/apiTypes';
 
 const stringIsValid = (str: string) => Boolean(str) && str.length > 0;
 

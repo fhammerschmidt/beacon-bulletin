@@ -1,5 +1,5 @@
 // @flow
-import { type Booking } from '../../apiTypes';
+import { type Booking } from '../../common/apiTypes';
 import { postBookingStarted, postBookingSuccess, postBookingError } from '../actions';
 import fetchSaga from './fetch';
 import { take, put, fork } from 'redux-saga/effects';
