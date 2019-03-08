@@ -3,6 +3,7 @@ import * as React from 'react';
 import { FlatList, StyleSheet, ScrollView } from 'react-native';
 import { connect, type Connector } from 'react-redux';
 import { type BeaconRegion } from '@nois/react-native-beacons-manager';
+import keyBy from 'lodash/keyBy';
 
 import type { Beacon, Room } from '../../common/apiTypes';
 import type { ReduxState } from '../reducers';
@@ -35,10 +36,22 @@ class RoomList extends React.Component<Props> {
     const { rooms, dataBeacons, beacons } = this.props;
     if (beacons) {
       if (beacons.length > 0) {
-        const found = dataBeacons.filter(db => beacons.some(b => b.minor.toString() === db.minor));
+        const beaconsById = keyBy(beacons, b => b.minor.toString());
+        const found = dataBeacons
+          .filter(db => beaconsById[db.minor])
+          .map(db => {
+            return { distance: beaconsById[db.minor].distance, ...db };
+          });
+
         if (found.length > 0) {
           // Use the first room in the sorted list to display prominently.
-          const availableRooms = rooms.filter(r => found.some(f => f.assignedRooms[0] === r.name));
+          const foundById = keyBy(found, f => f.assignedRooms[0]);
+          const availableRooms = rooms
+            .filter(r => foundById[r.name])
+            .map(r => {
+              return { distance: foundById[r.name].distance, ...r };
+            })
+            .sort((a, b) => a.distance - b.distance);
           const [nearestRoom, ...rest] = availableRooms;
 
           return (

@@ -38,6 +38,7 @@ class RoomDetailConnector extends React.Component<Props> {
     if (isNil(room)) {
       return null;
     }
+
     return (
       <RoomDetail
         room={room}
@@ -50,9 +51,9 @@ class RoomDetailConnector extends React.Component<Props> {
     );
   }
 
-  getBookings = (roomId: string) => {
+  getBookings = (roomId: string, date?: string) => {
     this.props.dispatch(fetchBookings(roomId));
-    this.props.dispatch(fetchTimeslots(roomId));
+    this.props.dispatch(fetchTimeslots(roomId, date));
   };
 
   createBooking = (booking: ApiBooking) => {

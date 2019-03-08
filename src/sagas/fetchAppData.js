@@ -22,7 +22,7 @@ import {
   fetchTimeslotsError,
 } from '../actions';
 import fetchSaga from './fetch';
-import { take, put, fork } from 'redux-saga/effects';
+import { fork, put, select, take } from 'redux-saga/effects';
 
 export default function* fetchAppDataSaga(): Generator<*, *, *> {
   yield fork(doFetchRooms);
@@ -79,6 +79,7 @@ function* doFetchBookings(): Generator<*, *, *> {
   }
 }
 
+// eslint-disable-next-line max-statements
 function* doFetchTimeslots(): Generator<*, *, *> {
   while (true) {
     // Fetch timeslots after successfully posting a booking, too.
@@ -86,19 +87,39 @@ function* doFetchTimeslots(): Generator<*, *, *> {
     yield put(fetchTimeslotsStarted());
 
     // FETCH_TIMESLOTS: action.roomId / POST_BOOKING_SUCCESS: action.booking.roomId
+    let date = null;
     let roomId = null;
     if (action.roomId) {
       roomId = action.roomId;
     } else if (action.booking.roomId) {
+      date = action.booking.day;
       roomId = action.booking.roomId;
     } else {
       // This should never happen.
       throw new Error('Room ID for fetching timeslots not found.');
     }
 
+    if (action.date) {
+      date = action.date;
+    }
+
+    const params = date ? `?date=${date}` : '';
+
     try {
-      const timeslots: string[] = yield* fetchSaga(`timeslots/${roomId}`);
-      yield put(fetchTimeslotsSuccess(roomId, timeslots));
+      const storedTimeslots = yield select(timeslotsForRoomSelector);
+
+      const timeslots: string[] = yield* fetchSaga(`timeslots/${roomId}${params}`);
+      const newDate = new Date();
+      const minutesToday = newDate.getHours() * 60 + newDate.getMinutes();
+      const today = !date || getDateString(new Date()) === date;
+      const remainingTimeslots = today ? timeslots.filter(ts => minutesToday < timestringToNumber(ts)) : timeslots;
+
+      if (today && storedTimeslots.length === 0 && remainingTimeslots.length > 0) {
+        // Vibrate to notify that there are timeslots available for the nearest room today.
+        Vibration.vibrate();
+      }
+
+      yield put(fetchTimeslotsSuccess(roomId, remainingTimeslots));
     } catch (error) {
       yield put(fetchTimeslotsError(error));
     }

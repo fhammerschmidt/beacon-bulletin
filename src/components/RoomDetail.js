@@ -14,13 +14,14 @@ type Props = {
   bookings: Booking[],
   timeslots: string[],
   onBackPress?: () => void,
-  getBookings: (roomId: string) => void,
+  getBookings: (roomId: string, date?: string) => void,
   createBooking: (booking: ApiBooking) => void,
 };
 
 type State = {
   loading: boolean,
   selectedTimeslot: string,
+  day: string,
 };
 
 const screenWidth = Dimensions.get('window').width;
@@ -32,6 +33,7 @@ export default class RoomDetail extends React.Component<Props, State> {
   state = {
     loading: true,
     selectedTimeslot: '',
+    day: getDateString(new Date()),
   };
 
   componentDidMount() {
@@ -62,24 +64,26 @@ export default class RoomDetail extends React.Component<Props, State> {
       return <UserInfoView message="Fetching timeslots and bookings..." icon="tune" />;
     }
 
-    const newDate = new Date();
-    const minutesToday = newDate.getHours() * 60 + newDate.getMinutes();
-
     return (
       <View style={styles.container}>
         <DetailRow title="Room Name:" value={name} />
-        <DetailRow title="Available Times:" />
+        <DetailRow title={`Available Times for: ${this.state.day}`} />
         <View style={styles.timeslots}>
-          {timeslots
-            .filter(ts => minutesToday < timestringToNumber(ts))
-            .map((timeslot, i) => (
+          {timeslots.length > 0 ? (
+            timeslots.map((timeslot, i) => (
               <TimeslotCell
                 key={i}
                 timeslot={timeslot}
                 selected={selectTimeslot(timeslot, timeslots[0], this.state.selectedTimeslot)}
                 onPress={this.handleSelectTimeslot}
               />
-            ))}
+            ))
+          ) : (
+            <TouchableRow
+              text="No available slots. Check slots for tomorrow?"
+              onPress={this.handleFetchTimeslotsPress}
+            />
+          )}
         </View>
         <DetailRow title="Most recent booking:" />
         {bookings.length > 0 && <BookingCell booking={bookings[bookings.length - 1]} />}
@@ -99,9 +103,9 @@ export default class RoomDetail extends React.Component<Props, State> {
 
   handleBookRoomPressed = () => {
     const { room, timeslots, createBooking } = this.props;
-    const { selectedTimeslot } = this.state;
+    const { selectedTimeslot, day } = this.state;
     const booking = {
-      day: new Date().toISOString().split('T')[0],
+      day,
       start: selectedTimeslot.length > 0 ? selectedTimeslot : timeslots[0],
       duration: 30,
       roomId: room.id,
@@ -119,6 +123,15 @@ export default class RoomDetail extends React.Component<Props, State> {
     this.setState({ selectedTimeslot });
   };
 
+  handleFetchTimeslotsPress = () => {
+    const { room, getBookings } = this.props;
+    const newDate = new Date(this.state.day);
+    const day = `${newDate.getFullYear()}-${zeropad(newDate.getMonth() + 1)}-${zeropad(newDate.getDate() + 1)}`;
+
+    this.setState({ day });
+    getBookings(room.id, day);
+  };
+
   renderItem = ({ item }: { item: Booking }) => {
     return <BookingCell key={item.id} booking={item} />;
   };
@@ -132,6 +145,16 @@ function DetailRow({ title, value }: { title: string, value?: string }) {
       <Text style={styles.title}>{title}</Text>
       {value && <Text style={styles.value}>{value}</Text>}
     </View>
+  );
+}
+
+function TouchableRow({ text, onPress }: { text: string, onPress: () => void }) {
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.detail}>
+        <Text style={styles.touchableText}>{text}</Text>
+      </View>
+    </TouchableOpacity>
   );
 }
 
@@ -193,6 +216,9 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.PRIMARY,
   },
   title: {},
+  touchableText: {
+    color: COLORS.PRIMARY,
+  },
   selectedTitle: {
     color: 'white',
   },

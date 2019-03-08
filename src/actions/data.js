@@ -14,7 +14,7 @@ export type DataAction =
   | {| type: 'FETCH_BOOKINGS_STARTED' |}
   | {| type: 'FETCH_BOOKINGS_SUCCESS', roomId: string, bookings: Booking[] |}
   | {| type: 'FETCH_BOOKINGS_ERROR', error: Object |}
-  | {| type: 'FETCH_TIMESLOTS', roomId: string |}
+  | {| type: 'FETCH_TIMESLOTS', roomId: string, date?: string |}
   | {| type: 'FETCH_TIMESLOTS_STARTED' |}
   | {| type: 'FETCH_TIMESLOTS_SUCCESS', roomId: string, timeslots: string[] |}
   | {| type: 'FETCH_TIMESLOTS_ERROR', error: Object |}
@@ -79,8 +79,8 @@ export function fetchBookingsError(error: Object): DataAction {
   return { type: 'FETCH_BOOKINGS_ERROR', error };
 }
 
-export function fetchTimeslots(roomId: string): DataAction {
-  return { type: 'FETCH_TIMESLOTS', roomId };
+export function fetchTimeslots(roomId: string, date?: string): DataAction {
+  return { type: 'FETCH_TIMESLOTS', roomId, date };
 }
 
 export function fetchTimeslotsStarted(): DataAction {
