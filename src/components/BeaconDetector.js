@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import { Vibration } from 'react-native';
 import Beacons, { type BeaconRegion } from '@nois/react-native-beacons-manager';
 
 import {
@@ -69,7 +68,6 @@ export default class BeaconDetector extends React.Component<Props, State> {
 
   updateBeaconState = (nb: BeaconRegion) => {
     const beacons = filterBeacons(nb, this.state.beacons);
-    // Vibration.vibrate();
     this.setState({ beacons });
   };
 }
