@@ -29,6 +29,7 @@ project.xcworkspace
 .gradle
 local.properties
 android/app/build/
+android/app/src/main/assets/index.android.bundle
 android/.gradle/
 
 # node.js
