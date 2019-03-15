@@ -15,6 +15,7 @@ import UserInfoView from './UserInfoView';
 type OwnProps = {
   navigation: any,
   beacons?: BeaconRegion[],
+  toggleBeaconUuid?: () => void,
 };
 
 type StoreProps = {
@@ -33,7 +34,7 @@ function mapStateToProps(state: ReduxState): StoreProps {
 
 class RoomList extends React.Component<Props> {
   render() {
-    const { rooms, dataBeacons, beacons } = this.props;
+    const { rooms, dataBeacons, beacons, toggleBeaconUuid } = this.props;
     if (beacons) {
       if (beacons.length > 0) {
         const beaconsById = keyBy(beacons, b => b.minor.toString());
@@ -63,7 +64,13 @@ class RoomList extends React.Component<Props> {
         }
       }
     }
-    return <UserInfoView message="No beacon in range" />;
+    return (
+      <UserInfoView
+        message="No beacon in range, check with a different uuid?"
+        action={toggleBeaconUuid}
+        actionLabel="Use other UUID"
+      />
+    );
   }
 
   renderRow = ({ item }: { item: Room }) => {

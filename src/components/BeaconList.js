@@ -13,6 +13,7 @@ import BeaconCell from './BeaconCell';
 type OwnProps = {
   navigation: any,
   beacons?: BeaconRegion[],
+  toggleBeaconUuid?: () => void,
 };
 
 type StoreProps = {
@@ -29,7 +30,7 @@ function mapStateToProps(state: ReduxState): StoreProps {
 
 class BeaconList extends React.Component<Props> {
   render() {
-    const { beaconList, beacons } = this.props;
+    const { beaconList, beacons, toggleBeaconUuid } = this.props;
     if (beacons) {
       if (beacons.length > 0) {
         const found = beacons.filter(
@@ -47,7 +48,13 @@ class BeaconList extends React.Component<Props> {
         }
       }
     }
-    return <UserInfoView message="Scanning for beacons with no room assigned..." />;
+    return (
+      <UserInfoView
+        message="Scanning for beacons with no room assigned..."
+        action={toggleBeaconUuid}
+        actionLabel="Or: Use other UUID"
+      />
+    );
   }
 
   renderItem = ({ item }: { item: BeaconRegion }) => {

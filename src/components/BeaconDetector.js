@@ -9,7 +9,7 @@ import {
   stopRangingAndMonitoring,
 } from '../utils/beaconHelpers';
 import detectBeacons, { type Region } from '../utils/detectBeacons';
-import { DEFAULT_BEACON_UUID } from '../constants';
+import { ALL_BEACON_UUIDS } from '../constants';
 
 type Props = {
   children: React.Node,
@@ -17,6 +17,7 @@ type Props = {
 
 type State = {
   region: Region,
+  beaconUuidName: string,
   beacons: BeaconRegion[],
 };
 
@@ -31,11 +32,36 @@ export default class BeaconDetector extends React.Component<Props, State> {
   beaconsServiceDidConnect: any = null;
 
   state = {
-    region: { identifier: 'REGION1', uuid: DEFAULT_BEACON_UUID },
+    region: { identifier: 'REGION1', uuid: ALL_BEACON_UUIDS.default },
+    beaconUuidName: 'default',
     beacons: [],
   };
 
   componentDidMount() {
+    this.startDetection();
+  }
+
+  componentWillUnMount() {
+    stopRangingAndMonitoring(this.state.region);
+    // this.beaconsDidRangeEvent.remove();
+  }
+
+  render() {
+    const { beacons } = this.state;
+    return React.Children.map(this.props.children, child => {
+      return React.cloneElement(child, {
+        beacons,
+        toggleBeaconUuid: this.toggleUuid,
+      });
+    });
+  }
+
+  updateBeaconState = (nb: BeaconRegion) => {
+    const beacons = filterBeacons(nb, this.state.beacons);
+    this.setState({ beacons });
+  };
+
+  startDetection = () => {
     const { region } = this.state;
     detectBeacons(region, 'IBEACON');
 
@@ -50,24 +76,18 @@ export default class BeaconDetector extends React.Component<Props, State> {
 
       response.beacons.forEach(beacon => this.updateBeaconState(createRegion(response, beacon)));
     });
-  }
+  };
 
-  componentWillUnMount() {
+  toggleUuid = () => {
     stopRangingAndMonitoring(this.state.region);
-    // this.beaconsDidRangeEvent.remove();
-  }
-
-  render() {
-    const { beacons } = this.state;
-    return React.Children.map(this.props.children, child => {
-      return React.cloneElement(child, {
-        beacons,
-      });
+    const { beaconUuidName, region } = this.state;
+    const updatedBeaconUuidName = beaconUuidName === 'default' ? 'kontakt' : 'default';
+    this.setState({
+      beaconUuidName: updatedBeaconUuidName,
+      region: { ...region, uuid: ALL_BEACON_UUIDS[updatedBeaconUuidName] },
     });
-  }
 
-  updateBeaconState = (nb: BeaconRegion) => {
-    const beacons = filterBeacons(nb, this.state.beacons);
-    this.setState({ beacons });
+    console.log('beaconstate', this.state);
+    this.startDetection();
   };
 }
